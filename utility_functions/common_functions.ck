@@ -13,6 +13,7 @@
     fun int[] randomArray_from(int arr[], int length){}
     fun int[] range(int start, int end){}
     fun int[] narray(int start, int next, int up_to){}
+    fun int[] expand_scale(int scale[], int start_stop[]){    
     fun int[][] stepify(string sequence_data[]){}
     
     fun float average(int arr[]){}
@@ -75,6 +76,30 @@ fun int[] narray(int start, int next, int up_to){
     }
     return arr;  // matey!
 }
+
+fun int[] expand_scale(int scale[], int start_stop[]){
+
+    // assumes we start somewhere above 0
+    start_stop[0] => int start;
+    start_stop[1] => int end;
+
+    int expand_array[0];
+    -1 => int last;
+    int current;
+    for(start => int i; i < end; i++){
+        for(0 => int n; n<scale.cap(); n++){
+            // avoids doubles, if the incoming scale ends an 
+            // octave above the first note
+            scale[n] + (i*12) => current;
+            if (!(current == last)){
+                expand_array << current;
+                current => last;
+            }
+        }
+    }
+    return expand_array;
+}
+
 
 fun string repr(int arr[]){
     /*
