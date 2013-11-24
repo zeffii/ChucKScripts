@@ -78,7 +78,6 @@
 #### dac
 
 ```c
-// week 2 section 4
 .left 
 .right
 .chan(0)
