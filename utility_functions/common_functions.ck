@@ -10,6 +10,7 @@
     fun int inArray(int token, int arr[]){}
     fun int indexOfClosest(int ival, int arr[]){}
     fun int to_note(string str){}
+    fun int[] set_from(int arr[]){}
     fun int[] randomArray_from(int arr[], int length){}
     fun int[] range(int start, int end){}
     fun int[] narray(int start, int next, int up_to){}
@@ -263,3 +264,19 @@ fun int indexOfClosest(int ival, int arr[]){
     return idx_tracker;
 
 }
+
+fun int[] set_from(int arr[]){
+    // no order guaranteed
+    // requires  inArray() to be present.
+    int new_arr[0];
+    new_arr << arr[0];
+
+    for(1 => int i; i<arr.cap(); i++){
+        if (inArray(arr[i], new_arr) == 0){
+            new_arr << arr[i];
+        }
+    }
+    return new_arr;
+}
+
+
