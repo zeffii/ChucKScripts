@@ -1,7 +1,7 @@
 //me.arg(0) => string filename;
 //if( filename.length() == 0 ) "foo.wav" => filename;
 
-dac => Gain g => WvOut2 w => blackhole;
+dac => WvOut2 w => blackhole;
 //"data/session" => w.autoPrefix;
 "woooot.wav" => w.wavFilename;
 1 => w.record;
