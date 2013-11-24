@@ -57,6 +57,20 @@
 .random2f(a, b) // random float between a and b
 ```
 
+*Math utility functions*
+
+```c
+.floor(float) // round down to next integeral ( 2.3 becomes 2.0 )
+.ceil(float) // round up to next integral  ( 2.3 becomes  3.0 )
+.round(float) // regular rounding rules apply
+.trunc() // round to largest integral val no greater than x
+.fmod(float, float)  // float remainder of x / y
+.min(float, float) // returns lowest value of the two inputs
+.max(float, float) // returns highest value of the two inputs
+.nextpow2(float) // (int) returns smallest int (power of 2 greater than input)
+```
+
+
 *Math trig and mathematical operations*
 
 ```c
@@ -79,20 +93,6 @@
 .cosh(x)
 .tanh(x)
 ```
-
-*Math utility functions*
-
-```c
-.floor(float) // round down to next integeral ( 2.3 becomes 2.0 )
-.ceil(float) // round up to next integral  ( 2.3 becomes  3.0 )
-.round(float) // regular rounding rules apply
-.trunc() // round to largest integral val no greater than x
-.fmod(float, float)  // float remainder of x / y
-.min(float, float) // returns lowest value of the two inputs
-.max(float, float) // returns highest value of the two inputs
-.nextpow2(float) // (int) returns smallest int (power of 2 greater than input)
-```
-
 
 #### dac
 
