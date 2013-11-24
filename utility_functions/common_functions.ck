@@ -4,7 +4,7 @@
     definitions
 
     fun void repr_int_array(int arr[]){}
-    fun void repr_int_array(string arr[]){}
+    fun void repr_string_array(string arr[]){}
     
     fun int random_from(int arr[]){}
     fun int inArray(int token, int arr[]){}
@@ -137,7 +137,7 @@ fun void repr_int_array(int arr[])
     chout <= IO.newline();
 }
 
-fun void repr_int_array(string arr[])
+fun void repr_string_array(string arr[])
 {
     arr.cap() => int num_items;
     chout <= "[";
