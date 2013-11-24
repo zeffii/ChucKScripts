@@ -37,7 +37,7 @@
 .random2f(a, b) // random float between a and b
 ```
 
-*Math geometry and operations on numbers*
+*Math trig and mathematical operations*
 
 ```c
 .hypot(fx, fy)  // takes floats, returns euclidean distance of vector 
@@ -47,6 +47,17 @@
 .log(x) // natural log
 .log2(x)  // log base 2
 .log10(x) // base 10
+
+// all of these return floats
+.sin(x) // for parameter control, not for generating audio 
+.cos(x)
+.tan(x)
+.asin(x)
+.acos(x)
+.atan2(x,y)
+.sinh(x)
+.cosh(x)
+.tanh(x)
 ```
 
 *Math utility functions*
@@ -62,18 +73,6 @@
 .nextpow2(float) // (int) returns smallest int (power of 2 greater than input)
 ```
 
-```c
-// all of these return floats
-.sin(x) // for parameter control, not for generating audio 
-.cos(x)
-.tan(x)
-.asin(x)
-.acos(x)
-.atan2(x,y)
-.sinh(x)
-.cosh(x)
-.tanh(x)
-```
 
 #### dac
 
