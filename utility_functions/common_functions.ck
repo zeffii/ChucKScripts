@@ -53,10 +53,15 @@ fun int random_from(int arr[]){
 }
 
 fun int[] join_int_arrays(int arr1[], int arr2[]){
-    for(0 => int i; i<arr2.cap(); i++){
-        arr1 << arr2[i];
+    [arr1, arr2] @=> int arr[][];
+    int new_arr[0];
+    for(0 => int j; j<arr.cap(); j++){
+
+        for(0 => int i; i<arr[j].cap(); i++){
+            new_arr << arr[j][i];
+        }
     }
-    return arr1;
+    return new_arr;
 }
 
 fun int[] randomArray_from(int arr[], int length){
