@@ -10,6 +10,7 @@
     fun int inArray(int token, int arr[]){}
     fun int indexOfClosest(int ival, int arr[]){}
     fun int to_note(string str){}
+    fun int[] join_int_arrays(int arr1[], int arr2[]){}
     fun int[] set_from(int arr[]){}
     fun int[] randomArray_from(int arr[], int length){}
     fun int[] range(int start, int end){}
@@ -49,6 +50,13 @@ fun string[] split_str(string str, string token){
 
 fun int random_from(int arr[]){
     return arr[Math.random2(0, arr.cap()-1)];
+}
+
+fun int[] join_int_arrays(int arr1[], int arr2[]){
+    for(0 => int i; i<arr2.cap(); i++){
+        arr1 << arr2[i];
+    }
+    return arr1;
 }
 
 fun int[] randomArray_from(int arr[], int length){
