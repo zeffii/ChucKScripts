@@ -20,13 +20,15 @@ fun void play_vibra(int note){
     320 => modalBar.vibratoFreq;
     6 => modalBar.preset;
 
-                        //int, float (0.0 128.0)
+    // control change takes to parameters, 
+    // - int, range: depends on parameter
+    // - float, range: 0.0...128.0
     modalBar.controlChange(2, 123.0);   // - Stick Hardness
     modalBar.controlChange(4, 27.0);    // - Stick Position
-    modalBar.controlChange(11, 53.0);  // - Vibrato Gain 
+    modalBar.controlChange(11, 53.0);   // - Vibrato Gain 
     modalBar.controlChange(7, 115.0);   // - Vibrato Frequency
-    modalBar.controlChange(1, 0.01);   // - Direct Stick Mix
-    modalBar.controlChange(128, 0.2); // - Volume
+    modalBar.controlChange(1, 0.01);    // - Direct Stick Mix
+    modalBar.controlChange(128, 0.2);   // - Volume
 
     vibEnv.set( 42::ms, 371::ms, 0.80, 35::ms );  //a, d, s, r
     vibEnv.keyOn();
