@@ -199,7 +199,7 @@ fun int to_note(string str){
         "F#","G-","G#","A-","A#","B-"
     ] @=> string notes_list[];
     
-    // note must be in this list, else return -3 at the end
+    // note must be in this list, else return -5 at the end
     for (0 => int i; i < notes_list.cap(); i++){
         if (str == notes_list[i]){
             return (i + oct * 12);
