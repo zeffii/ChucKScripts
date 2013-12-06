@@ -13,3 +13,4 @@ regulator.gain(1.0);
 
 
 0 => w.record;
+w.fileClose();
