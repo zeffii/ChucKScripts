@@ -1,5 +1,3 @@
-// with some example how to wire it up.
-
 public class KickSynC{
 
     0.0 => float mgain;
@@ -62,15 +60,18 @@ public class KickSynC{
 
 }
 
-KickSynC kick1;
+/*
+    Usage docs
 
-kick1.bdmast => dac;
-kick1.bdmast => NRev blunk => dac;
-blunk.gain(0.01);
-blunk.mix(0.2);
+    KickSynC kick1;
 
-for(0 => int i; i<5; i++){
-    kick1.trigger(4.4);
-    0.5::second => now;
-}
+    kick1.bdmast => dac;
+    kick1.bdmast => NRev blunk => dac;
+    blunk.gain(0.01);
+    blunk.mix(0.2);
 
+    for(0 => int i; i<5; i++){
+        kick1.trigger(4.4);
+        0.5::second => now;
+    }
+*/
