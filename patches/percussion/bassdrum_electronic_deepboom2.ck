@@ -1,4 +1,3 @@
-// Assignment 7 drumCircleDSP
 public class KickSynC{
 
     0.0 => float mgain;
