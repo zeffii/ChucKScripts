@@ -1,4 +1,3 @@
-// Assignment 7 drumCircleDSP
 public class KickSynC{
 
     0.0 => float mgain;
@@ -55,10 +54,10 @@ public class KickSynC{
 
 }
 
-KickSynC kick1;
+//KickSynC kick1;
 
-kick1.bdmast => dac;
-kick1.trigger(1.3);
+//kick1.bdmast => dac;
+//kick1.trigger(1.3);
 
-1::second => now;
+//1::second => now;
 
