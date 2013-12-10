@@ -1,21 +1,4 @@
-// MidiIn min;
-// MidiMsg msg;
 
-// // open midi receiver, exit on fail
-// if ( !min.open(0) ) me.exit(); 
-
-// while( true )
-// {
-//     // wait on midi event
-//     min => now;
-
-//     // receive midimsg(s)
-//     while( min.recv( msg ) )
-//     {
-//         // print content
-//         <<< msg.data1, msg.data2, msg.data3 >>>;
-//     }
-// }
 
 MidiIn min;
 MidiMsg msg;
