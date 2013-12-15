@@ -26,6 +26,8 @@ public class WaveformMixerMono{
     }
 
     fun void mixer2(float continual){
+        // continual range is 0.0 to 8.0
+        // goes from (sin, saw, tri, pulse to noise)
 
         float mix_comp[];
         if (continual >= 7.9996) [0.0, 0.0, 0.0, 0.0, 1.0] @=> mix_comp;
@@ -35,7 +37,6 @@ public class WaveformMixerMono{
             Math.floor(j/2.0) $ int => int k;
             k*2 => int k2;
             ((j - k2) / 2.0) => float n;
-            <<< k, n >>>;
             mix_arrays(k, n) @=> mix_comp;
         }
         mixer(mix_comp);
@@ -75,7 +76,6 @@ public class WaveformMixerMono{
     }
 
     fun float[] mix_arrays(int idx, float amount){
-        <<< idx, idx+1 >>>;
         [0.0, 0.0, 0.0, 0.0, 0.0] @=> float final_mix[];
         (1-amount) => fixmin => final_mix[idx];
         (amount) => fixmin => final_mix[idx+1];
@@ -84,25 +84,16 @@ public class WaveformMixerMono{
 
 }
 
-// Math.round
 
 WaveformMixerMono bloop;
-//bloop.final => dac;
+bloop.final => dac;
 
-// bloop.final.gain(0.1);
-// bloop.mixer([0.0, 0.0, 0.0, 0.0, 1.0]);
-// bloop.freq(500.0);
-
-// 2::second => now;
-// bloop.mixer([0.0, 0.0, 0.0, 0.0, 1.0], 0.0);
-// 0.4::second => now;
-
-// bloop.mixer([0.0, 0.0, 0.0, 0.0, 1.0], 0.2);
-// bloop.freq(500.0);
-
-// 2::second => now;
+bloop.final.gain(0.65);
+bloop.freq(70.0);
 
 for(0.0 => float i; i<=8.0; 0.01+=> i){
     bloop.mixer2(i);
+    25::ms => now;
+
 }
 
