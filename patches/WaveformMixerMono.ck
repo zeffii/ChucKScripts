@@ -1,21 +1,5 @@
 public class WaveformMixerMono{
 
-/*
-def mix_arrays(idx, amount):
-    finals = [0.0, 0.0, 0.0, 0.0, 0.0]
-    finals[idx] = round((1-amount), 4)
-    finals[idx+1] = round((amount), 4)
-    print(finals)
-
-jump = 10/5
-for i in range(0, 100):
-    j = (i/10)
-    k = math.floor(j/2)
-    k2 = k*2
-    n = (j - k2) / 2.0
-    mix_arrays(k, n)
-*/
-
     SinOsc vsin => Gain final;
     SawOsc vsaw => final;
     TriOsc vtri => final;
