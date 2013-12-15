@@ -28,6 +28,16 @@
 .erase(int pos, int len) // remove len characters from string, beginning at pos
 ```
 
+#### Array
+
+```c
+.cap()
+.clear()
+<<  // adds items, usage:   some_array << new_item;
+[]  // elementwise lookup
+
+```
+
 #### Std
 ```c
 .atoi(string val) // alpha to int  
