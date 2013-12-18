@@ -25,19 +25,26 @@ public class ModCarp {
         StifKarp arper => LPF knight => 
                           ADSR madsr => manCh_left;
                                madsr => manCh_right;
+                 arper => HPF steed => Chorus internal => madsr;
+
+        internal.modDepth(0.12);
+        internal.modFreq(.14);
 
         Step s => ADSR filterEnv => blackhole;
         arper.noteOn(vol);
         filterEnv.keyOn();
-        filterEnv.set( attack::ms, (decay*1.2)::ms, 0.0, 0::ms );  //a, d, s, r
+        filterEnv.set( attack::ms*0.3, (decay*1.6)::ms, 0.0, 0::ms );  //a, d, s, r
         madsr.keyOn();
-        madsr.set( attack::ms, (decay*1.02)::ms, 0.00, 0::ms );  //a, d, s, r
+        madsr.set( attack::ms*1.24, (decay*1.12)::ms, 0.00, 0::ms );  //a, d, s, r
         note -12 => Std.mtof => float note_freq => arper.freq;
                 
-        knight.Q(.827);
+        knight.Q(2.127);
         now => time start;
+        steed.freq(note_freq*2);
+        steed.Q(12.9);
+        steed.gain(0.4);
         while(now < start + (attack+decay)::ms){
-            filterEnv.last() * 2699 + 799 => knight.freq;
+            filterEnv.last() * 1129 + 399 => knight.freq;
             20::ms => now;
         }
 
