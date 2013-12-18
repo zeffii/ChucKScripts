@@ -3,6 +3,8 @@ PolySynth polysynArp;
 PolySynth polysynLead;
 ModCarp carper;
 
+carper.out => dac;
+
 NRev reverb_bass[2];
 reverb_bass[0].mix(0.013);
 reverb_bass[1].mix(0.013);
@@ -38,32 +40,32 @@ for(0 => int i; i<pads.cap(); i++){
 }
 
 
-carper.out => dac;
 
-
-//synth.max_gain(0.2);
-
-[1, 1, 0, 0,  1, 1, 0, 0,  1, 1, 0, 0,  0, 0, 0, 0,    1, 1, 0, 0,  0, 0, 0, 0,  1, 1, 0, 0,  0, 0, 0, 0] @=> int pseq[];
+[1, 1, 0, 0,  1, 1, 0, 0,  1, 1, 0, 0,  0, 0, 0, 0,
+ 1, 1, 0, 0,  0, 0, 0, 0,  1, 1, 0, 0,  0, 0, 0, 0] @=> int pseq[];
 
 [0, 52, 54, 55] @=> int arp_1_notes[];
 [0, 50, 52, 53] @=> int arp_2_notes[];
 
-// 1 = e2, 2=f#2  3=g2
-// F#2|0|G-2|F#2|F#2|G-2|F#2|F#2|G-2|F#2|F#2|F#2|E-2|F#2|F#2|G-2|F#2|0|G-2|F#2|F#2|G-2|F#2|F#2|G#2|F#2|F#2|F#2|E-2|F#2|F#2
 [2,0,3,2,2,3,2,2,3,2,2,2,1,2,2,3,2,0,3,2,2,3,2,2,3,2,2,2,1,2,2] @=> int arp_1_triggers[];
 
 [42, 40, 43] @=> int bass_notes[];
 
-[54, 0,55,54,61,   
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 66, 0,64,66,61, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 0,
- 54, 0,55,54,61, 0,66, 0,64] @=> int lead_notes_1[];
+// this is mighty ugly, but it allows each note to have a unique decay length.
+[[54, 500], [0, 0], [55, 300], [54, 300], [61, 2300], 
+[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], 
+[66, 600], [0, 0], [64, 500], [66, 200], [61, 3100], 
+[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], 
+[54, 350], [0, 0], [55, 300], [54, 360], [61, 370], [0, 0], [66, 300], [0, 0], [64, 5300]
+] @=> int lead_notes_1[][];
 
 
-[54, 0,55,54,61,   
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
- 66, 0,64,66,61, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0, 0,
- 54, 0,55,54,61, 0,66, 0,67] @=> int lead_notes_2[];
+[[54, 500], [0, 0], [55, 300], [54, 300], [61, 2300], 
+[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], 
+[66, 600], [0, 0], [64, 500], [66, 200], [61, 3100], 
+[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], 
+[54, 350], [0, 0], [55, 300], [54, 360], [61, 370], [0, 0], [66, 300], [0, 0], [67, 5300]
+] @=> int lead_notes_2[][];
 
 
 // INTRO
@@ -91,22 +93,28 @@ repeat(1){
 
 }
 
+fun int to_int(float input){
+    input $ int => int output;
+    return output;
+}
+
 
 // lead
-fun void play_lead(int sequence[]){
-    polysynLead.set_envelopes(42, 1227, 22, 1610);
+fun void play_lead(int sequence[][]){
 
     int tnote;
     for(0 => int i; i<sequence.cap(); i++){
-        sequence[i] => int tval;
+        sequence[i][0] => int tval;
         if (tval > 0) {
             tval + 12 => tnote;
+            sequence[i][1] => int decay;
+            polysynLead.set_envelopes(42, decay, 22, to_int(decay*1.3));
             polysynLead.play_synth([tnote, tnote], 7500.0, 2.9, 2.1);
         }
 
         advance_time();
     }
-    advance_time(10);
+    advance_time(25);
 }
 
 fun void play_bassline(int note, int triggers[], int start, int end){
