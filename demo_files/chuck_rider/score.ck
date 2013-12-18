@@ -22,21 +22,24 @@ polysynArp.out.right => DelayA arpD => reverb_arp[1]  => dac.right;
 223::samp => arpD.delay => arpD.max;
 
 NRev reverb_lead[2];
-reverb_lead[0].mix(0.59);
-reverb_lead[1].mix(0.59);
+reverb_lead[0].mix(0.21);
+reverb_lead[1].mix(0.21);
 polysynLead.out.gain(.41);
-reverb_lead[0].gain(0.09);
-reverb_lead[1].gain(0.09);
+reverb_lead[0].gain(0.11);
+reverb_lead[1].gain(0.11);
 polysynLead.out => Mix2 leadgain => dac;
-leadgain.gain(1.1);
+leadgain.gain(0.6);
 Chorus pads[2];
 polysynLead.out.left => pads[0] => reverb_lead[0] => dac.left;
 polysynLead.out.right => pads[1] => DelayA leadD => reverb_lead[1]  => dac.right;
+
+
 143::samp => leadD.delay => leadD.max;
 
 for(0 => int i; i<pads.cap(); i++){
-    pads[i].modFreq(0.1 + i*0.002);
-    pads[i].modDepth(0.23);
+    pads[i].gain(21.2);
+    pads[i].modFreq(0.25 + i*0.032);
+    pads[i].modDepth(.052 + i*0.014);
 }
 
 
