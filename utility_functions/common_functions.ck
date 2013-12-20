@@ -10,6 +10,7 @@
     fun int inArray(int token, int arr[]){}
     fun int indexOfClosest(int ival, int arr[]){}
     fun int to_note(string str){}
+    fun int[] transpose(int narray[], int semi_tones){}    
     fun int[] join_int_arrays(int arr1[], int arr2[]){}
     fun int[] repeat_int_array(int arr[], int num_times){}
     fun int[] set_from(int arr[]){}
@@ -52,6 +53,16 @@ fun string[] split_str(string str, string token){
 fun int random_from(int arr[]){
     return arr[Math.random2(0, arr.cap()-1)];
 }
+
+
+fun int[] transpose(int narray[], int semi_tones){
+    int oarray[0];
+    for(0 => int i; i<narray.cap(); i++){
+        oarray << (narray[i]+semi_tones);
+    }
+    return oarray;
+}
+
 
 fun int[] join_int_arrays(int arr1[], int arr2[]){
     [arr1, arr2] @=> int arr[][];
