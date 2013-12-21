@@ -9,6 +9,7 @@ public class ModCarp {
     manCh_right.modDepth(0.08);
     manCh_right.modFreq(0.64);    
 
+    SinOsc chorus_mod => blackhole;
     int note, attack, decay;
     float vol;
 
@@ -27,24 +28,31 @@ public class ModCarp {
                                madsr => manCh_right;
                  arper => HPF steed => Chorus internal => madsr;
 
-        internal.modDepth(0.12);
-        internal.modFreq(.14);
+        note -12 => Std.mtof => float note_freq => arper.freq;
+
+        // take out of -1 .. 1 range and into 0 --> 0.002
+        (chorus_mod.last() + 1)/3600.0 => float chorus_adjuster;
+        <<< chorus_adjuster >>>; 
+
+
+        internal.modDepth(.001 + chorus_adjuster);
+        internal.modFreq(note_freq/128);
 
         Step s => ADSR filterEnv => blackhole;
         arper.noteOn(vol);
         filterEnv.keyOn();
-        filterEnv.set( attack::ms*0.3, (decay*1.6)::ms, 0.0, 0::ms );  //a, d, s, r
+        filterEnv.set( attack::ms*0.3, (decay*2.8)::ms, 0.0, 0::ms );  //a, d, s, r
         madsr.keyOn();
-        madsr.set( attack::ms*1.24, (decay*1.12)::ms, 0.00, 0::ms );  //a, d, s, r
-        note -12 => Std.mtof => float note_freq => arper.freq;
+        madsr.set( attack::ms*1.24, (decay*1.2)::ms, 0.00, 0::ms );  //a, d, s, r
                 
-        knight.Q(2.127);
+        knight.Q(2.227);
         now => time start;
-        steed.freq(note_freq*2);
-        steed.Q(12.9);
-        steed.gain(0.4);
+        steed.Q(1.1);
+        steed.gain(1.2);
         while(now < start + (attack+decay)::ms){
-            filterEnv.last() * 1129 + 399 => knight.freq;
+            filterEnv.last() * 1129 + 349 => knight.freq;
+            filterEnv.last() * 1229 + 419 => steed.freq;
+            
             20::ms => now;
         }
 
