@@ -1,17 +1,17 @@
 // patch
 SinOsc s => Gain pre => Gain post => dac;
 post.gain(0.2);
-240. => s.freq;
+740. => s.freq;
 
 // spork ~ adsr_plus(1.2::second, pre, 64::ms);  // terrible, 
 // spork ~ adsr_plus(1.2::second, pre, 1::ms);  // acceptable? maybe for some signals
-spork ~ adsr_plus(1.2::second, pre, 1::samp);  // acceptable? maybe for fast computers.
+spork ~ adsr_plus(1.2::second, pre, 240);  // acceptable? maybe for fast computers.
 
 
 3::second => now;
 
 
-fun void adsr_plus(dur total_duration, Gain this_volume, dur ctrl_rate){
+fun void adsr_plus(dur total_duration, Gain this_volume, int freq){
 
     CurveTable c;
     [0., 0., -0.5, 1., 1., 0.5, 3., 0.] => c.coefs;
@@ -20,6 +20,8 @@ fun void adsr_plus(dur total_duration, Gain this_volume, dur ctrl_rate){
     Envelope e => blackhole;
     e.duration(total_duration);
     e.keyOn(); //ramp to 1 in total_duration
+
+    1::second / freq => dur ctrl_rate;
 
     now => time start;
     start + total_duration => time end;
