@@ -73,7 +73,7 @@ public class WindChime {
         spork ~ s_play_note();
     }
 
-    // this sets a defult, incase i forget to
+    // this sets a default, incase i forget to
     set_adsr( 2::ms, 151::ms, 121::ms, .890, 35::ms );  //a, d, s, r
 
 }
