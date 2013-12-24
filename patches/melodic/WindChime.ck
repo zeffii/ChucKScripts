@@ -28,10 +28,24 @@ public class WindChime {
 
     fun void s_play_note(){
         SinOsc s => ADSR env => rvb;
+        SinOsc s2 => env;
         SinOsc m => s;
+
+        env => Pan2 p;
+        Math.random2f( 0.8, -0.8 ) => p.pan;
+        NRev rvs[2];
+
+        p.left => rvs[0] => mout.left;
+        p.right => rvs[1] => mout.right;
+        for(0 => int i; i<rvs.cap(); i++){
+            rvs[i].mix(0.19);
+        }
+
         s.sync(2);
         s.gain(chime_vol);
         midint => Std.mtof => float gfreq => s.freq;
+        s2.freq(gfreq + 0.012);
+        s2.gain(chime_vol);
         m.freq(2 * gfreq);
         m.gain(3000);
 
@@ -49,18 +63,18 @@ public class WindChime {
     }
 
     // this sets a defult, incase i forget to
-    set_adsr( 2::ms, 281::ms, 191::ms, .590, 35::ms );  //a, d, s, r
+    set_adsr( 2::ms, 151::ms, 121::ms, .890, 35::ms );  //a, d, s, r
 
 }
 
 WindChime wc;
 wc.mout => dac;
-wc.set_chime_vol(0.08);
+wc.set_chime_vol(0.18);
 
 120.0 => float start_note;
 for(0 => int i; i<25; i++){
     wc.play_note(start_note-(i*0.6));
-    .11::second =>now;
+    (0.12 )::second =>now;
 }
 
 // prevent clicks
