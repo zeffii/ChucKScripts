@@ -4,7 +4,7 @@ public class WindChime {
 
     Mix2 mout;
     NRev rvb => mout;
-    rvb.mix(0.02);
+    rvb.mix(0.22);
     mout.gain(0.3);
     dur a;
     dur d;
@@ -40,7 +40,7 @@ public class WindChime {
         env.keyOn(); 
         (this.a + this.d + this.s) => now;
         env.keyOff(); 
-        r => now;
+        this.r => now;
     }
 
     fun void play_note(float midint){
@@ -49,7 +49,7 @@ public class WindChime {
     }
 
     // this sets a defult, incase i forget to
-    set_adsr( 2::ms, 61::ms, 311::ms, .50, 235::ms );  //a, d, s, r
+    set_adsr( 2::ms, 281::ms, 191::ms, .590, 35::ms );  //a, d, s, r
 
 }
 
@@ -57,10 +57,10 @@ WindChime wc;
 wc.mout => dac;
 wc.set_chime_vol(0.08);
 
-90.0 => float start_note;
+120.0 => float start_note;
 for(0 => int i; i<25; i++){
     wc.play_note(start_note-(i*0.6));
-    .12::second =>now;
+    .11::second =>now;
 }
 
 // prevent clicks
