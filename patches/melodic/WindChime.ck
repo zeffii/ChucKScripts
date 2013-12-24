@@ -4,8 +4,8 @@ public class WindChime {
 
     Mix2 mout;
     NRev rvb => mout;
-    rvb.mix(0.22);
-    mout.gain(0.3);
+    rvb.mix(0.12);
+    mout.gain(0.033);
     dur a;
     dur d;
     dur s;
@@ -84,7 +84,7 @@ wc.mout.left => sound_sculpt[0] => dac.left;
 wc.mout.right => sound_sculpt[1] => dac.right;
 sound_sculpt[0].set( 0::ms, 0::ms, 1.0, 3235::ms );  //a, d, s, r
 sound_sculpt[1].set( 0::ms, 0::ms, 1.0, 3235::ms );  //a, d, s, r
-wc.set_chime_vol(0.28);
+wc.set_chime_vol(0.37);
 sound_sculpt[0].keyOn();
 sound_sculpt[1].keyOn();
 120.0 => float start_note;
