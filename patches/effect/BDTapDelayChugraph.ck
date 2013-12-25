@@ -48,17 +48,31 @@ public class TapDelay extends Chubgraph {
 }
 
 SinOsc s => ADSR k => Mix2 sound => dac;
-sound.gain(0.7);
+sound.gain(0.5);
 
-TapDelay td;
-sound => td;
-td.mout => dac;
-td.set_delay_level(0.1);
-
+//TapDelay td;
+//sound => td;
+//td.mout => dac;
+//td.set_delay_level(0.1);
 k.set( 2::ms, 121::ms, 0.0, 0::ms );  //a, d, s, r
 
-43 => Std.mtof => s.freq;
-k.keyOn();
+spork ~ do_kick(33);
 
 5::second => now;
 
+
+fun void do_kick(int tval){
+    //tval => Std.mtof => s.freq;
+    k.keyOn();
+    s.phase(pi);
+    SawOsc c => s;
+    SinOsc t => c;
+    s.sync(2);
+    c.sync(2);
+    t.freq(456.0);
+    c.freq(0.3);
+    c.phase(pi);
+    c.gain(1065);
+
+    1::second => now;
+}
