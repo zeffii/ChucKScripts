@@ -1,6 +1,4 @@
-
-
-public class TapDelay {
+public class TapDelay extends Chubgraph {
 
     // used to connect externally
     // original source should remain connected to dac 
@@ -36,11 +34,6 @@ public class TapDelay {
         damp_b => this.damp_b;
     }
 
-    fun void connect_input(Mix2 min){
-        min.left => a => mout.left;
-        min.right => b => mout.right;
-    }
-
     fun void set_delay_level(float amp){
         this.mout.gain(amp);
     }
@@ -49,6 +42,8 @@ public class TapDelay {
     set_delay(1::second, 0.3::second, 1::second, 0.5::second);
     a => Gain ga => a; ga.gain(damp_a);
     b => Gain gb => b; gb.gain(damp_b);
+    inlet => a => mout.left;
+    inlet => b => mout.right;
 
 }
 
@@ -56,9 +51,10 @@ SinOsc s => ADSR k => Mix2 sound => dac;
 sound.gain(0.2);
 
 TapDelay td;
+sound => td;
 td.mout => dac;
 td.set_delay_level(0.2);
-td.connect_input(sound);
+
 
 k.set( 2::ms, 171::ms, 0.0, 0::ms );  //a, d, s, r
 k.keyOn();
