@@ -25,9 +25,6 @@ public class BKickONE {
         values[5] => this.sfr;
     }
 
-    fun void patch(int n){
-        if (n==1) set_values_direct([222.0, -pi, 1.27, -3.1, -pi/2, .01]);
-    }
 
     fun void trigger(float vol){
         vol => this.vol;
@@ -67,6 +64,11 @@ public class BKickONE {
 
     }
 
+    fun void patch(int n){
+        if (n==1) set_values_direct([222.0, -pi, 1.27, -3.1, -pi/2, .01]);
+        if (n==2) set_values_direct([616.0, -pi, 1.6, 0.987, -pi/2, 2.071]);
+    }
+
     // set defaults
     adssr(2::ms, 171::ms, 0::ms, 35::ms, 0.20);
     patch(1);
@@ -75,6 +77,7 @@ public class BKickONE {
 
 BKickONE kick;
 kick.mout => dac;
+kick.patch(2);
 kick.trigger(.9);
 
 2::second => now;
