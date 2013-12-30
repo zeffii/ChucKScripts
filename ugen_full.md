@@ -435,7 +435,10 @@ see examples: sndbuf.ck
 (control parameters)  
   
     .read - ( string , WRITE only ) - loads file for reading
-    .chunks - ( int, READ/WRITE ) - size of chunk (# of frames) to read on-demand; 0 implies entire file, default; must be set before reading to take effect.
+    .chunks - ( int, READ/WRITE ) 
+        - size of chunk (# of frames) to read on-demand; 
+        - 0 implies entire file, (default) 
+        must be set before reading to take effect.
     .samples - ( int , READ only ) - get number of samples
     .length - ( dur, READ only ) - get length as duration
     .channels - ( int , READ only ) - get number of channels
