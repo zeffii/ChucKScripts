@@ -240,12 +240,14 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
     .b1 - ( float , READ/WRITE ) - filter coefficient
     .blockZero - ( float , READ/WRITE ) 
         - DC blocking filter with given pole position
-    .allpass - ( float , READ/WRITE ) - allpass filter with given coefficient
+    .allpass - ( float , READ/WRITE ) 
+        - allpass filter with given coefficient  
   
-```c
-Gain master => PoleZero dc_correction => dac;
-0.99 => dc_correction.blockZero;
-```
+to use as a DC corrector:  
+  
+    Gain master => PoleZero dc_correction => dac;
+    0.99 => dc_correction.blockZero;
+  
   
 ### [ugen]: LPF   
   
@@ -691,19 +693,27 @@ see LiSa Examples wiki for more, and also a slowly growing tutorial
         required to allocate memory, also resets all parameter values to
         default
     .record - ( int , READ/WRITE ) - turns recording on and off
+    
+    // voicing.
     .getVoice - ( READ ) - returns the voice number of the next available voice
-    .maxVoices - ( int , READ/WRITE ) - sets the maximum number of voices 
-        allowable; 
-        10 by default (200 is the current hardwired internal limit)
+    .maxVoices - ( int , READ/WRITE ) 
+        - sets the maximum number of voices allowable; 
+        - 10 by default (200 is the current hardwired internal limit)
+        
+    // play, overloaded
     .play - ( int, WRITE ) - turn on/off sample playback (voice 0)
     .play - ( int voice, int, WRITE) - for particular voice (arg 1), 
         turn on/off sample playback
-    .rampUp - ( dur, WRITE ) - turn on sample playback, with ramp (voice 0)
-    .rampUp - ( int voice dur, WRITE ) - for particular voice (arg 1), turn on 
-        sample playback, with ramp
-    .rampDown - ( dur, WRITE ) - turn off sample playback, with ramp (voice 0)
-    .rampDown - ( int voice, dur, WRITE ) - for particular voice (arg 1), turn 
-        off sample playback, with ramp  
+    
+    // ramping
+    .rampUp - ( dur, WRITE ) 
+        - turn on sample playback, with ramp (voice 0)
+    .rampUp - ( int voice dur, WRITE ) 
+        - for particular voice (arg 1), turn on sample playback, with ramp
+    .rampDown - ( dur, WRITE ) 
+        - turn off sample playback, with ramp (voice 0)
+    .rampDown - ( int voice, dur, WRITE ) 
+        - for particular voice (arg 1), turn off sample playback, with ramp  
     
     // rate, overloaded.
     .rate - ( float, WRITE ) - set playback rate (voice 0). 
@@ -720,15 +730,20 @@ see LiSa Examples wiki for more, and also a slowly growing tutorial
         the rate is being set (float, for voice 0) or read (int, for voice 
         number)
     
+    // playPos, overloaded
     .playPos - ( READ ) - get playback position (voice 0)
     .playPos - ( int voice, READ ) - for particular voice (arg 1), get
         playback position
     .playPos - ( dur, WRITE ) - set playback position (voice 0)
     .playPos - ( int voice, dur, WRITE ) - for particular voice (arg 1), set 
-        playback position
+        playback position  
+    
+    // recording    
     .recPos - ( dur, READ/WRITE ) - get/set record position
     .recRamp - ( dur , READ/WRITE ) - set ramping when recording (from 0 to 
         loopEndRec)
+    
+    // loop config
     .loopRec - ( int, READ/WRITE ) - turn on/off loop recording
     .loopEndRec - ( dur, READ/WRITE ) - set end point in buffer for loop 
         recording
@@ -748,6 +763,8 @@ see LiSa Examples wiki for more, and also a slowly growing tutorial
     .bi - ( int , READ/WRITE ) - turn on/off bidirectional playback (voice 0)
     .bi - ( int voice, int , WRITE ) - for particular voice (arg 1), turn on/
         off bidirectional playback
+    
+    // gains + feedback
     .voiceGain - ( float , READ/WRITE ) - set playback gain (voice 0)
     .voiceGain - ( int voice, float , WRITE ) - for particular voice (arg 1),
         set gain
@@ -765,19 +782,19 @@ see LiSa Examples wiki for more, and also a slowly growing tutorial
   
   
 ### [ugen]: netout  
-
+  
 UDP-based network audio transmitter  
-
+  
 (control parameters)  
-
+  
     .addr - ( string , READ/WRITE ) - target address
     .port - ( int , READ/WRITE ) - target port
     .size - ( int , READ/WRITE ) - packet size
     .name - ( string , READ/WRITE ) - name?
   
-
+  
 ### [ugen]: netin  
-
+  
 UDP-based network audio receiver  
   
 (control parameters)  
@@ -844,7 +861,9 @@ Super-class for STK instruments.
     .noteOn - ( float velocity ) - trigger note on
     .noteOff - ( float velocity ) - trigger note off
     .freq - ( float frequency ) - set/get frequency (Hz)
-    .controlChange - ( int number, float value ) - assert control change - numbers are instrument specific, value range: [0.0 - 128.0]
+    .controlChange - ( int number, float value ) 
+        - assert control change 
+        - numbers are instrument specific, value range: [0.0 - 128.0]
   
 ### [ugen]: BandedWG (STK Import)  
 
@@ -879,7 +898,8 @@ Banded waveguide modeling class (extends StkInstrument).
     .pluck - ( float , WRITE only ) - pluck instrument [0.0 - 1.0]
     .startBowing - ( float , WRITE only ) - start bowing [0.0 - 1.0]
     .stopBowing - ( float , WRITE only ) - stop bowing [0.0 - 1.0]
-    (inherited from StkInstrument)
+    
+    // inherited from StkInstrument
     .noteOn - ( float velocity ) - trigger note on
     .noteOff - ( float velocity ) - trigger note off
     .freq - ( float frequency ) - set/get frequency (Hz)
@@ -888,78 +908,67 @@ Banded waveguide modeling class (extends StkInstrument).
 
 ### [ugen]: BlowBotl (STK Import)  
 
-STK blown bottle instrument class.
-    This class implements a helmholtz resonator
-    (biquad filter) with a polynomial jet
-    excitation (a la Cook).
+STK blown bottle instrument class (extends StkInstrument)  
 
+> This class implements a helmholtz resonator (biquad filter) with a polynomial jet excitation (a la Cook).  
+  
     Control Change Numbers: 
        - Noise Gain = 4
        - Vibrato Frequency = 11
        - Vibrato Gain = 1
        - Volume = 128
-
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.volume - ( float , READ/WRITE ) - yet another volume knob [0.0 - 1.0]
-.rate - ( float , READ/WRITE ) - rate of attack (sec)
-.startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
-.stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
-[ugen]: BlowHole (STK Import)
-STK clarinet physical model with one
-           register hole and one tonehole.
+  
+(control parameters)  
 
-    This class is based on the clarinet model,
-    with the addition of a two-port register hole
-    and a three-port dynamic tonehole
-    implementation, as discussed by Scavone and
-    Cook (1998).
+    .noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .volume - ( float , READ/WRITE ) - yet another volume knob [0.0 - 1.0]
+    .rate - ( float , READ/WRITE ) - rate of attack (sec)
+    .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
+    .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]  
+    
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+  
 
-    In this implementation, the distances between
-    the reed/register hole and tonehole/bell are
-    fixed.  As a result, both the tonehole and
-    register hole will have variable influence on
-    the playing frequency, which is dependent on
-    the length of the air column.  In addition,
-    the highest playing freqeuency is limited by
-    these fixed lengths.
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by Stanford
-    University, Yamaha, and others.
+### [ugen]: BlowHole (STK Import)   
 
+STK clarinet physical model with one register hole and one tonehole (extends StkInstrument)  
+  
+This class is based on the clarinet model, with the addition of a two-port register hole and a three-port dynamic tonehole implementation, as discussed by Scavone and Cook (1998).
+
+In this implementation, the distances between the reed/register hole and tonehole/bell are fixed.  As a result, both the tonehole and register hole will have variable influence on the playing frequency, which is dependent on
+the length of the air column. In addition, the highest playing freqeuency is limited by these fixed lengths.   
+  
+This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
+  
     Control Change Numbers: 
        - Reed Stiffness = 2
-       - Noise Gain = 4
-       - Tonehole State = 11
-       - Register State = 1
-       - Breath Pressure = 128
-
+       - Noise Gain = 4  
+       - Tonehole State = 11  
+       - Register State = 1  
+       - Breath Pressure = 128  
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.reed - ( float , READ/WRITE ) - reed stiffness [0.0 - 1.0]
-.noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
-.tonehole - ( float , READ/WRITE ) - tonehole size [0.0 - 1.0]
-.vent - ( float , READ/WRITE ) - vent frequency [0.0 - 1.0]
-.pressure - ( float , READ/WRITE ) - pressure [0.0 - 1.0]
-.startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
-.stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
-.rate - ( float , READ/WRITE ) - rate of attack (sec)
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
-[ugen]: Bowed (STK Import)
+  
+(control parameters)  
+  
+    .reed - ( float , READ/WRITE ) - reed stiffness [0.0 - 1.0]
+    .noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
+    .tonehole - ( float , READ/WRITE ) - tonehole size [0.0 - 1.0]
+    .vent - ( float , READ/WRITE ) - vent frequency [0.0 - 1.0]
+    .pressure - ( float , READ/WRITE ) - pressure [0.0 - 1.0]
+    .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
+    .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
+    .rate - ( float , READ/WRITE ) - rate of attack (sec)
+    
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+  
+
+### [ugen]: Bowed (STK Import)  
+  
 STK bowed string instrument class.
     This class implements a bowed string model, a
     la Smith (1986), after McIntyre, Schumacher,
