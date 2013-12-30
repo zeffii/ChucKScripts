@@ -172,7 +172,6 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
 ### [ugen]: OnePole  
   
-  
 > STK one-pole filter class. This protected Filter subclass implements a one-pole digital filter. A method is provided for setting the pole position along 
 the real axis of the z-plane while maintaining a constant peak filter gain.  
 by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
@@ -185,7 +184,6 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
 
 ### [ugen]: TwoPole  
-  
 
 > STK two-pole filter class. see examples: powerup.ck This protected Filter subclass implements a two-pole digital filter. A method is provided for creating a resonance in the frequency response while maintaining a nearly
 constant filter gain.  
@@ -202,7 +200,6 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
   
 ### [ugen]: OneZero  
-  
 
 > STK one-zero filter class. This protected Filter subclass implements
 a one-zero digital filter.  A method is provided for setting the zero position
@@ -215,8 +212,8 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
     .b0 - ( float , READ/WRITE ) - filter coefficient
     .b1 - ( float , READ/WRITE ) - filter coefficient
 
-### [ugen]: TwoZero  
   
+### [ugen]: TwoZero  
 
 > STK two-zero filter class. This protected Filter subclass implements a two-zero digital filter.  A method is provided for creating a "notch" in the 
 frequency response while maintaining a constant filter gain.  
@@ -232,7 +229,6 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
   
 ### [ugen]: PoleZero  
-  
 
 > STK one-pole, one-zero filter class. This protected Filter subclass implements a one-pole, one-zero digital filter.  A method is provided for creating an allpass filter with a given coefficient. Another method is provided to create a DC blocking filter.  
 by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
@@ -247,7 +243,6 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
   
 ### [ugen]: LPF   
-  
   
 resonant low pass filter. (extends FilterBasic)
 
@@ -531,11 +526,11 @@ pulse oscillator - a pulse wave oscillator with variable width.
   
   
 ### [ugen]: SqrOsc   
-
+  
 square wave oscillator ( pulse with fixed width of 0.5 )  
-
+  
 (control parameters)  
-
+  
     .freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
     .sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
     .phase - ( float , READ/WRITE ) - current phase
@@ -546,35 +541,59 @@ square wave oscillator ( pulse with fixed width of 0.5 )
         - 2 = fm synth
 
 
-[ugen]: TriOsc
-triangle wave oscillator
-(control parameters)
-.freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
-.sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
-.phase - ( float , READ/WRITE ) - current phase
-.sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
-.width - ( float , READ/WRITE ) - control midpoint of triangle ( 0 to 1 )
+### [ugen]: TriOsc  
 
-[ugen]: SawOsc
-sawtooth wave oscillator ( triangle, width forced to 0.0 or 1.0 )
-(control parameters)
-.freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
-.sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
-.phase - ( float , READ/WRITE ) - current phase
-.sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
-.width - ( float , READ/WRITE ) - increasing ( w > 0.5 ) or decreasing ( w < 0.5 )
+triangle wave oscillator  
 
-[ugen]: GenX
-base class for classic MusicN lookup table unit generators
-see examples: readme-GenX.ck
-Ported from rtcmix. See http://www.music.columbia.edu/cmix/makegens.html for more information on the GenX family of UGens. Currently coefficients past the 100th are ignored.
+(control parameters)  
 
-Lookup can either be done using the lookup() function, or by driving the table with an input UGen, typically a Phasor. For an input signal between [ -1, 1 ], using the absolute value for [ -1, 0 ), GenX will output the table value indexed by the current input.
+    .freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
+    .sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
+    .phase - ( float , READ/WRITE ) - current phase
+    .width - ( float , READ/WRITE ) - control midpoint of triangle ( 0 to 1 )
+    .sync - ( int , READ/WRITE ) 
+        - 0 = sync frequency to input 
+        - 1 = sync phase to input
+        - 2 = fm synth
+  
+  
+### [ugen]: SawOsc  
 
-(control parameters)
-.lookup( float i ) - ( float , READ ONLY ) - returns lookup table value at index i [ -1, 1 ]; absolute value is used in the range [ -1, 0 )
-.coefs - ( float [ ] , WRITE ONLY ) - set lookup table coefficients; meaning is dependent on subclass
-[ugen]: Gen5
+sawtooth wave oscillator ( triangle, width forced to 0.0 or 1.0 )  
+
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
+    .sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
+    .phase - ( float , READ/WRITE ) - current phase
+    .width - ( float , READ/WRITE )  
+        - increasing ( w > 0.5 ) 
+        - decreasing ( w < 0.5 )
+    .sync - ( int , READ/WRITE ) 
+        - 0 = sync frequency to input 
+        - 1 = sync phase to input
+        - 2 = fm synth
+  
+  
+### [ugen]: GenX  
+
+base class for classic `MusicN` lookup table unit generators, see examples: readme-GenX.ck
+
+Ported from rtcmix. See http://www.music.columbia.edu/cmix/makegens.html for more information on the GenX family of UGens. Currently coefficients past the 100th are ignored.  
+  
+Lookup can either be done using the lookup() function, or by driving the table with an input UGen, typically a Phasor. For an input signal between [ -1, 1 ], using the absolute value for [ -1, 0 ), GenX will output the table value indexed by the current input.  
+  
+(control parameters)  
+  
+    .lookup( float i ) - ( float , READ ONLY ) 
+        - returns lookup table value at index i [ -1, 1 ]; 
+        - absolute value is used in the range [ -1, 0 ]
+    .coefs - ( float [ ] , WRITE ONLY ) - set lookup table coefficients;
+        - meaning is dependent on subclass
+  
+  
+### [ugen]: Gen5  
+
 exponential line segment lookup table table generator
 see examples: Gen5-test.ck
 Constructs a lookup table composed of sequential exponential curves. For a table with N curves, starting value of y', and value yn for lookup index xn, set the coefficients to [ y', y0, x0, ..., yN-1, xN-1 ]. Note that there must be an odd number of coefficients. If an even number of coefficients is specified, behavior is undefined. The sum of xn for 0 ≤ n < N must be 1. yn = 0 is approximated as 0.000001 to avoid strange results arising from the nature of exponential curves.
