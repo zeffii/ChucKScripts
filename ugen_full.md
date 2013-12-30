@@ -238,9 +238,14 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
     .a1 - ( float , READ/WRITE ) - filter coefficient
     .b0 - ( float , READ/WRITE ) - filter coefficient
     .b1 - ( float , READ/WRITE ) - filter coefficient
-    .blockZero - ( float , READ/WRITE ) - DC blocking filter with given pole position
+    .blockZero - ( float , READ/WRITE ) 
+        - DC blocking filter with given pole position
     .allpass - ( float , READ/WRITE ) - allpass filter with given coefficient
   
+```c
+Gain master => PoleZero dc_correction => dac;
+0.99 => dc_correction.blockZero;
+```
   
 ### [ugen]: LPF   
   
@@ -451,20 +456,26 @@ see examples: sndbuf.ck
   
 (control parameters)  
   
-    .read - ( string , WRITE only ) - loads file for reading
-    .chunks - ( int, READ/WRITE ) - size of chunk (# of frames) to read on-demand;  
+    .read - ( string , WRITE only ) 
+        - loads file for reading (full path)
+        
+    .chunks - ( int, READ/WRITE ) 
+        - size of chunk (# of frames) to read on-demand;  
         - 0 = entire file, (default) must be set before reading to take effect.
-    .samples - ( int , READ only ) - get number of samples
-    .length - ( dur, READ only ) - get length as duration
-    .channels - ( int , READ only ) - get number of channels
-    .pos - ( int , READ/WRITE ) - set position ( 0 < p < .samples() )
+    
     .rate - ( float , READ/WRITE ) - set/get playback rate 
         - 1.0 = normal 
         - 2.0 = twice the rate, etc.
+        
     .interp - ( int , READ/WRITE ) - set/get interpolation 
         - 0 = drop 
         - 1 = linear 
         - 2 = sinc
+    
+    .samples - ( int , READ only ) - get number of samples
+    .length - ( dur, READ only ) - get length as duration
+    .channels - ( int , READ only ) - get number of channels
+    .pos - ( int , READ/WRITE ) - set position ( 0 < p < .samples() )
     .loop - ( int , READ/WRITE ) - toggle looping
     .freq - ( float , READ/WRITE ) - set/get loop rate ( file loops / second )
     .phase - ( float , READ/WRITE ) - set/get phase position ( 0-1 )
@@ -665,7 +676,8 @@ live sampling utility.
 
 LiSa provides basic live sampling functionality.  
   
-  - An internal buffer stores samples chucked to LiSa's input. Segments of this buffer can be played back, with ramping and speed/direction control. 
+  - An internal buffer stores samples chucked to LiSa's input. Segments of 
+    this buffer can be played back, with ramping and speed/direction control. 
   - Multiple voice facility is built in, allowing for a single 
   
 LiSa object to serve as a source for sample layering and granular textures.
