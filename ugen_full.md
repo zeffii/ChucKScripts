@@ -169,177 +169,204 @@ by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
 
     .coefs - ( string , WRITE only )  
   
-
+  
 ### [ugen]: OnePole  
+  
+  
+> STK one-pole filter class. This protected Filter subclass implements a one-pole digital filter. A method is provided for setting the pole position along 
+the real axis of the z-plane while maintaining a constant peak filter gain.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
+(control parameters)  
 
-STK one-pole filter class.
-    This protected Filter subclass implements
-    a one-pole digital filter.  A method is
-    provided for setting the pole position along
-    the real axis of the z-plane while maintaining
-    a constant peak filter gain.
+    .a1 - ( float , READ/WRITE ) - filter coefficient
+    .b0 - ( float , READ/WRITE ) - filter coefficient
+    .pole - ( float , READ/WRITE ) - set pole position along real axis of z-plane  
+  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.a1 - ( float , READ/WRITE ) - filter coefficient
-.b0 - ( float , READ/WRITE ) - filter coefficient
-.pole - ( float , READ/WRITE ) - set pole position along real axis of z-plane
-[ugen]: TwoPole
-STK two-pole filter class.
-see examples: powerup.ck
-    This protected Filter subclass implements
-    a two-pole digital filter.  A method is
-    provided for creating a resonance in the
-    frequency response while maintaining a nearly
-    constant filter gain.
+### [ugen]: TwoPole  
+  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.a1 - ( float , READ/WRITE ) - filter coefficient
-.a2 - ( float , READ/WRITE ) - filter coefficient
-.b0 - ( float , READ/WRITE ) - filter coefficient
-.freq - ( float , READ/WRITE ) - filter resonance frequency
-.radius - ( float , READ/WRITE ) - filter resonance radius
-.norm - ( int , READ/WRITE ) - toggle filter normalization
-[ugen]: OneZero
-STK one-zero filter class.
-    This protected Filter subclass implements
-    a one-zero digital filter.  A method is
-    provided for setting the zero position
-    along the real axis of the z-plane while
-    maintaining a constant filter gain.
+> STK two-pole filter class. see examples: powerup.ck This protected Filter subclass implements a two-pole digital filter. A method is provided for creating a resonance in the frequency response while maintaining a nearly
+constant filter gain.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.zero - ( float , READ/WRITE ) - set zero position
-.b0 - ( float , READ/WRITE ) - filter coefficient
-.b1 - ( float , READ/WRITE ) - filter coefficient
-[ugen]: TwoZero
-STK two-zero filter class.
-    This protected Filter subclass implements
-    a two-zero digital filter.  A method is
-    provided for creating a "notch" in the
-    frequency response while maintaining a
-    constant filter gain.
+(control parameters)  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.b0 - ( float , READ/WRITE ) - filter coefficient
-.b1 - ( float , READ/WRITE ) - filter coefficient
-.b2 - ( float , READ/WRITE ) - filter coefficient
-.freq - ( float , READ/WRITE ) - filter notch frequency
-.radius - ( float , READ/WRITE ) - filter notch radius
-[ugen]: PoleZero
-STK one-pole, one-zero filter class.
-    This protected Filter subclass implements
-    a one-pole, one-zero digital filter.  A
-    method is provided for creating an allpass
-    filter with a given coefficient.  Another
-    method is provided to create a DC blocking filter.
+    .a1 - ( float , READ/WRITE ) - filter coefficient
+    .a2 - ( float , READ/WRITE ) - filter coefficient
+    .b0 - ( float , READ/WRITE ) - filter coefficient
+    .freq - ( float , READ/WRITE ) - filter resonance frequency
+    .radius - ( float , READ/WRITE ) - filter resonance radius
+    .norm - ( int , READ/WRITE ) - toggle filter normalization
+  
+  
+### [ugen]: OneZero  
+  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.a1 - ( float , READ/WRITE ) - filter coefficient
-.b0 - ( float , READ/WRITE ) - filter coefficient
-.b1 - ( float , READ/WRITE ) - filter coefficient
-.blockZero - ( float , READ/WRITE ) - DC blocking filter with given pole position
-.allpass - ( float , READ/WRITE ) - allpass filter with given coefficient
-[ugen]: LPF
-resonant low pass filter.
-    Resonant low pass filter.  2nd order Butterworth.
-    (In the future, this class may be expanded so that order
-    and type of filter can be set).
-extends FilterBasic
-(control parameters)
-.freq - ( float , READ/WRITE ) - cutoff frequency
-.Q - ( float , READ/WRITE ) - resonance (default is 1)
-.set - ( float, float, WRITE only ) - set freq and Q at once
-[ugen]: HPF
-resonant high pass filter.
-    Resonant high pass filter.  2nd order Butterworth.
-    (In the future, this class may be expanded so that order
-    and type of filter can be set).
-extends FilterBasic
-(control parameters)
-.freq - ( float , READ/WRITE ) - cutoff frequency
-.Q - ( float , READ/WRITE ) - resonance (default is 1)
-.set - ( float, float, WRITE only ) - set freq and Q at once
-[ugen]: BPF
-band pass filter.
-    Band pass filter.  2nd order Butterworth.
-    (In the future, this class may be expanded so that order
-    and type of filter can be set).
-extends FilterBasic
-(control parameters)
-.freq - ( float , READ/WRITE ) - center frequency
-.Q - ( float , READ/WRITE ) - Q (quality)
-.set - ( float, float, WRITE only ) - set freq and Q at once
-[ugen]: BRF
-band reject filter.
-    Band reject filter.  2nd order Butterworth.
-    (In the future, this class may be expanded so that order
-    and type of filter can be set).
-extends FilterBasic
-(control parameters)
-.freq - ( float , READ/WRITE ) - center frequency
-.Q - ( float , READ/WRITE ) - Q (quality)
-.set - ( float, float, WRITE only ) - set freq and Q at once
-[ugen]: ResonZ
-resonance filter
-    Resonance filter.  BiQuad with equal-gain zeros.
-    keeps gain under control independent of frequency.
-extends FilterBasic
-(control parameters)
-.freq - ( float , READ/WRITE ) - center frequency
-.Q - ( float , READ/WRITE ) - Q (quality)
-.set - ( float, float, WRITE only ) - set freq and Q at once
-[ugen]: FilterBasic
-filter basic base class
-    Filter basic base class, with .freq, .Q, .set.
-extends FilterBasic
-(control parameters)
-.freq - ( float , READ/WRITE ) - frequency
-.Q - ( float , READ/WRITE ) - Q
-.set - ( float, float, WRITE only ) - set freq and Q at once
-[ugen]: Dyno
+> STK one-zero filter class. This protected Filter subclass implements
+a one-zero digital filter.  A method is provided for setting the zero position
+along the real axis of the z-plane while maintaining a constant filter gain.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+
+(control parameters)  
+
+    .zero - ( float , READ/WRITE ) - set zero position
+    .b0 - ( float , READ/WRITE ) - filter coefficient
+    .b1 - ( float , READ/WRITE ) - filter coefficient
+
+### [ugen]: TwoZero  
+  
+
+> STK two-zero filter class. This protected Filter subclass implements a two-zero digital filter.  A method is provided for creating a "notch" in the 
+frequency response while maintaining a constant filter gain.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+
+(control parameters)  
+
+    .b0 - ( float , READ/WRITE ) - filter coefficient
+    .b1 - ( float , READ/WRITE ) - filter coefficient
+    .b2 - ( float , READ/WRITE ) - filter coefficient
+    .freq - ( float , READ/WRITE ) - filter notch frequency
+    .radius - ( float , READ/WRITE ) - filter notch radius
+  
+  
+### [ugen]: PoleZero  
+  
+
+> STK one-pole, one-zero filter class. This protected Filter subclass implements a one-pole, one-zero digital filter.  A method is provided for creating an allpass filter with a given coefficient. Another method is provided to create a DC blocking filter.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+
+    .a1 - ( float , READ/WRITE ) - filter coefficient
+    .b0 - ( float , READ/WRITE ) - filter coefficient
+    .b1 - ( float , READ/WRITE ) - filter coefficient
+    .blockZero - ( float , READ/WRITE ) - DC blocking filter with given pole position
+    .allpass - ( float , READ/WRITE ) - allpass filter with given coefficient
+  
+  
+### [ugen]: LPF   
+  
+  
+resonant low pass filter. (extends FilterBasic)
+
+> Resonant low pass filter.  2nd order Butterworth. (In the future, this class may be expanded so that order and type of filter can be set).  
+  
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - cutoff frequency
+    .Q - ( float , READ/WRITE ) - resonance (default is 1)
+    .set - ( float, float, WRITE only ) - set freq and Q at once
+  
+  
+### [ugen]: HPF  
+
+resonant high pass filter. (extends FilterBasic)  
+
+> Resonant high pass filter. 2nd order Butterworth. (In the future, this class may be expanded so that order and type of filter can be set).  
+
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - cutoff frequency
+    .Q - ( float , READ/WRITE ) - resonance (default is 1)
+    .set - ( float, float, WRITE only ) - set freq and Q at once
+  
+
+### [ugen]: BPF  
+
+band pass filter. (extends FilterBasic)  
+
+> Band pass filter. 2nd order Butterworth. (In the future, this class may be expanded so that order and type of filter can be set). 
+
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - center frequency
+    .Q - ( float , READ/WRITE ) - Q (quality)
+    .set - ( float, float, WRITE only ) - set freq and Q at once
+  
+  
+### [ugen]: BRF  
+
+band reject filter. (extends FilterBasic)  
+
+> Band reject filter. 2nd order Butterworth. (In the future, this class may be expanded so that order and type of filter can be set).
+  
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - center frequency
+    .Q - ( float , READ/WRITE ) - Q (quality)
+    .set - ( float, float, WRITE only ) - set freq and Q at once
+  
+  
+### [ugen]: ResonZ  
+
+resonance filter. (extends FilterBasic)  
+
+> Resonance filter.  BiQuad with equal-gain zeros. keeps gain under control independent of frequency.  
+  
+(control parameters)  
+  
+    .freq - ( float , READ/WRITE ) - center frequency
+    .Q - ( float , READ/WRITE ) - Q (quality)
+    .set - ( float, float, WRITE only ) - set freq and Q at once
+  
+  
+### [ugen]: FilterBasic  
+
+filter basic base class. (extends FilterBasic)  
+  
+(control parameters)  
+  
+    .freq - ( float , READ/WRITE ) - frequency
+    .Q - ( float , READ/WRITE ) - Q
+    .set - ( float, float, WRITE only ) - set freq and Q at once
+  
+
+### [ugen]: Dyno  
+
 dynamics processor
 includes limiter, compressor, expander, noise gate, and ducker (presets)
-see examples:
-
-    default limiter values:
+see examples:  
+  
+default limiter values:  
+  
     slopeAbove = 0.1
     slopeBelow = 1.0
     thresh = 0.5
     attackTime = 5 ms
     releaseTime = 300 ms
     externalSideInput = 0 (false)
-
-    default compressor values:
+  
+default compressor values:  
+  
     slopeAbove = 0.5
     slopeBelow = 1.0
     thresh = 0.5
     attackTime = 5 ms
     releaseTime = 300 ms
     externalSideInput = 0 (false)
-
-    default expander values:
+  
+default expander values:  
+  
     slopeAbove = 2.0
     slopeBelow = 1.0
     thresh = 0.5
     attackTime = 20 ms
     releaseTime = 400 ms
     externalSideInput = 0 (false)
+  
+default noise gate values:  
 
-    default noise gate values:
     slopeAbove = 1.0
     slopeBelow = 10000000
     thresh = 0.1
     attackTime = 11 ms
     releaseTime = 100 ms
     externalSideInput = 0 (false)
+  
+default ducker values:  
 
-    default ducker values:
     slopeAbove = 0.5
     slopeBelow = 1.0
     thresh = 0.1
@@ -347,44 +374,63 @@ see examples:
     releaseTime = 1000 ms
     externalSideInput = 1 (true)
     Note that the input to sideInput determines the level of 
-    gain, not the direct signal input to Dyno.
+    gain, not the direct signal input to Dyno.  
+  
+(control parameters, quick defaults for the above values)  
 
-(control parameters)
-.limit - () - set parameters to default limiter values
-.compress - () - set parameters to default compressor values
-.expand - () - set parameters to default expander values
-.gate - () - set parameters to default noise gate values
-.duck - () - set parameters to default ducker values
-.thresh - ( float, READ/WRITE ) - the point above which to stop using slopeBelow and start using slopeAbove to determine output gain vs input gain
-.attackTime - ( dur, READ/WRITE ) - duration for the envelope to move linearly from current value to the absolute value of the signal's amplitude
-.releaseTime - ( dur, READ/WRITE ) - duration for the envelope to decay down to around 1/10 of its current amplitude, if not brought back up by the signal
-.ratio - ( float, READ/WRITE ) - alternate way of setting slopeAbove and slopeBelow; sets slopeBelow to 1.0 and slopeAbove to 1.0 / ratio
-.slopeBelow - ( float, READ/WRITE ) - determines the slope of the output gain vs the input envelope's level in dB when the envelope is below thresh. For example, if slopeBelow were 0.5, thresh were 0.1, and the envelope's value were 0.05, the envelope's amplitude would be about 6 dB below thresh, so a gain of 3 dB would be applied to bring the output signal's amplitude up to only 3 dB below thresh. in general, setting slopeBelow to be lower than slopeAbove results in expansion of dynamic range.
-.slopeAbove - ( float, READ/WRITE ) - determines the slope of the output gain vs the input envelope's level in dB when the envelope is above thresh. For example, if slopeAbove were 0.5, thresh were 0.1, and the envelope's value were 0.2, the envelope's amplitude would be about 6 dB above thresh, so a gain of -3 dB would be applied to bring the output signal's amplitude up to only 3 dB above thresh. in general, setting slopeAbove to be lower than slopeBelow results in compression of dynamic range
-.sideInput - ( float, READ/WRITE ) - if externalSideInput is set to true, replaces the signal being processed as the input to the amplitude envelope. see dynoduck.ck for an example of using an external side chain.
-.externalSideInput - ( int, READ/WRITE ) - set to true to cue the amplitude envelope off of sideInput instead of the input signal. note that this means you will need to manually set sideInput every so often. if false, the amplitude envelope represents the amplitude of the input signal whose dynamics are being processed. see dynoduck.ck for an example of using an external side chain.
-sound files
-[ugen]: SndBuf
-sound buffer ( now interpolating )
-reads from a variety of file formats
-see examples: sndbuf.ck
-(control parameters)
-.read - ( string , WRITE only ) - loads file for reading
-.chunks - ( int, READ/WRITE ) - size of chunk (# of frames) to read on-demand; 0 implies entire file, default; must be set before reading to take effect.
-.samples - ( int , READ only ) - get number of samples
-.length - ( dur, READ only ) - get length as duration
-.channels - ( int , READ only ) - get number of channels
-.pos - ( int , READ/WRITE ) - set position ( 0 < p < .samples )
-.rate - ( float , READ/WRITE ) - set/get playback rate ( relative to file's natural speed )
-.interp - ( int , READ/WRITE ) - set/get interpolation ( 0=drop, 1=linear, 2=sinc )
-.loop - ( int , READ/WRITE ) - toggle looping
-.freq - ( float , READ/WRITE ) - set/get loop rate ( file loops / second )
-.phase - ( float , READ/WRITE ) - set/get phase position ( 0-1 )
-.channel - ( int , READ/WRITE ) - sel/get channel ( 0 < p < .channels )
-.phaseOffset - ( float , READ/WRITE ) - set/get a phase offset
-.write - ( string , WRITE only ) - loads a file for writing ( or not )
-oscillators
-[ugen]: Phasor
+    .limit - () - set parameters to default limiter values
+    .compress - () - set parameters to default compressor values
+    .expand - () - set parameters to default expander values
+    .gate - () - set parameters to default noise gate values
+    .duck - () - set parameters to default ducker values
+  
+(control parameters)  
+  
+    .thresh - ( float, READ/WRITE ) - the point above which to stop using slopeBelow and start using slopeAbove to determine output gain vs input gain  
+    .attackTime - ( dur, READ/WRITE ) - duration for the envelope to move linearly from current value to the absolute value of the signal's amplitude
+    .releaseTime - ( dur, READ/WRITE ) - duration for the envelope to decay down to around 1/10 of its current amplitude, if not brought back up by the signal
+    .ratio - ( float, READ/WRITE ) - alternate way of setting slopeAbove and slopeBelow; sets slopeBelow to 1.0 and slopeAbove to 1.0 / ratio
+    .slopeBelow - ( float, READ/WRITE ) - determines the slope of the output gain vs the input envelope's level in dB when the envelope is below thresh. For example, if slopeBelow were 0.5, thresh were 0.1, and the envelope's value were 0.05, the envelope's amplitude would be about 6 dB below thresh, so a gain of 3 dB would be applied to bring the output signal's amplitude up to only 3 dB below thresh. in general, setting slopeBelow to be lower than slopeAbove results in expansion of dynamic range.
+    .slopeAbove - ( float, READ/WRITE ) - determines the slope of the output gain vs the input envelope's level in dB when the envelope is above thresh. For example, if slopeAbove were 0.5, thresh were 0.1, and the envelope's value were 0.2, the envelope's amplitude would be about 6 dB above thresh, so a gain of -3 dB would be applied to bring the output signal's amplitude up to only 3 dB above thresh. in general, setting slopeAbove to be lower than slopeBelow results in compression of dynamic range
+    .sideInput - ( float, READ/WRITE ) - if externalSideInput is set to true, replaces the signal being processed as the input to the amplitude envelope. see dynoduck.ck for an example of using an external side chain.
+    .externalSideInput - ( int, READ/WRITE ) - set to true to cue the amplitude envelope off of sideInput instead of the input signal. note that this means you will need to manually set sideInput every so often. if false, the amplitude envelope represents the amplitude of the input signal whose dynamics are being processed. see dynoduck.ck for an example of using an external side chain.  
+  
+  
+  
+## sound files  
+  
+  
+### [ugen]: SndBuf  
+
+sound buffer ( interpolating )  , also `SndBuf2` for stereo files.
+  
+reads from a variety of file formats  
+see examples: sndbuf.ck  
+  
+(control parameters)  
+  
+    .read - ( string , WRITE only ) - loads file for reading
+    .chunks - ( int, READ/WRITE ) - size of chunk (# of frames) to read on-demand; 0 implies entire file, default; must be set before reading to take effect.
+    .samples - ( int , READ only ) - get number of samples
+    .length - ( dur, READ only ) - get length as duration
+    .channels - ( int , READ only ) - get number of channels
+    .pos - ( int , READ/WRITE ) - set position ( 0 < p < .samples )
+    .rate - ( float , READ/WRITE ) - set/get playback rate ( relative to file's natural speed )
+    .interp - ( int , READ/WRITE ) - set/get interpolation ( 0=drop, 1=linear, 2=sinc )
+    .loop - ( int , READ/WRITE ) - toggle looping
+    .freq - ( float , READ/WRITE ) - set/get loop rate ( file loops / second )
+    .phase - ( float , READ/WRITE ) - set/get phase position ( 0-1 )
+    .channel - ( int , READ/WRITE ) - sel/get channel ( 0 < p < .channels )
+    .phaseOffset - ( float , READ/WRITE ) - set/get a phase offset
+    .write - ( string , WRITE only ) - loads a file for writing ( or not )
+  
+  
+
+## oscillators  
+
+
+### [ugen]: Phasor  
+
 phasor - simple ramp generator ( 0 to 1 )
 can be used as a phase control.
 (control parameters)
@@ -393,6 +439,7 @@ can be used as a phase control.
 .phase - ( float , READ/WRITE ) - current phase
 .sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
 .width - ( float , READ/WRITE ) - set duration of the ramp in each cycle. ( default 1.0)
+
 [ugen]: SinOsc
 sine oscillator
 see examples: whirl.ck
@@ -401,6 +448,7 @@ see examples: whirl.ck
 .sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
 .phase - ( float , READ/WRITE ) - current phase
 .sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
+
 [ugen]: PulseOsc
 pulse oscillators
 a pulse wave oscillator with variable width.
@@ -410,6 +458,7 @@ a pulse wave oscillator with variable width.
 .phase - ( float , READ/WRITE ) - current phase
 .sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
 .width - ( float , READ/WRITE ) - length of duty cycle ( 0-1 )
+
 [ugen]: SqrOsc
 square wave oscillator ( pulse with fixed width of 0.5 )
 (control parameters)
@@ -418,6 +467,7 @@ square wave oscillator ( pulse with fixed width of 0.5 )
 .phase - ( float , READ/WRITE ) - current phase
 .sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
 .width - ( int , READ/WRITE ) - length of duty cycle ( 0 to 1 )
+
 [ugen]: TriOsc
 triangle wave oscillator
 (control parameters)
@@ -426,6 +476,7 @@ triangle wave oscillator
 .phase - ( float , READ/WRITE ) - current phase
 .sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
 .width - ( float , READ/WRITE ) - control midpoint of triangle ( 0 to 1 )
+
 [ugen]: SawOsc
 sawtooth wave oscillator ( triangle, width forced to 0.0 or 1.0 )
 (control parameters)
@@ -434,6 +485,7 @@ sawtooth wave oscillator ( triangle, width forced to 0.0 or 1.0 )
 .phase - ( float , READ/WRITE ) - current phase
 .sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
 .width - ( float , READ/WRITE ) - increasing ( w > 0.5 ) or decreasing ( w < 0.5 )
+
 [ugen]: GenX
 base class for classic MusicN lookup table unit generators
 see examples: readme-GenX.ck
