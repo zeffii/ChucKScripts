@@ -11,15 +11,15 @@ abstraction for underlying audio output device
     .left - input to left channel  
     .right - input to right channel  
     .chan( int n ) - returns nth channel (all UGens have this function)  
-
-
+  
+  
 ### [ugen]: adc  
-
+  
 analog / digital converter
 abstraction for underlying audio input device  
-
+  
 (control parameters)  
-
+  
     .left - output of left channel  
     .right - output of right channel  
     .chan( int n ) - returns nth channel (all UGens have this   function)
@@ -322,9 +322,9 @@ filter basic base class. (extends FilterBasic)
     .Q - ( float , READ/WRITE ) - Q
     .set - ( float, float, WRITE only ) - set freq and Q at once
   
-
+  
 ### [ugen]: Dyno  
-
+  
 dynamics processor
 includes limiter, compressor, expander, noise gate, and ducker (presets)
 see examples:  
@@ -386,14 +386,16 @@ default ducker values:
   
 (control parameters)  
   
-    .thresh - ( float, READ/WRITE ) - the point above which to stop using slopeBelow and start using slopeAbove to determine output gain vs input gain  
-    .attackTime - ( dur, READ/WRITE ) - duration for the envelope to move linearly from current value to the absolute value of the signal's amplitude
-    .releaseTime - ( dur, READ/WRITE ) - duration for the envelope to decay down to around 1/10 of its current amplitude, if not brought back up by the signal
-    .ratio - ( float, READ/WRITE ) - alternate way of setting slopeAbove and slopeBelow; sets slopeBelow to 1.0 and slopeAbove to 1.0 / ratio
-    .slopeBelow - ( float, READ/WRITE ) - determines the slope of the output gain vs the input envelope's level in dB when the envelope is below thresh. For example, if slopeBelow were 0.5, thresh were 0.1, and the envelope's value were 0.05, the envelope's amplitude would be about 6 dB below thresh, so a gain of 3 dB would be applied to bring the output signal's amplitude up to only 3 dB below thresh. in general, setting slopeBelow to be lower than slopeAbove results in expansion of dynamic range.
-    .slopeAbove - ( float, READ/WRITE ) - determines the slope of the output gain vs the input envelope's level in dB when the envelope is above thresh. For example, if slopeAbove were 0.5, thresh were 0.1, and the envelope's value were 0.2, the envelope's amplitude would be about 6 dB above thresh, so a gain of -3 dB would be applied to bring the output signal's amplitude up to only 3 dB above thresh. in general, setting slopeAbove to be lower than slopeBelow results in compression of dynamic range
-    .sideInput - ( float, READ/WRITE ) - if externalSideInput is set to true, replaces the signal being processed as the input to the amplitude envelope. see dynoduck.ck for an example of using an external side chain.
-    .externalSideInput - ( int, READ/WRITE ) - set to true to cue the amplitude envelope off of sideInput instead of the input signal. note that this means you will need to manually set sideInput every so often. if false, the amplitude envelope represents the amplitude of the input signal whose dynamics are being processed. see dynoduck.ck for an example of using an external side chain.  
+    .thresh - ( float, READ/WRITE ) - the point above which to stop using   slopeBelow and start using slopeAbove to determine output gain vs input   gain  
+    .attackTime - ( dur, READ/WRITE ) - duration for the envelope to move  linearly from current value to the absolute value of the signal's amplitude  
+    .releaseTime - ( dur, READ/WRITE ) - duration for the envelope to decay   down to around 1/10 of its current amplitude, if not brought back up by  the signal  
+    .ratio - ( float, READ/WRITE ) - alternate way of setting slopeAbove and   slopeBelow; sets slopeBelow to 1.0 and slopeAbove to 1.0 / ratio  
+    .slopeBelow - ( float, READ/WRITE ) - determines the slope of the output  gain vs the input envelope's level in dB when the envelope is below  thresh. For example, if slopeBelow were 0.5, thresh were 0.1, and the   envelope's value were 0.05, the envelope's amplitude would be about 6 dB   below thresh, so a gain of 3 dB would be applied to bring the output  signal's amplitude up to only 3 dB below thresh. in general, setting  slopeBelow to be lower than slopeAbove results in expansion of dynamic   range.  
+    .slopeAbove - ( float, READ/WRITE ) - determines the slope of the output  gain vs the input envelope's level in dB when the envelope is above  thresh. For example, if slopeAbove were 0.5, thresh were 0.1, and the  envelope's value were 0.2, the envelope's amplitude would be about 6 dB  above thresh, so a gain of -3 dB would be applied to bring the output  signal's amplitude up to only 3 dB above thresh. in general, setting  slopeAbove to be lower than slopeBelow results in compression of dynamic   range  
+    .sideInput - ( float, READ/WRITE ) - if externalSideInput is set to true,  replaces the signal being processed as the input to the amplitude  envelope. see dynoduck.ck for an example of using an external side chain.  
+    .externalSideInput - ( int, READ/WRITE ) - set to true to cue the  amplitude envelope off of sideInput instead of the input signal. note that  
+    this means you will need to manually set sideInput every so often. if  false, the amplitude envelope represents the amplitude of the input signal   
+    whose dynamics are being processed. see dynoduck.ck for an example of   using an external side chain.  
   
   
   
