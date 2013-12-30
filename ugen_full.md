@@ -70,7 +70,7 @@ default for each sample is 0 if not set
 
     .next - ( float , READ/WRITE ) - set value of next sample to be generated. 
 
-> if you are using the UGen.last method to read the output of the impulse, the value set by Impulse.next does not appear as the output until after the next sample boundary. In this case, there is a consistent 1::samp offset between setting .next and reading that value using .last  
+> if you are using the UGen.last method to read the output of the impulse, the value set by Impulse.next does not appear as the output until after the next sample boundary. In this case, there is a consistent `1::samp` offset between setting .next and reading that value using .last  
   
 example  
   
@@ -581,7 +581,7 @@ base class for classic `MusicN` lookup table unit generators, see examples: read
 
 > Ported from rtcmix. See http://www.music.columbia.edu/cmix/makegens.html for more information on the GenX family of UGens. Currently coefficients past the 100th are ignored.  
   
-Lookup can either be done using the lookup() function, or by driving the table with an input UGen, typically a Phasor. For an input signal between [ -1, 1 ], using the absolute value for [ -1, 0 ), GenX will output the table value indexed by the current input.  
+Lookup can either be done using the lookup() function, or by driving the table with an input UGen, typically a Phasor. For an input signal between `[-1, 1]`, using the absolute value for `[-1, 0]`, GenX will output the table value indexed by the current input.  
   
 (control parameters)  
   
@@ -596,25 +596,22 @@ Lookup can either be done using the lookup() function, or by driving the table w
 
 exponential line segment lookup table table generator (extends GenX)
 see examples: Gen5-test.ck
-Constructs a lookup table composed of sequential exponential curves. For a table with N curves, starting value of y', and value yn for lookup index xn, set the coefficients to [ y', y0, x0, ..., yN-1, xN-1 ]. Note that there must be an odd number of coefficients. If an even number of coefficients is specified, behavior is undefined. The sum of xn for 0 ≤ n < N must be 1. yn = 0 is approximated as 0.000001 to avoid strange results arising from the nature of exponential curves.  
+Constructs a lookup table composed of sequential exponential curves. For a table with N curves, starting value of y', and value yn for lookup index xn, set the coefficients to `[ y', y0, x0, ..., yN-1, xN-1 ]`. Note that there must be an odd number of coefficients. If an even number of coefficients is specified, behavior is undefined. The sum of xn for `0 ≤ n < N` must be `1.` 
+`yn = 0` is approximated as `0.000001` to avoid strange results arising from the nature of exponential curves.  
   
-(control parameters)  
-
-    ( see GenX )
+(control parameters, see GenX )  
   
-
+  
 ### [ugen]: Gen7  
-
+  
 line segment lookup table table generator (extends GenX)  
 see examples: Gen7-test.ck  
   
-Constructs a lookup table composed of sequential line segments. For a table with N lines, starting value of y', and value yn for lookup index xn, set the coefficients to [ y', y0, x0, ..., yN-1, xN-1 ].  
+Constructs a lookup table composed of sequential line segments. For a table with N lines, starting value of y', and value yn for lookup index xn, set the coefficients to `[ y', y0, x0, ..., yN-1, xN-1 ]`.  
   
 > there must be an odd number of coefficients. If an even number of coefficients is specified, behavior is undefined. The sum of xn for 0 ≤ n < N must be 1.
   
-(control parameters)  
-
-    ( see GenX )  
+(control parameters, see GenX )  
   
   
 ### [ugen]: Gen9  
@@ -622,41 +619,45 @@ Constructs a lookup table composed of sequential line segments. For a table with
 sinusoidal lookup table with harmonic ratio, amplitude, and phase control
 (extends GenX)  
 see examples: Gen9-test.ck  
-
-Constructs a lookup table of partials with specified amplitudes, phases, and harmonic ratios to the fundamental. Coefficients are specified in triplets of [ ratio, amplitude, phase ] arranged in a single linear array.  
   
-(control parameters)  
-
-    ( see GenX )
+Constructs a lookup table of partials with specified amplitudes, phases, and harmonic ratios to the fundamental. Coefficients are specified in triplets of 
+`[ ratio, amplitude, phase ]` arranged in a single linear array.  
+  
+(control parameters, see GenX)  
   
   
 ### [ugen]: Gen10  
+  
+sinusoidal lookup table with partial amplitude control (extends GenX)  
+see examples: Gen10-test.ck  
 
-sinusoidal lookup table with partial amplitude control
-see examples: Gen10-test.ck
-Constructs a lookup table of harmonic partials with specified amplitudes. The amplitude of partial n is specified by the nth element of the coefficients. For example, setting coefs to [ 1 ] will produce a sine wave.
+Constructs a lookup table of harmonic partials with specified amplitudes. The amplitude of partial n is specified by the nth element of the coefficients. For example, setting coefs to `1` will produce a sine wave.
+  
+(control parameters, see GenX )  
+  
+  
+### [ugen]: Gen17  
 
-extends GenX
-(control parameters)
-( see GenX )
-[ugen]: Gen17
-chebyshev polynomial lookup table
-see examples: Gen17-test.ck
-Constructs a Chebyshev polynomial wavetable with harmonic partials of specified weights. The weight of partial n is specified by the nth element of the coefficients.
+chebyshev polynomial lookup table (extends GenX)  
+see examples: Gen17-test.ck  
 
-Primarily used for waveshaping, driven by a SinOsc instead of a Phasor. See http://crca.ucsd.edu/~msp/techniques/v0.08/book-html/node74.html and http://en.wikipedia.org/wiki/Distortion_synthesis for more information.
+Constructs a Chebyshev polynomial wavetable with harmonic partials of specified weights. The weight of partial n is specified by the nth element of the coefficients.  
 
-extends GenX
-(control parameters)
-( see GenX )
-[ugen]: CurveTable
-flexible curve/line segment table generator
-see examples: GenX-CurveTable-test.ck
-Constructs a wavetable composed of segments of variable times, values, and curvatures. Coefficients are specified as a single linear array of triplets of [ time, value, curvature ] followed by a final duple of [ time, value ] to specify the final value of the table. time values are expressed in unitless, ascending values. For curvature equal to 0, the segment is a line; for curvature less than 0, the segment is a convex curve; for curvature greater than 0, the segment is a concave curve.
+> Primarily used for waveshaping, driven by a SinOsc instead of a Phasor. 
+See http://crca.ucsd.edu/~msp/techniques/v0.08/book-html/node74.html and http://en.wikipedia.org/wiki/Distortion_synthesis for more information.
+  
+(control parameters, see GenX )  
+  
+  
+### [ugen]: CurveTable  
 
-extends GenX
-(control parameters)
-( see GenX )
+flexible curve/line segment table generator (extends GenX)  
+see examples: GenX-CurveTable-test.ck, [BDKickOne.ck]()  
+  
+Constructs a wavetable composed of segments of variable times, values, and curvatures. Coefficients are specified as a single linear array of triplets of 
+`[time, value, curvature]` followed by a final duple of `[time, value]` to specify the final value of the table. time values are expressed in unitless, ascending values. For curvature equal to 0, the segment is a line; for curvature less than 0, the segment is a convex curve; for curvature greater than 0, the segment is a concave curve.  
+
+(control parameters, see GenX )
 
 [ugen]: LiSa
 live sampling utility.
