@@ -1,4 +1,4 @@
-public class BKickONE {
+public class BKick2 {
 
     Mix2 mout;
     dur a, d, s, r;
@@ -32,7 +32,7 @@ public class BKickONE {
         CurveTable pitchEnvelope => blackhole;
         c => pitchEnvelope.coefs; 
         Envelope kEnv => blackhole;
-        kEnv.duration(300::ms);
+        kEnv.duration(130::ms);
         // pass time
         vEnv.set(a, d, slevel, r);
         vEnv.keyOn();
@@ -47,7 +47,7 @@ public class BKickONE {
         int release_triggered;
         while(now < (start + ads + this.r)){
 
-            pitchEnvelope.lookup(kEnv.value()) => s.freq;
+            kEnv.value() => pitchEnvelope.lookup => s.freq;
             if (now > (start + ads) && !(release_triggered==1)){
                 vEnv.keyOff();
                 1 => release_triggered; 
@@ -59,12 +59,12 @@ public class BKickONE {
 
     fun void patch(int n){
         if (n==1) set_values_direct(
-            [0., 6590, -7.98,  
-            0.017, 440, -.98,  
-            0.05, 140, -.98,  
-            .17, 114, 0, 
+            [0., 5590, -7.98,  
+            0.017, 340, -.98,  
+            0.05, 120, -.98,  
+            .17, 104, 0, 
             .61, 54, 0, 
-            1.8, 41.]);
+            1.0, 41.]);
         }
 
     // set defaults
@@ -73,11 +73,11 @@ public class BKickONE {
 
 }
 
-BKickONE kick;
-kick.mout => dac;
-kick.patch(2);
-kick.trigger(.9);
+// BKick2 kick;
+// kick.mout => dac;
+// kick.patch(1);
+// kick.trigger(1.);
 
-2::second => now;
+// 2::second => now;
 
 // edit -w
