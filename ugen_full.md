@@ -656,92 +656,139 @@ see examples: GenX-CurveTable-test.ck, [BDKickOne.ck]()
   
 Constructs a wavetable composed of segments of variable times, values, and curvatures. Coefficients are specified as a single linear array of triplets of 
 `[time, value, curvature]` followed by a final duple of `[time, value]` to specify the final value of the table. time values are expressed in unitless, ascending values. For curvature equal to 0, the segment is a line; for curvature less than 0, the segment is a convex curve; for curvature greater than 0, the segment is a concave curve.  
+  
+(control parameters, see GenX )  
+  
+### [ugen]: LiSa  
+  
+live sampling utility.  
 
-(control parameters, see GenX )
-
-[ugen]: LiSa
-live sampling utility.
-LiSa provides basic live sampling functionality.
-An internal buffer stores samples chucked to LiSa's input.
-Segments of this buffer can be played back, with ramping and 
-speed/direction control.
-Multiple voice facility is built in, allowing for a single 
-LiSa object to serve as a source for sample layering and 
-granular textures.
+LiSa provides basic live sampling functionality.  
+  
+  - An internal buffer stores samples chucked to LiSa's input. Segments of this buffer can be played back, with ramping and speed/direction control. 
+  - Multiple voice facility is built in, allowing for a single 
+  
+LiSa object to serve as a source for sample layering and granular textures.
 by Dan Trueman (2007)
-see LiSa Examples wiki for more, 
-and also a slowly growing tutorial 
-(control parameters)
-.duration - ( dur , READ/WRITE ) - sets buffer size; required to allocate memory, also resets all parameter values to default
-.record - ( int , READ/WRITE ) - turns recording on and off
-.getVoice - ( READ ) - returns the voice number of the next available voice
-.maxVoices - ( int , READ/WRITE ) - sets the maximum number of voices allowable; 10 by default (200 is the current hardwired internal limit)
-.play - ( int, WRITE ) - turn on/off sample playback (voice 0)
-.play - ( int voice, int, WRITE) - for particular voice (arg 1), turn on/off sample playback
-.rampUp - ( dur, WRITE ) - turn on sample playback, with ramp (voice 0)
-.rampUp - ( int voice dur, WRITE ) - for particular voice (arg 1), turn on sample playback, with ramp
-.rampDown - ( dur, WRITE ) - turn off sample playback, with ramp (voice 0)
-.rampDown - ( int voice, dur, WRITE ) - for particular voice (arg 1), turn off sample playback, with ramp
-.rate - ( float, WRITE ) - set playback rate (voice 0). Note that the int/float type for this method will determine whether the rate is being set (float, for voice 0) or read (int, for voice number)
-.rate - ( int voice, float, WRITE ) - for particular voice (arg 1), set playback rate
-.rate - ( READ ) - get playback rate (voice 0)
-.rate - ( int voice, READ ) - for particular voice (arg 1), get playback rate. Note that the int/float type for this method will determine whether the rate is being set (float, for voice 0) or read (int, for voice number)
-.playPos - ( READ ) - get playback position (voice 0)
-.playPos - ( int voice, READ ) - for particular voice (arg 1), get playback position
-.playPos - ( dur, WRITE ) - set playback position (voice 0)
-.playPos - ( int voice, dur, WRITE ) - for particular voice (arg 1), set playback position
-.recPos - ( dur, READ/WRITE ) - get/set record position
-.recRamp - ( dur , READ/WRITE ) - set ramping when recording (from 0 to loopEndRec)
-.loopRec - ( int, READ/WRITE ) - turn on/off loop recording
-.loopEndRec - ( dur, READ/WRITE ) - set end point in buffer for loop recording
-.loopStart - ( dur , READ/WRITE ) - set loop starting point for playback (voice 0). only applicable when 1 => loop.
-.loopStart - ( int voice, dur , WRITE ) - for particular voice (arg 1), set loop starting point for playback. only applicable when .loop(voice, 1).
-.loopEnd - ( dur , READ/WRITE ) - set loop ending point for playback (voice 0). only applicable when 1 => loop.
-.loopEnd - ( int voice, dur , WRITE ) - for particular voice (arg 1), set loop ending point for playback. only applicable when .loop(voice, 1).
-.loop - ( int , READ/WRITE ) - turn on/off looping (voice 0)
-.loop - ( int voice, int, READ/WRITE ) - for particular voice (arg 1), turn on/off looping
-.bi - ( int , READ/WRITE ) - turn on/off bidirectional playback (voice 0)
-.bi - ( int voice, int , WRITE ) - for particular voice (arg 1), turn on/off bidirectional playback
-.voiceGain - ( float , READ/WRITE ) - set playback gain (voice 0)
-.voiceGain - ( int voice, float , WRITE ) - for particular voice (arg 1), set gain
-.feedback - ( float , READ/WRITE ) - get/set feedback amount when overdubbing (loop recording; how much to retain)
-.valueAt - ( dur, READ ) - get value directly from record buffer
-.valueAt - ( sample, dur, WRITE ) - set value directly in record buffer
-.sync - (int, READ/WRITE) - set input mode; (0) input is recorded to internal buffer, (1) input sets playback position [0,1] (phase value between loopStart and loopEnd for all active voices), (2) input sets playback position, interpreted as a time value in samples (only works with voice 0)
-.track - (int, READ/WRITE) - identical to sync
-.clear - clear recording buffer
-network
 
-[ugen]: netout
-UDP-based network audio transmitter
-(control parameters)
-.addr - ( string , READ/WRITE ) - target address
-.port - ( int , READ/WRITE ) - target port
-.size - ( int , READ/WRITE ) - packet size
-.name - ( string , READ/WRITE ) - name?
-[ugen]: netin
-UDP-based network audio receiver
-(control parameters)
-.port - ( int , READ/WRITE ) - set port to receive
-.name - ( string , READ/WRITE ) - name?
-stereo to mono
-[ugen]: Pan2
-spread mono signal to stereo
-see examples: moe2.ck
-(control parameters)
-.left - ( UGen ) - left (mono) channel out
-.right - ( UGen ) - right (mono) channel out
-.pan - ( float , READ/WRITE ) - pan location value ( -1 to 1 )
-[ugen]: Mix2
-mix stereo input down to mono channel
-(control parameters)
-.left - ( UGen ) - left (mono) channel in
-.right - ( UGen ) - right (mono) channel in
-.pan - ( float , READ/WRITE ) - mix parameter value ( 0 to 1 )
-STK
-stk - instruments
-[ugen]: StkInstrument (Imported from Instrmnt)
-Super-class for STK instruments.
+see LiSa Examples wiki for more, and also a slowly growing tutorial   
+
+(control parameters)  
+
+    .duration - ( dur , READ/WRITE ) - sets buffer size; 
+        required to allocate memory, also resets all parameter values to default
+    .record - ( int , READ/WRITE ) - turns recording on and off
+    .getVoice - ( READ ) - returns the voice number of the next available voice
+    .maxVoices - ( int , READ/WRITE ) - sets the maximum number of voices allowable; 
+        10 by default (200 is the current hardwired internal limit)
+    .play - ( int, WRITE ) - turn on/off sample playback (voice 0)
+    .play - ( int voice, int, WRITE) - for particular voice (arg 1), turn on/off sample playback
+    .rampUp - ( dur, WRITE ) - turn on sample playback, with ramp (voice 0)
+    .rampUp - ( int voice dur, WRITE ) - for particular voice (arg 1), turn on sample playback, with ramp
+    .rampDown - ( dur, WRITE ) - turn off sample playback, with ramp (voice 0)
+    .rampDown - ( int voice, dur, WRITE ) - for particular voice (arg 1), turn off sample playback, with ramp
+    .rate - ( float, WRITE ) - set playback rate (voice 0). 
+        Note that the int/float type for this method will determine whether the rate is being set (float, for voice 0) or read (int, for voice number)
+    .rate - ( int voice, float, WRITE ) - for particular voice (arg 1), set playback rate
+    .rate - ( READ ) - get playback rate (voice 0)
+    .rate - ( int voice, READ ) - for particular voice (arg 1), get playback rate. 
+        Note that the int/float type for this method will determine whether the rate is being set (float, for voice 0) or read (int, for voice number)
+    .playPos - ( READ ) - get playback position (voice 0)
+    .playPos - ( int voice, READ ) - for particular voice (arg 1), get
+        playback position
+    .playPos - ( dur, WRITE ) - set playback position (voice 0)
+    .playPos - ( int voice, dur, WRITE ) - for particular voice (arg 1), set 
+        playback position
+    .recPos - ( dur, READ/WRITE ) - get/set record position
+    .recRamp - ( dur , READ/WRITE ) - set ramping when recording (from 0 to 
+        loopEndRec)
+    .loopRec - ( int, READ/WRITE ) - turn on/off loop recording
+    .loopEndRec - ( dur, READ/WRITE ) - set end point in buffer for loop 
+        recording
+    .loopStart - ( dur , READ/WRITE ) - set loop starting point for playback (
+        voice 0). only applicable when 1 => loop.
+    .loopStart - ( int voice, dur , WRITE ) - for particular voice (arg 1), 
+        set loop starting point for playback. only applicable when .loop(voice, 1).
+    .loopEnd - ( dur , READ/WRITE ) - set loop ending point for playback 
+        (voice 0). only applicable when 1 => loop.
+    .loopEnd - ( int voice, dur , WRITE ) - for particular voice (arg 1), 
+        set loop ending point for playback. only applicable when 
+        .loop(voice, 1).
+    .loop - ( int , READ/WRITE ) - turn on/off looping (voice 0)
+    .loop - ( int voice, int, READ/WRITE ) - for particular voice (arg 1), 
+        turn on/off looping
+    .bi - ( int , READ/WRITE ) - turn on/off bidirectional playback (voice 0)
+    .bi - ( int voice, int , WRITE ) - for particular voice (arg 1), turn on/
+        off bidirectional playback
+    .voiceGain - ( float , READ/WRITE ) - set playback gain (voice 0)
+    .voiceGain - ( int voice, float , WRITE ) - for particular voice (arg 1),
+        set gain
+    .feedback - ( float , READ/WRITE ) - get/set feedback amount when 
+        overdubbing (loop recording; how much to retain)
+    .valueAt - ( dur, READ ) - get value directly from record buffer
+    .valueAt - ( sample, dur, WRITE ) - set value directly in record buffer
+    .sync - (int, READ/WRITE) - set input mode; (0) input is recorded to 
+        internal buffer, (1) input sets playback position [0,1] (phase value between loopStart and loopEnd for all active voices), (2) input sets playback position, interpreted as a time value in samples (only works with voice 0)
+    .track - (int, READ/WRITE) - identical to sync
+    .clear - clear recording buffer network
+  
+  
+### [ugen]: netout  
+
+UDP-based network audio transmitter  
+
+(control parameters)  
+
+    .addr - ( string , READ/WRITE ) - target address
+    .port - ( int , READ/WRITE ) - target port
+    .size - ( int , READ/WRITE ) - packet size
+    .name - ( string , READ/WRITE ) - name?
+  
+
+### [ugen]: netin  
+
+UDP-based network audio receiver  
+  
+(control parameters)  
+  
+    .port - ( int , READ/WRITE ) - set port to receive
+    .name - ( string , READ/WRITE ) - name?
+  
+## stereo to mono  
+  
+  
+  
+### [ugen]: Pan2  
+  
+spread mono signal to stereo  
+see examples: moe2.ck  
+  
+(control parameters)  
+  
+    .left - ( UGen ) - left (mono) channel out
+    .right - ( UGen ) - right (mono) channel out
+    .pan - ( float , READ/WRITE ) - pan location value ( -1 to 1 )
+  
+
+### [ugen]: Mix2  
+
+mix stereo input down to mono channel  
+
+(control parameters)  
+
+    .left - ( UGen ) - left (mono) channel in
+    .right - ( UGen ) - right (mono) channel in
+    .pan - ( float , READ/WRITE ) - mix parameter value ( 0 to 1 )
+  
+
+  
+## STK, instruments  
+
+  
+### [ugen]: StkInstrument (Imported from Instrmnt)  
+  
+Super-class for STK instruments.  
+
     The following UGens subclass StkInstrument:
        - BandedWG
        - BlowBotl
@@ -760,21 +807,19 @@ Super-class for STK instruments.
        - Sitar
        - StifKarp
        - VoicForm
-(control parameters)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change - numbers are instrument specific, value range: [0.0 - 128.0]
-[ugen]: BandedWG (STK Import)
-Banded waveguide modeling class.
-    This class uses banded waveguide techniques to
-    model a variety of sounds, including bowed
-    bars, glasses, and bowls.  For more
-    information, see Essl, G. and Cook, P. "Banded
-    Waveguides: Towards Physical Modelling of Bar
-    Percussion Instruments", Proceedings of the
-    1999 International Computer Music Conference.
+  
+(control parameters)  
 
+    .noteOn - ( float velocity ) - trigger note on
+    .noteOff - ( float velocity ) - trigger note off
+    .freq - ( float frequency ) - set/get frequency (Hz)
+    .controlChange - ( int number, float value ) - assert control change - numbers are instrument specific, value range: [0.0 - 128.0]
+  
+### [ugen]: BandedWG (STK Import)  
+
+Banded waveguide modeling class (extends StkInstrument).
+
+> This class uses banded waveguide techniques to model a variety of sounds, including bowed bars, glasses, and bowls.  For more information, see Essl, G. and Cook, P. "Banded Waveguides: Towards Physical Modelling of Bar Percussion Instruments", Proceedings of the 1999 International Computer Music Conference.  
     Control Change Numbers: 
        - Bow Pressure = 2
        - Bow Motion = 4
@@ -787,28 +832,31 @@ Banded waveguide modeling class.
          - Uniform Bar = 0
          - Tuned Bar = 1
          - Glass Harmonica = 2
-         - Tibetan Bowl = 3
+         - Tibetan Bowl = 3  
+    
+    by Georg Essl, 1999 - 2002. Modified for Stk 4.0 by Gary Scavone.
+  
+(control parameters)  
 
-    by Georg Essl, 1999 - 2002.
-    Modified for Stk 4.0 by Gary Scavone.
-extends StkInstrument
-(control parameters)
-.bowPressure - ( float , READ/WRITE ) - bow pressure [0.0 - 1.0]
-.bowMotion - ( float , READ/WRITE ) - bow motion [0.0 - 1.0]
-.bowRate - ( float , READ/WRITE ) - bow attack rate (sec)
-.strikePosition - ( float , READ/WRITE ) - strike Position [0.0 - 1.0]
-.integrationConstant - ( float , READ/WRITE ) - ?? [0.0 - 1.0]
-.modesGain - ( float , READ/WRITE ) - amplitude for modes [0.0 - 1.0]
-.preset - ( int , READ/WRITE ) - instrument presets (0 - 3, see above)
-.pluck - ( float , WRITE only ) - pluck instrument [0.0 - 1.0]
-.startBowing - ( float , WRITE only ) - start bowing [0.0 - 1.0]
-.stopBowing - ( float , WRITE only ) - stop bowing [0.0 - 1.0]
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
-[ugen]: BlowBotl (STK Import)
+    .bowPressure - ( float , READ/WRITE ) - bow pressure [0.0 - 1.0]
+    .bowMotion - ( float , READ/WRITE ) - bow motion [0.0 - 1.0]
+    .bowRate - ( float , READ/WRITE ) - bow attack rate (sec)
+    .strikePosition - ( float , READ/WRITE ) - strike Position [0.0 - 1.0]
+    .integrationConstant - ( float , READ/WRITE ) - ?? [0.0 - 1.0]
+    .modesGain - ( float , READ/WRITE ) - amplitude for modes [0.0 - 1.0]
+    .preset - ( int , READ/WRITE ) - instrument presets (0 - 3, see above)
+    .pluck - ( float , WRITE only ) - pluck instrument [0.0 - 1.0]
+    .startBowing - ( float , WRITE only ) - start bowing [0.0 - 1.0]
+    .stopBowing - ( float , WRITE only ) - stop bowing [0.0 - 1.0]
+    (inherited from StkInstrument)
+    .noteOn - ( float velocity ) - trigger note on
+    .noteOff - ( float velocity ) - trigger note off
+    .freq - ( float frequency ) - set/get frequency (Hz)
+    .controlChange - ( int number, float value ) - assert control change
+  
+
+### [ugen]: BlowBotl (STK Import)  
+
 STK blown bottle instrument class.
     This class implements a helmholtz resonator
     (biquad filter) with a polynomial jet
@@ -913,6 +961,7 @@ extends StkInstrument
 .noteOff - ( float velocity ) - trigger note off
 .freq - ( float frequency ) - set/get frequency (Hz)
 .controlChange - ( int number, float value ) - assert control change
+
 [ugen]: Brass (STK Import)
 STK simple brass instrument class.
     This class implements a simple brass instrument
