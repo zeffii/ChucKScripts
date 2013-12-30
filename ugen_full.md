@@ -33,7 +33,10 @@ see examples: fm.ck
 
 ### [ugen]: Gain  
   
-gain control unit, all unit generators can change their gain. this is a way to add N outputs together and scale them.  
+gain control unit  
+
+> all unit generators can change their gain. this is a way to add N outputs together and scale them.  
+
 see examples: i-robot.ck  
 
 (control parameters)  
@@ -66,7 +69,7 @@ default for each sample is 0 if not set
 
     .next - ( float , READ/WRITE ) - set value of next sample to be generated. 
 
-> (note: if you are using the UGen.last method to read the output of the impulse, the value set by Impulse.next does not appear as the output until after the next sample boundary. In this case, there is a consistent 1::samp offset between setting .next and reading that value using .last)
+> if you are using the UGen.last method to read the output of the impulse, the value set by Impulse.next does not appear as the output until after the next sample boundary. In this case, there is a consistent 1::samp offset between setting .next and reading that value using .last
 
 [example]
  Impulse i => dac;
