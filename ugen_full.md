@@ -6,8 +6,9 @@ digital/analog converter
 abstraction for underlying audio output device  
 
 (control parameters)  
-    .left - input to left channel
-    .right - input to right channel
+
+    .left - input to left channel  
+    .right - input to right channel  
     .chan( int n ) - returns nth channel (all UGens have this function)  
 
 ### [ugen]: adc  
