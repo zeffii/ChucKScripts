@@ -27,7 +27,7 @@ abstraction for underlying audio input device
 
 ### [ugen]: blackhole    
   
-sample rate sample sucker ( like dac, ticks ugens, but no more )  
+sample rate sample sucker, like dac, ticks ugens, but no more  
 see examples: fm.ck  
   
 
@@ -36,26 +36,27 @@ see examples: fm.ck
 gain control unit  
 
 > all unit generators can change their gain. this is a way to add N outputs together and scale them.  
-
+  
 see examples: i-robot.ck  
 
 (control parameters)  
   
     .gain - ( float , READ/WRITE ) - set gain ( all ugen's have this )
   
-[example]  
-
+example    
+  
      Noise n => Gain g => dac;
      SinOsc s => g;
      .3 => g.gain;
      while( true ) { 100::ms => now; }
-
+  
+  
 
 ## wave forms  
   
   
 ### [ugen]: Noise  
-
+  
 white noise generator  
 see examples: wind.ck powerup.ck  
   
@@ -69,88 +70,109 @@ default for each sample is 0 if not set
 
     .next - ( float , READ/WRITE ) - set value of next sample to be generated. 
 
-> if you are using the UGen.last method to read the output of the impulse, the value set by Impulse.next does not appear as the output until after the next sample boundary. In this case, there is a consistent 1::samp offset between setting .next and reading that value using .last
+> if you are using the UGen.last method to read the output of the impulse, the value set by Impulse.next does not appear as the output until after the next sample boundary. In this case, there is a consistent 1::samp offset between setting .next and reading that value using .last  
+  
+example  
+  
+     Impulse i => dac;  
+     while( true ) {  
+        1.0 => i.next;  
+        100::ms => now;  
+     }  
 
-[example]
- Impulse i => dac;
- while( true ) {
-    1.0 => i.next;
-    100::ms => now;
- }
-[ugen]: Step
-step generator - like Impulse, but once a value is set,
-it is held for all following samples, until value is set again
-see examples: step.ck
-(control parameters)
-.next - ( float , READ/WRITE ) - set the step value
-[example]
- Step s => dac;
- -1.0 => float amp;
- // square wave using Step
- while( true ) {
-     -amp => amp => s.next;
-     800::samp => now;
- }
-basic signal processing
-[ugen]: HalfRect
-half wave rectifier
-for half-wave rectification.
-[ugen]: FullRect
-full wave rectifier
-[ugen]: ZeroX
-zero crossing detector
-emits a single pulse at the the zero crossing in the direction of the zero crossing.
-see examples: zerox.ck
-filters
-[ugen]: BiQuad
-STK biquad (two-pole, two-zero) filter class.
-    This protected Filter subclass implements a
-    two-pole, two-zero digital filter.  A method
-    is provided for creating a resonance in the
-    frequency response while maintaining a constant
-    filter gain.
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.b2 - ( float , READ/WRITE ) - b2 coefficient
-.b1 - ( float , READ/WRITE ) - b1 coefficient
-.b0 - ( float , READ/WRITE ) - b0 coefficient
-.a2 - ( float , READ/WRITE ) - a2 coefficient
-.a1 - ( float , READ/WRITE ) - a1 coefficient
-.a0 - ( float , READ only ) - a0 coefficient
-.pfreq - ( float , READ/WRITE) - set resonance frequency (poles)
-.prad - ( float , READ/WRITE ) - pole radius (less than 1 to be stable)
-.zfreq - ( float , READ/WRITE ) - notch frequency
-.zrad - ( float , READ/WRITE ) - zero radius
-.norm - ( float , READ/WRITE ) - normalization
-.eqzs - ( float , READ/WRITE ) - equal gain zeroes
-[ugen]: Filter
-STK filter class.
-    This class implements a generic structure which
-    can be used to create a wide range of filters.
-    It can function independently or be subclassed
-    to provide more specific controls based on a
-    particular filter type.
+### [ugen]: Step  
+  
+step generator - like Impulse, but once a value is set, it is held for all following samples, until value is set again  
 
-    In particular, this class implements the standard
-    difference equation:
+see examples: step.ck  
+
+(control parameters)  
+
+    .next - ( float , READ/WRITE ) - set the step value    
+  
+example  
+
+     Step s => dac;  
+     -1.0 => float amp;  
+     // square wave using Step  
+     while( true ) {  
+         -amp => amp => s.next;  
+         800::samp => now;  
+     }  
+  
+
+  
+## basic signal processing  
+  
+  
+### [ugen]: HalfRect  
+  
+half wave rectifier  
+for half-wave rectification.  
+  
+  
+### [ugen]: FullRect  
+
+full wave rectifier  
+
+  
+### [ugen]: ZeroX  
+  
+zero crossing detector  
+emits a single pulse at the the zero crossing in the direction of the zero crossing.  
+  
+see examples: zerox.ck  
+  
+  
+
+## filters  
+ 
+
+### [ugen]: BiQuad  
+  
+> STK biquad (two-pole, two-zero) filter class.  This protected Filter subclass implements a two-pole, two-zero digital filter.  A method
+is provided for creating a resonance in the frequency response while maintaining a constant filter gain.    
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+
+(control parameters)  
+
+    .b2 - ( float , READ/WRITE ) - b2 coefficient
+    .b1 - ( float , READ/WRITE ) - b1 coefficient
+    .b0 - ( float , READ/WRITE ) - b0 coefficient
+    .a2 - ( float , READ/WRITE ) - a2 coefficient
+    .a1 - ( float , READ/WRITE ) - a1 coefficient
+    .a0 - ( float , READ only ) - a0 coefficient
+    .pfreq - ( float , READ/WRITE) - set resonance frequency (poles)
+    .prad - ( float , READ/WRITE ) - pole radius (less than 1 to be stable)
+    .zfreq - ( float , READ/WRITE ) - notch frequency
+    .zrad - ( float , READ/WRITE ) - zero radius
+    .norm - ( float , READ/WRITE ) - normalization
+    .eqzs - ( float , READ/WRITE ) - equal gain zeroes
+  
+  
+### [ugen]: Filter  
+
+> STK filter class. This class implements a generic structure which can be used to create a wide range of filters. It can function independently or be subclassed to provide more specific controls based on a particular filter type.   
+In particular, this class implements the standard difference equation:  
 
     a[0]*y[n] = b[0]*x[n] + ... + b[nb]*x[n-nb] -
-                a[1]*y[n-1] - ... - a[na]*y[n-na]
+                a[1]*y[n-1] - ... - a[na]*y[n-na]  
 
     If a[0] is not equal to 1, the filter coeffcients
     are normalized by a[0].
 
-    The \e gain parameter is applied at the filter
-    input and does not affect the coefficient values.
-    The default gain value is 1.0.  This structure
-    results in one extra multiply per computed sample,
-    but allows easy control of the overall filter gain.
+> The \e gain parameter is applied at the filter input and does not affect the coefficient values. The default gain value is 1.0.  This structure results in one extra multiply per computed sample, but allows easy control of the overall filter gain.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.coefs - ( string , WRITE only ) -
-[ugen]: OnePole
+(control parameters)  
+
+    .coefs - ( string , WRITE only )  
+  
+
+### [ugen]: OnePole  
+
+
 STK one-pole filter class.
     This protected Filter subclass implements
     a one-pole digital filter.  A method is
