@@ -387,7 +387,7 @@ default ducker values:
 (control parameters)  
   
     .thresh - ( float, READ/WRITE ) 
-        the point above which to stop using slopeBelow and start using slopeAbove to determine output gain vs input gain  
+        the point above which to stop using slopeBelow and start using  slopeAbove to determine output gain vs input gain  
   
     .attackTime - ( dur, READ/WRITE ) 
         duration for the envelope to move linearly from current value 
