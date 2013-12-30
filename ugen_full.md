@@ -434,10 +434,11 @@ default ducker values:
         
 
     .externalSideInput - ( int, READ/WRITE )
-        set to true (1) to cue the amplitude envelope off of sideInput
+        - set to true (1) to cue the amplitude envelope off of sideInput
         instead of the input signal. note that this means you will 
         need to manually set sideInput every so often. 
-        if false (0), the amplitude envelope represents the amplitude of the input signal whose dynamics are being processed. 
+        - if false (0), the amplitude envelope represents the amplitude of the
+        input signal whose dynamics are being processed. 
   
 see dynoduck.ck for an example of using an external side chain.  
     
@@ -447,7 +448,7 @@ see dynoduck.ck for an example of using an external side chain.
   
   
 ### [ugen]: SndBuf  
-
+  
 sound buffer ( interpolating )  , also `SndBuf2` for stereo files.
   
 reads from a variety of file formats  
@@ -458,14 +459,18 @@ see examples: sndbuf.ck
     .read - ( string , WRITE only ) - loads file for reading
     .chunks - ( int, READ/WRITE ) 
         - size of chunk (# of frames) to read on-demand; 
-        - 0 implies entire file, (default) 
-        must be set before reading to take effect.
+        - 0 = entire file, (default) must be set before reading to take effect.
     .samples - ( int , READ only ) - get number of samples
     .length - ( dur, READ only ) - get length as duration
     .channels - ( int , READ only ) - get number of channels
-    .pos - ( int , READ/WRITE ) - set position ( 0 < p < .samples )
-    .rate - ( float , READ/WRITE ) - set/get playback rate ( relative to file's natural speed )
-    .interp - ( int , READ/WRITE ) - set/get interpolation ( 0=drop, 1=linear, 2=sinc )
+    .pos - ( int , READ/WRITE ) - set position ( 0 < p < .samples() )
+    .rate - ( float , READ/WRITE ) - set/get playback rate 
+        - 1.0 = normal 
+        - 2.0 = twice the rate, etc.
+    .interp - ( int , READ/WRITE ) - set/get interpolation 
+        - 0 = drop 
+        - 1 = linear 
+        - 2 = sinc
     .loop - ( int , READ/WRITE ) - toggle looping
     .freq - ( float , READ/WRITE ) - set/get loop rate ( file loops / second )
     .phase - ( float , READ/WRITE ) - set/get phase position ( 0-1 )
@@ -480,42 +485,67 @@ see examples: sndbuf.ck
 
 ### [ugen]: Phasor  
 
-phasor - simple ramp generator ( 0 to 1 )
-can be used as a phase control.
-(control parameters)
-.freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
-.sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
-.phase - ( float , READ/WRITE ) - current phase
-.sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
-.width - ( float , READ/WRITE ) - set duration of the ramp in each cycle. ( default 1.0)
+phasor - simple ramp generator, outputs 0.0 to 1.0, can be used as a phase control.  
 
-[ugen]: SinOsc
-sine oscillator
-see examples: whirl.ck
-(control parameters)
-.freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
-.sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
-.phase - ( float , READ/WRITE ) - current phase
-.sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
+(control parameters)  
 
-[ugen]: PulseOsc
-pulse oscillators
-a pulse wave oscillator with variable width.
-(control parameters)
-.freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
-.sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
-.phase - ( float , READ/WRITE ) - current phase
-.sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
-.width - ( float , READ/WRITE ) - length of duty cycle ( 0-1 )
+    .freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
+    .sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
+    .phase - ( float , READ/WRITE ) - current phase
+    .sync - ( int , READ/WRITE )  
+        - 0 = sync frequency to input, 
+        - 1 = sync phase to input, 
+        - 2 = fm synth
+    .width - ( float , READ/WRITE ) - set duration of the ramp in each cycle. 
+        - 1.0 = default, (range 0.0 to 1.0)
+  
+  
+### [ugen]: SinOsc  
+  
+sine oscillator - see examples: whirl.ck  
+  
+(control parameters)  
 
-[ugen]: SqrOsc
-square wave oscillator ( pulse with fixed width of 0.5 )
-(control parameters)
-.freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
-.sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
-.phase - ( float , READ/WRITE ) - current phase
-.sync - ( int , READ/WRITE ) - (0) sync frequency to input, (1) sync phase to input, (2) fm synth
-.width - ( int , READ/WRITE ) - length of duty cycle ( 0 to 1 )
+    .freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
+    .sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
+    .phase - ( float , READ/WRITE ) - current phase
+    .sync - ( int , READ/WRITE ) 
+        - 0 = sync frequency to input 
+        - 1 = sync phase to input
+        - 2 = fm synth
+  
+
+### [ugen]: PulseOsc  
+
+pulse oscillator - a pulse wave oscillator with variable width.  
+
+(control parameters)    
+  
+    .freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
+    .sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
+    .phase - ( float , READ/WRITE ) - current phase
+    .width - ( float , READ/WRITE ) - length of duty cycle ( 0-1 )
+    .sync - ( int , READ/WRITE ) 
+        - 0 = sync frequency to input 
+        - 1 = sync phase to input
+        - 2 = fm synth
+  
+  
+### [ugen]: SqrOsc   
+
+square wave oscillator ( pulse with fixed width of 0.5 )  
+
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - oscillator frequency (Hz), phase-matched
+    .sfreq - ( float , READ/WRITE ) - oscillator frequency (Hz)
+    .phase - ( float , READ/WRITE ) - current phase
+    .width - ( int , READ/WRITE ) - length of duty cycle ( 0 to 1 )
+    .sync - ( int , READ/WRITE ) 
+        - 0 = sync frequency to input 
+        - 1 = sync phase to input
+        - 2 = fm synth
+
 
 [ugen]: TriOsc
 triangle wave oscillator
