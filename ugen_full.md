@@ -1,52 +1,73 @@
 ## audio output  
 
+
 ### [ugen]: dac  
 
-digital/analog converter  
+digital / analog converter  
 abstraction for underlying audio output device  
-
+  
 (control parameters)  
 
     .left - input to left channel  
     .right - input to right channel  
     .chan( int n ) - returns nth channel (all UGens have this function)  
 
+
 ### [ugen]: adc  
 
-analog/digital converter
-abstraction for underlying audio input device
-(control parameters)
-.left - ( UGen ) - output of left channel
-.right - ( UGen ) - output of right channel
-.chan( int n ) - ( UGen ) - returns nth channel (all UGens have this function)
+analog / digital converter
+abstraction for underlying audio input device  
 
-### [ugen]: blackhole  
+(control parameters)  
 
-sample rate sample sucker ( like dac, ticks ugens, but no more )
-see examples: fm.ck
+    .left - output of left channel  
+    .right - output of right channel  
+    .chan( int n ) - returns nth channel (all UGens have this   function)
+
+
+### [ugen]: blackhole    
+  
+sample rate sample sucker ( like dac, ticks ugens, but no more )  
+see examples: fm.ck  
+  
 
 ### [ugen]: Gain  
+  
+gain control unit, all unit generators can change their gain. this is a way to add N outputs together and scale them.  
+see examples: i-robot.ck  
 
-gain control
-(NOTE - all unit generators can themselves change their gain)
-(this is a way to add N outputs together and scale them)
-see examples: i-robot.ck
-(control parameters)
-.gain - ( float , READ/WRITE ) - set gain ( all ugen's have this )
-[example]
- Noise n => Gain g => dac;
- SinOsc s => g;
- .3 => g.gain;
- while( true ) { 100::ms => now; }
-wave forms
-[ugen]: Noise
-white noise generator
-see examples: wind.ck powerup.ck
-[ugen]: Impulse
-pulse generator - can set the value of the current sample
-default for each sample is 0 if not set
-(control parameters)
-.next - ( float , READ/WRITE ) - set value of next sample to be generated. (note: if you are using the UGen.last method to read the output of the impulse, the value set by Impulse.next does not appear as the output until after the next sample boundary. In this case, there is a consistent 1::samp offset between setting .next and reading that value using .last)
+(control parameters)  
+  
+    .gain - ( float , READ/WRITE ) - set gain ( all ugen's have this )
+  
+[example]  
+
+     Noise n => Gain g => dac;
+     SinOsc s => g;
+     .3 => g.gain;
+     while( true ) { 100::ms => now; }
+
+
+## wave forms  
+  
+  
+### [ugen]: Noise  
+
+white noise generator  
+see examples: wind.ck powerup.ck  
+  
+  
+### [ugen]: Impulse  
+  
+pulse generator - can set the value of the current sample  
+default for each sample is 0 if not set  
+
+(control parameters)  
+
+    .next - ( float , READ/WRITE ) - set value of next sample to be generated. 
+
+> (note: if you are using the UGen.last method to read the output of the impulse, the value set by Impulse.next does not appear as the output until after the next sample boundary. In this case, there is a consistent 1::samp offset between setting .next and reading that value using .last)
+
 [example]
  Impulse i => dac;
  while( true ) {
