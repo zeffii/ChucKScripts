@@ -669,30 +669,45 @@ LiSa provides basic live sampling functionality.
   - Multiple voice facility is built in, allowing for a single 
   
 LiSa object to serve as a source for sample layering and granular textures.
-by Dan Trueman (2007)
-
+by Dan Trueman (2007)  
+  
 see LiSa Examples wiki for more, and also a slowly growing tutorial   
-
+  
 (control parameters)  
-
+  
     .duration - ( dur , READ/WRITE ) - sets buffer size; 
-        required to allocate memory, also resets all parameter values to default
+        required to allocate memory, also resets all parameter values to
+        default
     .record - ( int , READ/WRITE ) - turns recording on and off
     .getVoice - ( READ ) - returns the voice number of the next available voice
-    .maxVoices - ( int , READ/WRITE ) - sets the maximum number of voices allowable; 
+    .maxVoices - ( int , READ/WRITE ) - sets the maximum number of voices 
+        allowable; 
         10 by default (200 is the current hardwired internal limit)
     .play - ( int, WRITE ) - turn on/off sample playback (voice 0)
-    .play - ( int voice, int, WRITE) - for particular voice (arg 1), turn on/off sample playback
+    .play - ( int voice, int, WRITE) - for particular voice (arg 1), 
+        turn on/off sample playback
     .rampUp - ( dur, WRITE ) - turn on sample playback, with ramp (voice 0)
-    .rampUp - ( int voice dur, WRITE ) - for particular voice (arg 1), turn on sample playback, with ramp
+    .rampUp - ( int voice dur, WRITE ) - for particular voice (arg 1), turn on 
+        sample playback, with ramp
     .rampDown - ( dur, WRITE ) - turn off sample playback, with ramp (voice 0)
-    .rampDown - ( int voice, dur, WRITE ) - for particular voice (arg 1), turn off sample playback, with ramp
+    .rampDown - ( int voice, dur, WRITE ) - for particular voice (arg 1), turn 
+        off sample playback, with ramp  
+    
+    // rate, overloaded.
     .rate - ( float, WRITE ) - set playback rate (voice 0). 
-        Note that the int/float type for this method will determine whether the rate is being set (float, for voice 0) or read (int, for voice number)
-    .rate - ( int voice, float, WRITE ) - for particular voice (arg 1), set playback rate
+        Note that the int/float type for this method will determine whether 
+        the rate is being set (float, for voice 0) or read (int, for voice
+        number)
+    .rate - ( int voice, float, WRITE ) - for particular voice (arg 1), set 
+        playback rate
     .rate - ( READ ) - get playback rate (voice 0)
-    .rate - ( int voice, READ ) - for particular voice (arg 1), get playback rate. 
-        Note that the int/float type for this method will determine whether the rate is being set (float, for voice 0) or read (int, for voice number)
+    .rate - ( int voice, READ ) 
+        for particular voice (arg 1), get playback rate.  
+    
+        Note that the int/float type for this method will determine whether  
+        the rate is being set (float, for voice 0) or read (int, for voice 
+        number)
+    
     .playPos - ( READ ) - get playback position (voice 0)
     .playPos - ( int voice, READ ) - for particular voice (arg 1), get
         playback position
@@ -707,13 +722,14 @@ see LiSa Examples wiki for more, and also a slowly growing tutorial
         recording
     .loopStart - ( dur , READ/WRITE ) - set loop starting point for playback (
         voice 0). only applicable when 1 => loop.
-    .loopStart - ( int voice, dur , WRITE ) - for particular voice (arg 1), 
-        set loop starting point for playback. only applicable when .loop(voice, 1).
+    .loopStart - ( int voice, dur , WRITE )  
+        for particular voice (arg 1), set loop starting point for playback. 
+        only applicable when .loop(voice, 1).
     .loopEnd - ( dur , READ/WRITE ) - set loop ending point for playback 
         (voice 0). only applicable when 1 => loop.
     .loopEnd - ( int voice, dur , WRITE ) - for particular voice (arg 1), 
-        set loop ending point for playback. only applicable when 
-        .loop(voice, 1).
+        set loop ending point for playback. 
+        only applicable when .loop(voice, 1).
     .loop - ( int , READ/WRITE ) - turn on/off looping (voice 0)
     .loop - ( int voice, int, READ/WRITE ) - for particular voice (arg 1), 
         turn on/off looping
@@ -728,7 +744,10 @@ see LiSa Examples wiki for more, and also a slowly growing tutorial
     .valueAt - ( dur, READ ) - get value directly from record buffer
     .valueAt - ( sample, dur, WRITE ) - set value directly in record buffer
     .sync - (int, READ/WRITE) - set input mode; (0) input is recorded to 
-        internal buffer, (1) input sets playback position [0,1] (phase value between loopStart and loopEnd for all active voices), (2) input sets playback position, interpreted as a time value in samples (only works with voice 0)
+        internal buffer, (1) input sets playback position [0,1] (phase value 
+        between loopStart and loopEnd for all active voices), (2) input sets 
+        playback position, interpreted as a time value in samples (only works 
+        with voice 0)
     .track - (int, READ/WRITE) - identical to sync
     .clear - clear recording buffer network
   
