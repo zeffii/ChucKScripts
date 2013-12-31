@@ -831,7 +831,7 @@ mix stereo input down to mono channel
   
 
   
-## STK, instruments  
+## STK - instruments  
 
   
 ### [ugen]: StkInstrument (Imported from Instrmnt)  
@@ -839,23 +839,23 @@ mix stereo input down to mono channel
 Super-class for STK instruments.  
 
     The following UGens subclass StkInstrument:
-       - BandedWG
-       - BlowBotl
-       - BlowHole
-       - Bowed
-       - Brass
-       - Clarinet
-       - Flute
-       - FM (and all its subclasses: BeeThree, FMVoices,
-             HevyMetl, PercFlut, Rhodey, TubeBell, Wurley)
-       - Mandolin
-       - ModalBar
-       - Moog
-       - Saxofony
-       - Shakers
-       - Sitar
-       - StifKarp
-       - VoicForm
+    - BandedWG
+    - BlowBotl
+    - BlowHole
+    - Bowed
+    - Brass
+    - Clarinet
+    - Flute
+    - FM (and all its subclasses: BeeThree, FMVoices,
+         HevyMetl, PercFlut, Rhodey, TubeBell, Wurley)
+    - Mandolin
+    - ModalBar
+    - Moog
+    - Saxofony
+    - Shakers
+    - Sitar
+    - StifKarp
+    - VoicForm
   
 (control parameters)  
 
@@ -872,19 +872,19 @@ Banded waveguide modeling class (extends StkInstrument).
 
 > This class uses banded waveguide techniques to model a variety of sounds, including bowed bars, glasses, and bowls.  For more information, see Essl, G. and Cook, P. "Banded Waveguides: Towards Physical Modelling of Bar Percussion Instruments", Proceedings of the 1999 International Computer Music Conference.  
     Control Change Numbers: 
-       - Bow Pressure = 2
-       - Bow Motion = 4
-       - Strike Position = 8 (not implemented)
-       - Vibrato Frequency = 11
-       - Gain = 1
-       - Bow Velocity = 128
-       - Set Striking = 64
-       - Instrument Presets = 16
-         - Uniform Bar = 0
-         - Tuned Bar = 1
-         - Glass Harmonica = 2
-         - Tibetan Bowl = 3  
-    
+    - Bow Pressure = 2
+    - Bow Motion = 4
+    - Strike Position = 8 (not implemented)
+    - Vibrato Frequency = 11
+    - Gain = 1
+    - Bow Velocity = 128
+    - Set Striking = 64
+    - Instrument Presets = 16
+        - Uniform Bar = 0
+        - Tuned Bar = 1
+        - Glass Harmonica = 2
+        - Tibetan Bowl = 3  
+        
     by Georg Essl, 1999 - 2002. Modified for Stk 4.0 by Gary Scavone.
   
 (control parameters)  
@@ -910,10 +910,10 @@ STK blown bottle instrument class (extends StkInstrument)
 > This class implements a helmholtz resonator (biquad filter) with a polynomial jet excitation (a la Cook).  
   
     Control Change Numbers: 
-       - Noise Gain = 4
-       - Vibrato Frequency = 11
-       - Vibrato Gain = 1
-       - Volume = 128
+    - Noise Gain = 4
+    - Vibrato Frequency = 11
+    - Vibrato Gain = 1
+    - Volume = 128
     
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
@@ -943,11 +943,11 @@ the length of the air column. In addition, the highest playing freqeuency is lim
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
     Control Change Numbers: 
-       - Reed Stiffness = 2
-       - Noise Gain = 4  
-       - Tonehole State = 11  
-       - Register State = 1  
-       - Breath Pressure = 128  
+    - Reed Stiffness = 2
+    - Noise Gain = 4  
+    - Tonehole State = 11  
+    - Register State = 1  
+    - Breath Pressure = 128  
     
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
@@ -975,11 +975,11 @@ This class implements a bowed string model, a la Smith (1986), after McIntyre, S
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
     Control Change Numbers: 
-       - Bow Pressure = 2
-       - Bow Position = 4
-       - Vibrato Frequency = 11
-       - Vibrato Gain = 1
-       - Volume = 128
+    - Bow Pressure = 2
+    - Bow Position = 4
+    - Vibrato Frequency = 11
+    - Vibrato Gain = 1
+    - Volume = 128
     
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
@@ -1007,11 +1007,11 @@ This class implements a simple brass instrument waveguide model, a la Cook (TBon
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
     Control Change Numbers: 
-       - Lip Tension = 2
-       - Slide Length = 4
-       - Vibrato Frequency = 11
-       - Vibrato Gain = 1
-       - Volume = 128
+    - Lip Tension = 2
+    - Slide Length = 4
+    - Vibrato Frequency = 11
+    - Vibrato Gain = 1
+    - Volume = 128
     
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
@@ -1022,10 +1022,10 @@ This class implements a simple brass instrument waveguide model, a la Cook (TBon
     .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
     .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
     .volume - ( float , READ/WRITE ) - volume [0.0 - 1.0]
-    .clear - ( float , WRITE only ) - clear instrument
     .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
     .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
     .rate - ( float , READ/WRITE ) - rate of attack (sec)
+    .clear - ( float , WRITE only ) - clear instrument
     
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange  
@@ -1040,11 +1040,11 @@ This class implements a simple clarinet physical model, as discussed by Smith (1
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
     Control Change Numbers: 
-       - Reed Stiffness = 2
-       - Noise Gain = 4
-       - Vibrato Frequency = 11
-       - Vibrato Gain = 1
-       - Breath Pressure = 128
+    - Reed Stiffness = 2
+    - Noise Gain = 4
+    - Vibrato Frequency = 11
+    - Vibrato Gain = 1
+    - Breath Pressure = 128
     
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
@@ -1052,174 +1052,178 @@ This class implements a simple clarinet physical model, as discussed by Smith (1
 
     .reed - ( float , READ/WRITE ) - reed stiffness [0.0 - 1.0]
     .noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
-    .clear - ( ) - clear instrument
     .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
     .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
     .pressure - ( float , READ/WRITE ) - pressure/volume [0.0 - 1.0]
     .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
     .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
     .rate - ( float , READ/WRITE ) - rate of attack (sec)  
+    .clear - ( ) - clear instrument
     
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
+  
 
-[ugen]: Flute (STK Import)
-STK flute physical model class.
-    This class implements a simple flute
-    physical model, as discussed by Karjalainen,
-    Smith, Waryznyk, etc.  The jet model uses
-    a polynomial, a la Cook.
+### [ugen]: Flute (STK Import)  
 
+STK flute physical model class (extends StkInstrument)  
+  
+This class implements a simple flute physical model, as discussed by Karjalainen, Smith, Waryznyk, etc. The jet model uses a polynomial, a la Cook.
+  
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
     Control Change Numbers: 
-       - Jet Delay = 2
-       - Noise Gain = 4
-       - Vibrato Frequency = 11
-       - Vibrato Gain = 1
-       - Breath Pressure = 128
-
+    - Jet Delay = 2
+    - Noise Gain = 4
+    - Vibrato Frequency = 11
+    - Vibrato Gain = 1
+    - Breath Pressure = 128
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.jetDelay - ( float , READ/WRITE ) - jet delay [...]
-.jetReflection - ( float , READ/WRITE ) - jet reflection [...]
-.endReflection - ( float , READ/WRITE ) - end delay [...]
-.noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.pressure - ( float , READ/WRITE ) - pressure/volume [0.0 - 1.0]
-.clear - ( ) - clear instrument
-.startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
-.stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
-.rate - ( float , READ/WRITE ) - rate of attack (sec)
+  
+(control parameters)  
+
+    .jetDelay - ( float , READ/WRITE ) - jet delay [...]
+    .jetReflection - ( float , READ/WRITE ) - jet reflection [...]
+    .endReflection - ( float , READ/WRITE ) - end delay [...]
+    .noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .pressure - ( float , READ/WRITE ) - pressure/volume [0.0 - 1.0]
+    .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
+    .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
+    .rate - ( float , READ/WRITE ) - rate of attack (sec)
+    .clear - ( ) - clear instrument
+    
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
+  
 
-[ugen]: Mandolin (STK Import)
-STK mandolin instrument model class.
+### [ugen]: Mandolin (STK Import)  
+
+STK mandolin instrument model class (extends StkInstrument)
 see examples: mand-o-matic.ck
-    This class inherits from PluckTwo and uses
-    "commuted synthesis" techniques to model a
-    mandolin instrument.
 
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by
-    Stanford University, Yamaha, and others.
-    Commuted Synthesis, in particular, is covered
-    by patents, granted, pending, and/or
-    applied-for.  All are assigned to the Board of
-    Trustees, Stanford University.  For
-    information, contact the Office of Technology
-    Licensing, Stanford University.
-
+This class inherits from PluckTwo and uses "commuted synthesis" techniques to model a mandolin instrument.  
+  
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others. Commuted Synthesis, in particular, is covered by patents, granted, pending, and/or applied-for.  All are assigned to the Board of Trustees, Stanford University. For 
+information, contact the Office of Technology Licensing, Stanford University.
+  
     Control Change Numbers: 
-       - Body Size = 2
-       - Pluck Position = 4
-       - String Sustain = 11
-       - String Detuning = 1
-       - Microphone Position = 128
-
+    - Body Size = 2
+    - Pluck Position = 4
+    - String Sustain = 11
+    - String Detuning = 1
+    - Microphone Position = 128
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.bodySize - ( float , READ/WRITE ) - body size (percentage)
-.pluckPos - ( float , READ/WRITE ) - pluck position [0.0 - 1.0]
-.stringDamping - ( float , READ/WRITE ) - string damping [0.0 - 1.0]
-.stringDetune - ( float , READ/WRITE ) - detuning of string pair [0.0 - 1.0]
-.afterTouch - ( float , WRITE only ) - aftertouch (currently unsupported)
-.pluck - ( float , WRITE only ) - pluck instrument [0.0 - 1.0]
+  
+(control parameters)  
+  
+    .bodySize - ( float , READ/WRITE ) - body size (percentage)
+    .pluckPos - ( float , READ/WRITE ) - pluck position [0.0 - 1.0]
+    .stringDamping - ( float , READ/WRITE ) - string damping [0.0 - 1.0]
+    .stringDetune - ( float , READ/WRITE ) - detuning of string pair [0.0 - 1.0]
+    .afterTouch - ( float , WRITE only ) - aftertouch (currently unsupported)
+    .pluck - ( float , WRITE only ) - pluck instrument [0.0 - 1.0]
+    
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
-
-[ugen]: ModalBar (STK Import)
-STK resonant bar instrument class.
-see examples: mode-o-matic.ck
-    This class implements a number of different
-    struck bar instruments.  It inherits from the
-    Modal class.
-
+  
+  
+### [ugen]: ModalBar (STK Import)  
+  
+STK resonant bar instrument class (extends StkInstrument)  
+see examples: mode-o-matic.ck  
+  
+This class implements a number of different struck bar instruments. It inherits from the Modal class.  
+  
     Control Change Numbers: 
-       - Stick Hardness = 2
-       - Stick Position = 4
-       - Vibrato Gain = 11
-       - Vibrato Frequency = 7
-       - Direct Stick Mix = 1
-       - Volume = 128
-       - Modal Presets = 16
-         - Marimba = 0
-         - Vibraphone = 1
-         - Agogo = 2
-         - Wood1 = 3
-         - Reso = 4
-         - Wood2 = 5
-         - Beats = 6
-         - Two Fixed = 7
-         - Clump = 8
-
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.stickHardness - ( float , READ/WRITE ) - stick hardness [0.0 - 1.0]
-.strikePosition - ( float , READ/WRITE ) - strike position [0.0 - 1.0]
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.directGain - ( float , READ/WRITE ) - direct gain [0.0 - 1.0]
-.masterGain - ( float , READ/WRITE ) - master gain [0.0 - 1.0]
-.volume - ( float , READ/WRITE ) - volume [0.0 - 1.0]
-.preset - ( int , READ/WRITE ) - choose preset (see above)
-.strike - ( float , WRITE only ) - strike bar [0.0 - 1.0]
-.damp - ( float , WRITE only ) - damp bar [0.0 - 1.0]
-.clear - ( ) - reset [none]
-.mode - ( int , READ/WRITE ) - select mode [0.0 - 1.0]
-.modeRatio - ( float , READ/WRITE ) - edit selected mode ratio [...]
-.modeRadius - ( float , READ/WRITE ) - edit selected mode radius [0.0 - 1.0]
-.modeGain - ( float , READ/WRITE ) - edit selected mode gain [0.0 - 1.0]
+    - Stick Hardness = 2
+    - Stick Position = 4
+    - Vibrato Gain = 11
+    - Vibrato Frequency = 7
+    - Direct Stick Mix = 1
+    - Volume = 128
+    - Modal Presets = 16
+        - Marimba = 0
+        - Vibraphone = 1
+        - Agogo = 2
+        - Wood1 = 3
+        - Reso = 4
+        - Wood2 = 5
+        - Beats = 6
+        - Two Fixed = 7
+        - Clump = 8
+    
+    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+  
+    .stickHardness - ( float , READ/WRITE ) - stick hardness [0.0 - 1.0]
+    .strikePosition - ( float , READ/WRITE ) - strike position [0.0 - 1.0]
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .directGain - ( float , READ/WRITE ) - direct gain [0.0 - 1.0]
+    .masterGain - ( float , READ/WRITE ) - master gain [0.0 - 1.0]
+    .volume - ( float , READ/WRITE ) - volume [0.0 - 1.0]
+    .preset - ( int , READ/WRITE ) - choose preset (see above)
+    .strike - ( float , WRITE only ) - strike bar [0.0 - 1.0]
+    .damp - ( float , WRITE only ) - damp bar [0.0 - 1.0]
+    .mode - ( int , READ/WRITE ) - select mode [0.0 - 1.0]
+    .modeRatio - ( float , READ/WRITE ) - edit selected mode ratio [...]
+    .modeRadius - ( float , READ/WRITE ) - edit selected mode radius [0.0 - 1.0]
+    .modeGain - ( float , READ/WRITE ) - edit selected mode gain [0.0 - 1.0]
+    .clear - ( ) - reset [none]
+    
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
+  
+### [ugen]: Moog (STK Import)  
 
-[ugen]: Moog (STK Import)
-STK moog-like swept filter sampling synthesis class.
+STK moog-like swept filter sampling synthesis class (extends StkInstrument)
 see examples: moogie.ck
-    This instrument uses one attack wave, one
-    looped wave, and an ADSR envelope (inherited
-    from the Sampler class) and adds two sweepable
-    formant (FormSwep) filters.
 
+This instrument uses one attack wave, one looped wave, and an ADSR envelope (inherited from the Sampler class) and adds two sweepable formant (FormSwep) filters.  
+  
     Control Change Numbers: 
-       - Filter Q = 2
-       - Filter Sweep Rate = 4
-       - Vibrato Frequency = 11
-       - Vibrato Gain = 1
-       - Gain = 128
-
+    - Filter Q = 2
+    - Filter Sweep Rate = 4
+    - Vibrato Frequency = 11
+    - Vibrato Gain = 1
+    - Gain = 128
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.filterQ - ( float , READ/WRITE ) - filter Q value [0.0 - 1.0]
-.filterSweepRate - ( float , READ/WRITE ) - filter sweep rate [0.0 - 1.0]
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.afterTouch - ( float , WRITE only ) - aftertouch [0.0 - 1.0]
+  
+(control parameters)  
+  
+    .filterQ - ( float , READ/WRITE ) - filter Q value [0.0 - 1.0]
+    .filterSweepRate - ( float , READ/WRITE ) - filter sweep rate [0.0 - 1.0]
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .afterTouch - ( float , WRITE only ) - aftertouch [0.0 - 1.0]
+    
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
+  
 
-[ugen]: Saxofony (STK Import)
-STK faux conical bore reed instrument class (extends StkInstrument)
+### [ugen]: Saxofony (STK Import)  
 
+STK faux conical bore reed instrument class (extends StkInstrument)  
+  
 This class implements a "hybrid" digital waveguide instrument that can generate a variety of wind-like sounds. It has also been referred to as the "blowed string" model. The waveguide section is essentially that of a     string, with one rigid and one lossy termination. The non-linear function is a 
-reed table. The string can be "blown" at any point between the terminations, though just as with strings, it is impossible to excite the system at either end. If the excitation is placed at the string mid-point, the sound is     that of a clarinet. At points closer to the "bridge", the sound is closer to that of a saxophone.  See Scavone (2002) for more details.  
+reed table. The string can be "blown" at any point between the terminations, though just as with strings, it is impossible to excite the system at either end. If the excitation is placed at the string mid-point, the sound is     that of a clarinet. At points closer to the "bridge", the sound is closer to that of a saxophone. See Scavone (2002) for more details.  
   
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
     Control Change Numbers: 
-       - Reed Stiffness = 2
-       - Reed Aperture = 26
-       - Noise Gain = 4
-       - Blow Position = 11
-       - Vibrato Frequency = 29
-       - Vibrato Gain = 1
-       - Breath Pressure = 128
+    - Reed Stiffness = 2
+    - Reed Aperture = 26
+    - Noise Gain = 4
+    - Blow Position = 11
+    - Vibrato Frequency = 29
+    - Vibrato Gain = 1
+    - Breath Pressure = 128
     
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
@@ -1249,7 +1253,7 @@ see examples: shake-o-matic.ck
 PhISEM (Physically Informed Stochastic Event Modeling) is an algorithmic approach for simulating collisions of multiple independent sound producing objects.  This class is a meta-model that can simulate a Maraca, Sekere, 
 Cabasa, Bamboo Wind Chimes, Water Drops, Tambourine, Sleighbells, and a Guiro.
   
-> PhOLIES (Physically-Oriented Library of Imitated Environmental Sounds) is a similar approach for the synthesis of environmental sounds.  This class implements simulations of breaking sticks, crunchy snow (or not), a wrench, sandpaper, and more.  
+PhOLIES (Physically-Oriented Library of Imitated Environmental Sounds) is a similar approach for the synthesis of environmental sounds. This class implements simulations of breaking sticks, crunchy snow (or not), a wrench, sandpaper, and more.  
   
     Control Change Numbers: 
     - Shake Energy = 2
@@ -1283,90 +1287,85 @@ Cabasa, Bamboo Wind Chimes, Water Drops, Tambourine, Sleighbells, and a Guiro.
         - Tuned Bamboo Chimes = 22
     
     by Perry R. Cook, 1996 - 1999.
-
-(control parameters)
-.preset - ( int , READ/WRITE ) - select instrument (0 - 22; see above)
-.energy - ( float , READ/WRITE ) - shake energy [0.0 - 1.0]
-.decay - ( float , READ/WRITE ) - system decay [0.0 - 1.0]
-.objects - ( float , READ/WRITE ) - number of objects [0.0 - 128.0]
+  
+(control parameters)  
+  
+    .preset - ( int , READ/WRITE ) - select instrument (0 - 22; see above)
+    .energy - ( float , READ/WRITE ) - shake energy [0.0 - 1.0]
+    .decay - ( float , READ/WRITE ) - system decay [0.0 - 1.0]
+    .objects - ( float , READ/WRITE ) - number of objects [0.0 - 128.0]
+    
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
+  
 
 ### [ugen]: Sitar (STK Import)  
-
+  
 STK sitar string model class. (extends StkInstrument)
-
+  
 This class implements a sitar plucked string physical model based on the Karplus-Strong algorithm.
 
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others. There exist at least two patents, assigned to Stanford, bearing the names of Karplus and/or
-Strong.   
-by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+Strong. by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
-
+  
     .pluck - ( float , WRITE only ) - pluck string [0.0 - 1.0]
     .clear - ( ) - reset
-
+    
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
+  
 
-[ugen]: StifKarp (STK Import)
-STK plucked stiff string instrument.
-see examples: stifkarp.ck
-    This class implements a simple plucked string
-    algorithm (Karplus Strong) with enhancements
-    (Jaffe-Smith, Smith, and others), including
-    string stiffness and pluck position controls.
-    The stiffness is modeled with allpass filters.
+### [ugen]: StifKarp (STK Import)  
 
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by
-    Stanford University, Yamaha, and others.
+STK plucked stiff string instrument (extends StkInstrument)  
+see examples: stifkarp.ck  
 
+This class implements a simple plucked string algorithm (Karplus Strong) with enhancements (Jaffe-Smith, Smith, and others), including string stiffness and pluck position controls. The stiffness is modeled with allpass filters.  
+  
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
+  
     Control Change Numbers:
        - Pickup Position = 4
        - String Sustain = 11
        - String Stretch = 1
-
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.pickupPosition - ( float , READ/WRITE ) - pickup position [0.0 - 1.0]
-.sustain - ( float , READ/WRITE ) - string sustain [0.0 - 1.0]
-.stretch - ( float , READ/WRITE ) - string stretch [0.0 - 1.0]
-.pluck - ( float , WRITE only ) - pluck string [0.0 - 1.0]
-.baseLoopGain - ( float , READ/WRITE ) - ?? [0.0 - 1.0]
-.clear - ( ) - reset instrument
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
-[ugen]: VoicForm (STK Import)
-Four formant synthesis instrument.
-see examples: voic-o-form.ck
-    This instrument contains an excitation singing
-    wavetable (looping wave with random and
-    periodic vibrato, smoothing on frequency,
-    etc.), excitation noise, and four sweepable
-    complex resonances.
+  
+(control parameters)  
+  
+    .pickupPosition - ( float , READ/WRITE ) - pickup position [0.0 - 1.0]
+    .sustain - ( float , READ/WRITE ) - string sustain [0.0 - 1.0]
+    .stretch - ( float , READ/WRITE ) - string stretch [0.0 - 1.0]
+    .pluck - ( float , WRITE only ) - pluck string [0.0 - 1.0]
+    .baseLoopGain - ( float , READ/WRITE ) - ?? [0.0 - 1.0]
+    .clear - ( ) - reset instrument
+    
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+  
 
-    Measured formant data is included, and enough
-    data is there to support either parallel or
-    cascade synthesis.  In the floating point case
-    cascade synthesis is the most natural so
-    that's what you'll find here.
+### [ugen]: VoicForm (STK Import)  
 
+Four formant synthesis instrument (extends StkInstrument)  
+see examples: voic-o-form.ck  
+
+This instrument contains an excitation singing wavetable (looping wave with random and periodic vibrato, smoothing on frequency, etc.), excitation noise, and four sweepable complex resonances.  
+  
+Measured formant data is included, and enough data is there to support either parallel or cascade synthesis.  In the floating point case cascade synthesis is the most natural so that's what you'll find here.  
+  
     Control Change Numbers: 
-       - Voiced/Unvoiced Mix = 2
-       - Vowel/Phoneme Selection = 4
-       - Vibrato Frequency = 11
-       - Vibrato Gain = 1
-       - Loudness (Spectral Tilt) = 128
-
+    - Voiced/Unvoiced Mix = 2
+    - Vowel/Phoneme Selection = 4
+    - Vibrato Frequency = 11
+    - Vibrato Gain = 1
+    - Loudness (Spectral Tilt) = 128
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-
-    Phoneme Names:
+  
+Phoneme Names:  
+  
     "eee"  "ihh"  "ehh"  "aaa" 
     "ahh"  "aww"  "ohh"  "uhh" 
     "uuu"  "ooo"  "rrr"  "lll" 
@@ -1375,58 +1374,55 @@ see examples: voic-o-form.ck
     "xxx"  "hee"  "hoo"  "hah" 
     "bbb"  "ddd"  "jjj"  "ggg" 
     "vvv"  "zzz"  "thz"  "zhh"
+  
+(control parameters)  
+
+    .phoneme - ( string , READ/WRITE ) - select phoneme ( see above )
+    .phonemeNum - ( int , READ/WRITE ) - select phoneme by number [0.0 - 128.0]
+    .speak - ( float , WRITE only ) - start singing [0.0 - 1.0]
+    .quiet - ( float , WRITE only ) - stop singing [0.0 - 1.0]
+    .voiced - ( float , READ/WRITE ) - set mix for voiced component [0.0 - 1.0]
+    .unVoiced - ( float , READ/WRITE ) - set mix for unvoiced component [0.0 - 1.0]
+    .pitchSweepRate - ( float , READ/WRITE ) - pitch sweep [0.0 - 1.0]
+    .voiceMix - ( float , READ/WRITE ) - voiced/unvoiced mix [0.0 - 1.0]
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .loudness - ( float , READ/WRITE ) - 'loudness' of voice [0.0 - 1.0]
     
-extends StkInstrument
-(control parameters)
-.phoneme - ( string , READ/WRITE ) - select phoneme ( see above )
-.phonemeNum - ( int , READ/WRITE ) - select phoneme by number [0.0 - 128.0]
-.speak - ( float , WRITE only ) - start singing [0.0 - 1.0]
-.quiet - ( float , WRITE only ) - stop singing [0.0 - 1.0]
-.voiced - ( float , READ/WRITE ) - set mix for voiced component [0.0 - 1.0]
-.unVoiced - ( float , READ/WRITE ) - set mix for unvoiced component [0.0 - 1.0]
-.pitchSweepRate - ( float , READ/WRITE ) - pitch sweep [0.0 - 1.0]
-.voiceMix - ( float , READ/WRITE ) - voiced/unvoiced mix [0.0 - 1.0]
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.loudness - ( float , READ/WRITE ) - 'loudness' of voice [0.0 - 1.0]
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
-stk - fm synths
-[ugen]: FM (STK Import)
-STK abstract FM synthesis base class.
-    This class controls an arbitrary number of
-    waves and envelopes, determined via a
-    constructor argument.
-
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+  
+  
+  
+## STK - fm synths  
+  
+  
+### [ugen]: FM (STK Import)  
+  
+STK abstract FM synthesis base class (extends StkInstrument)  
+  
+This class controls an arbitrary number of waves and envelopes, determined via a constructor argument.  
+  
     Control Change Numbers: 
-       - Control One = 2
-       - Control Two = 4
-       - LFO Speed = 11
-       - LFO Depth = 1
-       - ADSR 2 & 4 Target = 128
+    - Control One = 2
+    - Control Two = 4
+    - LFO Speed = 11
+    - LFO Depth = 1
+    - ADSR 2 & 4 Target = 128  
+  
+> The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away. by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
 
-    The basic Chowning/Stanford FM patent expired
-    in 1995, but there exist follow-on patents,
-    mostly assigned to Yamaha.  If you are of the
-    type who should worry about this (making
-    money) worry away.
+    .lfoSpeed - ( float , READ/WRITE ) - modulation Speed (Hz)
+    .lfoDepth - ( float , READ/WRITE ) - modulation Depth [0.0 - 1.0]
+    .afterTouch - ( float , READ/WRITE ) - aftertouch [0.0 - 1.0]
+    .controlOne - ( float , READ/WRITE ) - control one [instrument specific]
+    .controlTwo - ( float , READ/WRITE ) - control two [instrument specific]
+    
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.lfoSpeed - ( float , READ/WRITE ) - modulation Speed (Hz)
-.lfoDepth - ( float , READ/WRITE ) - modulation Depth [0.0 - 1.0]
-.afterTouch - ( float , READ/WRITE ) - aftertouch [0.0 - 1.0]
-.controlOne - ( float , READ/WRITE ) - control one [instrument specific]
-.controlTwo - ( float , READ/WRITE ) - control two [instrument specific]
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
 [ugen]: BeeThree (STK Import)
 STK Hammond-oid organ FM synthesis instrument.
     This class implements a simple 4 operator
