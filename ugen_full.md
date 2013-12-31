@@ -391,19 +391,19 @@ default ducker values:
     .thresh - ( float, READ/WRITE )  
         the point above which to stop using slopeBelow and start using  
         slopeAbove to determine output gain vs input gain  
-  
+      
     .attackTime - ( dur, READ/WRITE ) 
         duration for the envelope to move linearly from current value 
         to the absolute value of the signal's amplitude  
-  
+    
     .releaseTime - ( dur, READ/WRITE )
         duration for the envelope to decay down to around 1/10 of its 
         current amplitude, if not brought back up by the signal
-  
+    
     .ratio - ( float, READ/WRITE )
         alternate way of setting slopeAbove and slopeBelow; 
         sets slopeBelow to 1.0 and slopeAbove to 1.0 / ratio  
-  
+    
     .slopeBelow - ( float, READ/WRITE )
         determines the slope of the output gain vs the input 
         envelope's level in dB when the envelope is below thresh. 
@@ -416,7 +416,7 @@ default ducker values:
          
         in general, setting slopeBelow to be lower than slopeAbove 
         results in expansion of dynamic range.
-
+    
     .slopeAbove - ( float, READ/WRITE )  
         determines the slope of the output gain vs the input 
         envelope's level in dB when the envelope is above thresh. 
@@ -429,12 +429,12 @@ default ducker values:
         
         in general, setting slopeAbove to be lower than slopeBelow  
         results in compression of dynamic range  
-
+    
     .sideInput - ( float, READ/WRITE )
         if externalSideInput is set to true, replaces the signal 
         being processed as the input to the amplitude envelope. 
         
-
+    
     .externalSideInput - ( int, READ/WRITE )
         - set to true (1) to cue the amplitude envelope off of sideInput
         instead of the input signal. note that this means you will 
@@ -601,14 +601,16 @@ Lookup can either be done using the lookup() function, or by driving the table w
     .lookup( float i ) - ( float , READ ONLY ) 
         - returns lookup table value at index i [ -1, 1 ]; 
         - absolute value is used in the range [ -1, 0 ]
-    .coefs - ( float [ ] , WRITE ONLY ) - set lookup table coefficients;
+    .coefs - ( float [ ] , WRITE ONLY ) 
+        - set lookup table coefficients;
         - meaning is dependent on subclass
   
   
 ### [ugen]: Gen5  
 
 exponential line segment lookup table table generator (extends GenX)
-see examples: Gen5-test.ck
+see examples: Gen5-test.ck  
+
 Constructs a lookup table composed of sequential exponential curves. For a table with N curves, starting value of y', and value yn for lookup index xn, set the coefficients to `[ y', y0, x0, ..., yN-1, xN-1 ]`. Note that there must be an odd number of coefficients. If an even number of coefficients is specified, behavior is undefined. The sum of xn for `0 ≤ n < N` must be `1.` 
 `yn = 0` is approximated as `0.000001` to avoid strange results arising from the nature of exponential curves.  
   
@@ -674,9 +676,7 @@ Constructs a wavetable composed of segments of variable times, values, and curva
   
 ### [ugen]: LiSa  
   
-live sampling utility.  
-
-LiSa provides basic live sampling functionality.  
+live sampling utility, provides basic live sampling functionality.  
   
   - An internal buffer stores samples chucked to LiSa's input. Segments of 
     this buffer can be played back, with ramping and speed/direction control. 
@@ -802,10 +802,11 @@ UDP-based network audio receiver
     .port - ( int , READ/WRITE ) - set port to receive
     .name - ( string , READ/WRITE ) - name?
   
+
+
 ## stereo to mono  
   
-  
-  
+    
 ### [ugen]: Pan2  
   
 spread mono signal to stereo  
@@ -899,12 +900,8 @@ Banded waveguide modeling class (extends StkInstrument).
     .startBowing - ( float , WRITE only ) - start bowing [0.0 - 1.0]
     .stopBowing - ( float , WRITE only ) - stop bowing [0.0 - 1.0]
     
-    // inherited from StkInstrument
-    .noteOn - ( float velocity ) - trigger note on
-    .noteOff - ( float velocity ) - trigger note off
-    .freq - ( float frequency ) - set/get frequency (Hz)
-    .controlChange - ( int number, float value ) - assert control change
-  
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange  
 
 ### [ugen]: BlowBotl (STK Import)  
 
@@ -917,6 +914,7 @@ STK blown bottle instrument class (extends StkInstrument)
        - Vibrato Frequency = 11
        - Vibrato Gain = 1
        - Volume = 128
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
 (control parameters)  
@@ -938,11 +936,11 @@ STK blown bottle instrument class (extends StkInstrument)
 STK clarinet physical model with one register hole and one tonehole (extends StkInstrument)  
   
 This class is based on the clarinet model, with the addition of a two-port register hole and a three-port dynamic tonehole implementation, as discussed by Scavone and Cook (1998).
-
+  
 In this implementation, the distances between the reed/register hole and tonehole/bell are fixed.  As a result, both the tonehole and register hole will have variable influence on the playing frequency, which is dependent on
 the length of the air column. In addition, the highest playing freqeuency is limited by these fixed lengths.   
   
-This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
     Control Change Numbers: 
        - Reed Stiffness = 2
@@ -950,6 +948,7 @@ This is a digital waveguide model, making its use possibly subject to patents he
        - Tonehole State = 11  
        - Register State = 1  
        - Breath Pressure = 128  
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
 (control parameters)  
@@ -966,110 +965,104 @@ This is a digital waveguide model, making its use possibly subject to patents he
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
   
-
+  
 ### [ugen]: Bowed (STK Import)  
   
-STK bowed string instrument class.
-    This class implements a bowed string model, a
-    la Smith (1986), after McIntyre, Schumacher,
-    Woodhouse (1983).
-
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by
-    Stanford University, Yamaha, and others.
-
+STK bowed string instrument class (extends StkInstrument)  
+  
+This class implements a bowed string model, a la Smith (1986), after McIntyre, Schumacher, Woodhouse (1983).  
+  
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
+  
     Control Change Numbers: 
        - Bow Pressure = 2
        - Bow Position = 4
        - Vibrato Frequency = 11
        - Vibrato Gain = 1
        - Volume = 128
-
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.bowPressure - ( float , READ/WRITE ) - bow pressure [0.0 - 1.0]
-.bowPosition - ( float , READ/WRITE ) - bow position [0.0 - 1.0]
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.volume - ( float , READ/WRITE ) - volume [0.0 - 1.0]
-.startBowing - ( float , WRITE only ) - start bowing [0.0 - 1.0]
-.stopBowing - ( float , WRITE only ) - stop bowing [0.0 - 1.0]
-.rate - ( float , READ/WRITE ) - rate of attack (sec)
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
+  
+(control parameters)  
+  
+    .bowPressure - ( float , READ/WRITE ) - bow pressure [0.0 - 1.0]
+    .bowPosition - ( float , READ/WRITE ) - bow position [0.0 - 1.0]
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .volume - ( float , READ/WRITE ) - volume [0.0 - 1.0]
+    .startBowing - ( float , WRITE only ) - start bowing [0.0 - 1.0]
+    .stopBowing - ( float , WRITE only ) - stop bowing [0.0 - 1.0]
+    .rate - ( float , READ/WRITE ) - rate of attack (sec)
+    
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+  
 
-[ugen]: Brass (STK Import)
-STK simple brass instrument class.
-    This class implements a simple brass instrument
-    waveguide model, a la Cook (TBone, HosePlayer).
+### [ugen]: Brass (STK Import)  
 
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by
-    Stanford University, Yamaha, and others.
+STK simple brass instrument class (extends StkInstrument)  
 
+This class implements a simple brass instrument waveguide model, a la Cook (TBone, HosePlayer).  
+  
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
+  
     Control Change Numbers: 
        - Lip Tension = 2
        - Slide Length = 4
        - Vibrato Frequency = 11
        - Vibrato Gain = 1
        - Volume = 128
+    
+    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.lip - ( float , READ/WRITE ) - lip tension [0.0 - 1.0]
-.slide - ( float , READ/WRITE ) - slide length [0.0 - 1.0]
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.volume - ( float , READ/WRITE ) - volume [0.0 - 1.0]
-.clear - ( float , WRITE only ) - clear instrument
-.startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
-.stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
-.rate - ( float , READ/WRITE ) - rate of attack (sec)
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
-[ugen]: Clarinet (STK Import)
-STK clarinet physical model class.
-    This class implements a simple clarinet
-    physical model, as discussed by Smith (1986),
-    McIntyre, Schumacher, Woodhouse (1983), and
-    others.
-
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by Stanford
-    University, Yamaha, and others.
-
+    .lip - ( float , READ/WRITE ) - lip tension [0.0 - 1.0]
+    .slide - ( float , READ/WRITE ) - slide length [0.0 - 1.0]
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .volume - ( float , READ/WRITE ) - volume [0.0 - 1.0]
+    .clear - ( float , WRITE only ) - clear instrument
+    .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
+    .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
+    .rate - ( float , READ/WRITE ) - rate of attack (sec)
+    
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange  
+  
+    
+### [ugen]: Clarinet (STK Import)  
+  
+STK clarinet physical model class (extends StkInstrument)  
+  
+This class implements a simple clarinet physical model, as discussed by Smith (1986), McIntyre, Schumacher, Woodhouse (1983), and others.  
+  
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
+  
     Control Change Numbers: 
        - Reed Stiffness = 2
        - Noise Gain = 4
        - Vibrato Frequency = 11
        - Vibrato Gain = 1
        - Breath Pressure = 128
-
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.reed - ( float , READ/WRITE ) - reed stiffness [0.0 - 1.0]
-.noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
-.clear - ( ) - clear instrument
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.pressure - ( float , READ/WRITE ) - pressure/volume [0.0 - 1.0]
-.startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
-.stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
-.rate - ( float , READ/WRITE ) - rate of attack (sec)
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
+  
+(control parameters)  
+
+    .reed - ( float , READ/WRITE ) - reed stiffness [0.0 - 1.0]
+    .noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
+    .clear - ( ) - clear instrument
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .pressure - ( float , READ/WRITE ) - pressure/volume [0.0 - 1.0]
+    .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
+    .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
+    .rate - ( float , READ/WRITE ) - rate of attack (sec)  
+    
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+
 [ugen]: Flute (STK Import)
 STK flute physical model class.
     This class implements a simple flute
@@ -1077,10 +1070,8 @@ STK flute physical model class.
     Smith, Waryznyk, etc.  The jet model uses
     a polynomial, a la Cook.
 
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by Stanford
-    University, Yamaha, and others.
-
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
+  
     Control Change Numbers: 
        - Jet Delay = 2
        - Noise Gain = 4
@@ -1102,11 +1093,9 @@ extends StkInstrument
 .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
 .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
 .rate - ( float , READ/WRITE ) - rate of attack (sec)
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+
 [ugen]: Mandolin (STK Import)
 STK mandolin instrument model class.
 see examples: mand-o-matic.ck
@@ -1140,11 +1129,9 @@ extends StkInstrument
 .stringDetune - ( float , READ/WRITE ) - detuning of string pair [0.0 - 1.0]
 .afterTouch - ( float , WRITE only ) - aftertouch (currently unsupported)
 .pluck - ( float , WRITE only ) - pluck instrument [0.0 - 1.0]
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+
 [ugen]: ModalBar (STK Import)
 STK resonant bar instrument class.
 see examples: mode-o-matic.ck
@@ -1188,11 +1175,9 @@ extends StkInstrument
 .modeRatio - ( float , READ/WRITE ) - edit selected mode ratio [...]
 .modeRadius - ( float , READ/WRITE ) - edit selected mode radius [0.0 - 1.0]
 .modeGain - ( float , READ/WRITE ) - edit selected mode gain [0.0 - 1.0]
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+
 [ugen]: Moog (STK Import)
 STK moog-like swept filter sampling synthesis class.
 see examples: moogie.ck
@@ -1216,33 +1201,17 @@ extends StkInstrument
 .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
 .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
 .afterTouch - ( float , WRITE only ) - aftertouch [0.0 - 1.0]
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+
 [ugen]: Saxofony (STK Import)
-STK faux conical bore reed instrument class.
-    This class implements a "hybrid" digital
-    waveguide instrument that can generate a
-    variety of wind-like sounds.  It has also been
-    referred to as the "blowed string" model.  The
-    waveguide section is essentially that of a
-    string, with one rigid and one lossy
-    termination.  The non-linear function is a
-    reed table.  The string can be "blown" at any
-    point between the terminations, though just as
-    with strings, it is impossible to excite the
-    system at either end.  If the excitation is
-    placed at the string mid-point, the sound is
-    that of a clarinet.  At points closer to the
-    "bridge", the sound is closer to that of a
-    saxophone.  See Scavone (2002) for more details.
+STK faux conical bore reed instrument class (extends StkInstrument)
 
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by Stanford
-    University, Yamaha, and others.
-
+This class implements a "hybrid" digital waveguide instrument that can generate a variety of wind-like sounds. It has also been referred to as the "blowed string" model. The waveguide section is essentially that of a     string, with one rigid and one lossy termination. The non-linear function is a 
+reed table. The string can be "blown" at any point between the terminations, though just as with strings, it is impossible to excite the system at either end. If the excitation is placed at the string mid-point, the sound is     that of a clarinet. At points closer to the "bridge", the sound is closer to that of a saxophone.  See Scavone (2002) for more details.  
+  
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
+  
     Control Change Numbers: 
        - Reed Stiffness = 2
        - Reed Aperture = 26
@@ -1251,51 +1220,44 @@ STK faux conical bore reed instrument class.
        - Vibrato Frequency = 29
        - Vibrato Gain = 1
        - Breath Pressure = 128
-
+    
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.stiffness - ( float , READ/WRITE ) - reed stiffness [0.0 - 1.0]
-.aperture - ( float , READ/WRITE ) - reed aperture [0.0 - 1.0]
-.pressure - ( float , READ/WRITE ) - pressure/volume [0.0 - 1.0]
-.vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
-.vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
-.noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
-.blowPosition - ( float , READ/WRITE ) - lip stiffness [0.0 - 1.0]
-.clear - ( ) - clear instrument
-.startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
-.stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
-.rate - ( float , READ/WRITE ) - rate of attack (sec)
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
-[ugen]: Shakers (STK Import)
-PhISEM and PhOLIES class.
-see examples: shake-o-matic.ck
-    PhISEM (Physically Informed Stochastic Event
-    Modeling) is an algorithmic approach for
-    simulating collisions of multiple independent
-    sound producing objects.  This class is a
-    meta-model that can simulate a Maraca, Sekere,
-    Cabasa, Bamboo Wind Chimes, Water Drops,
-    Tambourine, Sleighbells, and a Guiro.
+  
+(control parameters)  
+  
+    .stiffness - ( float , READ/WRITE ) - reed stiffness [0.0 - 1.0]
+    .aperture - ( float , READ/WRITE ) - reed aperture [0.0 - 1.0]
+    .pressure - ( float , READ/WRITE ) - pressure/volume [0.0 - 1.0]
+    .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
+    .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
+    .noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
+    .blowPosition - ( float , READ/WRITE ) - lip stiffness [0.0 - 1.0]
+    .startBlowing - ( float , WRITE only ) - start blowing [0.0 - 1.0]
+    .stopBlowing - ( float , WRITE only ) - stop blowing [0.0 - 1.0]
+    .rate - ( float , READ/WRITE ) - rate of attack (sec)
+    .clear - ( ) - clear instrument
+    
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+  
+  
+### [ugen]: Shakers (STK Import)  
+  
+PhISEM and PhOLIES class (extends StkInstrument)
+see examples: shake-o-matic.ck  
 
-    PhOLIES (Physically-Oriented Library of
-    Imitated Environmental Sounds) is a similar
-    approach for the synthesis of environmental
-    sounds.  This class implements simulations of
-    breaking sticks, crunchy snow (or not), a
-    wrench, sandpaper, and more.
-
+PhISEM (Physically Informed Stochastic Event Modeling) is an algorithmic approach for simulating collisions of multiple independent sound producing objects.  This class is a meta-model that can simulate a Maraca, Sekere, 
+Cabasa, Bamboo Wind Chimes, Water Drops, Tambourine, Sleighbells, and a Guiro.
+  
+> PhOLIES (Physically-Oriented Library of Imitated Environmental Sounds) is a similar approach for the synthesis of environmental sounds.  This class implements simulations of breaking sticks, crunchy snow (or not), a wrench, sandpaper, and more.  
+  
     Control Change Numbers: 
-       - Shake Energy = 2
-       - System Decay = 4
-       - Number Of Objects = 11
-       - Resonance Frequency = 1
-       - Shake Energy = 128
-       - Instrument Selection = 1071
+    - Shake Energy = 2
+    - System Decay = 4
+    - Number Of Objects = 11
+    - Resonance Frequency = 1
+    - Shake Energy = 128
+    - Instrument Selection = 1071
         - Maraca = 0
         - Cabasa = 1
         - Sekere = 2
@@ -1319,42 +1281,35 @@ see examples: shake-o-matic.ck
         - Big Rocks = 20
         - Little Rocks = 21
         - Tuned Bamboo Chimes = 22
-
+    
     by Perry R. Cook, 1996 - 1999.
-extends StkInstrument
+
 (control parameters)
 .preset - ( int , READ/WRITE ) - select instrument (0 - 22; see above)
 .energy - ( float , READ/WRITE ) - shake energy [0.0 - 1.0]
 .decay - ( float , READ/WRITE ) - system decay [0.0 - 1.0]
 .objects - ( float , READ/WRITE ) - number of objects [0.0 - 128.0]
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
-[ugen]: Sitar (STK Import)
-STK sitar string model class.
-    This class implements a sitar plucked string
-    physical model based on the Karplus-Strong
-    algorithm.
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
 
-    This is a digital waveguide model, making its
-    use possibly subject to patents held by
-    Stanford University, Yamaha, and others.
-    There exist at least two patents, assigned to
-    Stanford, bearing the names of Karplus and/or
-    Strong.
+### [ugen]: Sitar (STK Import)  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends StkInstrument
-(control parameters)
-.pluck - ( float , WRITE only ) - pluck string [0.0 - 1.0]
-.clear - ( ) - reset
-(inherited from StkInstrument)
-.noteOn - ( float velocity ) - trigger note on
-.noteOff - ( float velocity ) - trigger note off
-.freq - ( float frequency ) - set/get frequency (Hz)
-.controlChange - ( int number, float value ) - assert control change
+STK sitar string model class. (extends StkInstrument)
+
+This class implements a sitar plucked string physical model based on the Karplus-Strong algorithm.
+
+> This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others. There exist at least two patents, assigned to Stanford, bearing the names of Karplus and/or
+Strong.   
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+
+    .pluck - ( float , WRITE only ) - pluck string [0.0 - 1.0]
+    .clear - ( ) - reset
+
+    // inherits from StkInstrument
+    .noteOn, .noteOff, .freq, .controlChange
+
 [ugen]: StifKarp (STK Import)
 STK plucked stiff string instrument.
 see examples: stifkarp.ck
