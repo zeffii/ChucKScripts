@@ -93,13 +93,14 @@ see examples: step.ck
   
 example  
 
-     Step s => dac;  
-     -1.0 => float amp;  
-     // square wave using Step  
-     while( true ) {  
-         -amp => amp => s.next;  
-         800::samp => now;  
-     }  
+    Step s => dac;  
+    -1.0 => float amp;  
+
+    // square wave using Step  
+    while( true ) {  
+        -amp => amp => s.next;  
+        800::samp => now;  
+    }  
   
 
   
@@ -1082,7 +1083,7 @@ This class implements a simple flute physical model, as discussed by Karjalainen
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
 (control parameters)  
-
+  
     .jetDelay - ( float , READ/WRITE ) - jet delay [...]
     .jetReflection - ( float , READ/WRITE ) - jet reflection [...]
     .endReflection - ( float , READ/WRITE ) - end delay [...]
@@ -1098,16 +1099,16 @@ This class implements a simple flute physical model, as discussed by Karjalainen
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
   
-
+  
 ### [ugen]: Mandolin (STK Import)  
-
-STK mandolin instrument model class (extends StkInstrument)
-see examples: mand-o-matic.ck
-
+  
+STK mandolin instrument model class (extends StkInstrument)  
+see examples: mand-o-matic.ck  
+  
 This class inherits from PluckTwo and uses "commuted synthesis" techniques to model a mandolin instrument.  
   
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others. Commuted Synthesis, in particular, is covered by patents, granted, pending, and/or applied-for.  All are assigned to the Board of Trustees, Stanford University. For 
-information, contact the Office of Technology Licensing, Stanford University.
+information, contact the Office of Technology Licensing, Stanford University.  
   
     Control Change Numbers: 
     - Body Size = 2
@@ -1179,11 +1180,12 @@ This class implements a number of different struck bar instruments. It inherits 
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
   
+  
 ### [ugen]: Moog (STK Import)  
-
-STK moog-like swept filter sampling synthesis class (extends StkInstrument)
-see examples: moogie.ck
-
+  
+STK moog-like swept filter sampling synthesis class (extends StkInstrument)  
+see examples: moogie.ck  
+  
 This instrument uses one attack wave, one looped wave, and an ADSR envelope (inherited from the Sampler class) and adds two sweepable formant (FormSwep) filters.  
   
     Control Change Numbers: 
@@ -1193,7 +1195,7 @@ This instrument uses one attack wave, one looped wave, and an ADSR envelope (inh
     - Vibrato Gain = 1
     - Gain = 128
     
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1204,15 +1206,16 @@ This instrument uses one attack wave, one looped wave, and an ADSR envelope (inh
     .afterTouch - ( float , WRITE only ) - aftertouch [0.0 - 1.0]
     
     // inherits from StkInstrument
-    .noteOn, .noteOff, .freq, .controlChange
+    .noteOn, .noteOff, .freq, .controlChange  
   
-
+  
 ### [ugen]: Saxofony (STK Import)  
-
+  
 STK faux conical bore reed instrument class (extends StkInstrument)  
   
-This class implements a "hybrid" digital waveguide instrument that can generate a variety of wind-like sounds. It has also been referred to as the "blowed string" model. The waveguide section is essentially that of a     string, with one rigid and one lossy termination. The non-linear function is a 
-reed table. The string can be "blown" at any point between the terminations, though just as with strings, it is impossible to excite the system at either end. If the excitation is placed at the string mid-point, the sound is     that of a clarinet. At points closer to the "bridge", the sound is closer to that of a saxophone. See Scavone (2002) for more details.  
+This class implements a "hybrid" digital waveguide instrument that can generate a variety of wind-like sounds. It has also been referred to as the "blowed string" model. The waveguide section is essentially that of a string, with one rigid and one lossy termination. The non-linear function is a reed table.  
+  
+The string can be "blown" at any point between the terminations, though just as with strings, it is impossible to excite the system at either end. If the excitation is placed at the string mid-point, the sound is  that of a clarinet. At points closer to the "bridge", the sound is closer to that of a saxophone. See Scavone (2002) for more details.  
   
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
@@ -1225,7 +1228,7 @@ reed table. The string can be "blown" at any point between the terminations, tho
     - Vibrato Gain = 1
     - Breath Pressure = 128
     
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1242,18 +1245,18 @@ reed table. The string can be "blown" at any point between the terminations, tho
     .clear - ( ) - clear instrument
     
     // inherits from StkInstrument
-    .noteOn, .noteOff, .freq, .controlChange
+    .noteOn, .noteOff, .freq, .controlChange  
   
   
 ### [ugen]: Shakers (STK Import)  
   
-PhISEM and PhOLIES class (extends StkInstrument)
+PhISEM and PhOLIES class (extends StkInstrument)  
 see examples: shake-o-matic.ck  
-
-PhISEM (Physically Informed Stochastic Event Modeling) is an algorithmic approach for simulating collisions of multiple independent sound producing objects.  This class is a meta-model that can simulate a Maraca, Sekere, 
-Cabasa, Bamboo Wind Chimes, Water Drops, Tambourine, Sleighbells, and a Guiro.
   
-PhOLIES (Physically-Oriented Library of Imitated Environmental Sounds) is a similar approach for the synthesis of environmental sounds. This class implements simulations of breaking sticks, crunchy snow (or not), a wrench, sandpaper, and more.  
+`PhISEM` (Physically Informed Stochastic Event Modeling) is an algorithmic approach for simulating collisions of multiple independent sound producing objects.  This class is a meta-model that can simulate a Maraca, Sekere, 
+Cabasa, Bamboo Wind Chimes, Water Drops, Tambourine, Sleighbells, and a Guiro.    
+  
+`PhOLIES` (Physically-Oriented Library of Imitated Environmental Sounds) is a similar approach for the synthesis of environmental sounds. This class implements simulations of breaking sticks, crunchy snow (or not), a wrench, sandpaper, and more.  
   
     Control Change Numbers: 
     - Shake Energy = 2
@@ -1350,7 +1353,7 @@ This class implements a simple plucked string algorithm (Karplus Strong) with en
 
 Four formant synthesis instrument (extends StkInstrument)  
 see examples: voic-o-form.ck  
-
+  
 This instrument contains an excitation singing wavetable (looping wave with random and periodic vibrato, smoothing on frequency, etc.), excitation noise, and four sweepable complex resonances.  
   
 Measured formant data is included, and enough data is there to support either parallel or cascade synthesis.  In the floating point case cascade synthesis is the most natural so that's what you'll find here.  
@@ -1400,7 +1403,6 @@ Phoneme Names:
 ### [ugen]: FM (STK Import)  
   
 STK abstract FM synthesis base class (extends StkInstrument)  
-  
 This class controls an arbitrary number of waves and envelopes, determined via a constructor argument.  
   
     Control Change Numbers: 
@@ -1423,18 +1425,19 @@ This class controls an arbitrary number of waves and envelopes, determined via a
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
   
-### [ugen]: BeeThree (STK Import)  
 
-STK Hammond-oid organ FM synthesis instrument (extends FM)  
+### [ugen]: BeeThree (STK Import)  
   
+STK Hammond-oid organ FM synthesis instrument (extends FM)  
 This class implements a simple 4 operator topology, also referred to as algorithm 8 of the TX81Z.  
   
-    Algorithm 8 is :
-                     1 --.
-                     2 -\|
-                         +-> Out
-                     3 -/|
-                     4 --
+Algorithm 8 is :  
+  
+    1 --.
+    2 -\|
+        +-> Out
+    3 -/|
+    4 --
   
     Control Change Numbers: 
     - Operator 4 (feedback) Gain = 2 (.controlOne)
@@ -1447,74 +1450,68 @@ This class implements a simple 4 operator topology, also referred to as algorith
   
 (control parameters, see super classes )  
   
+
 ### [ugen]: FMVoices (STK Import)  
-
-STK singing FM synthesis instrument.
-    This class implements 3 carriers and a common
-    modulator, also referred to as algorithm 6 of
-    the TX81Z.
-
-    \code
-    Algorithm 6 is :
-                        /->1 -\
-                     4-|-->2 - +-> Out
-                        \->3 -/
-    \endcode
-
+  
+STK singing FM synthesis instrument (extends FM)  
+This class implements 3 carriers and a common modulator, also referred to as algorithm 6 of the TX81Z.  
+  
+Algorithm 6 is :  
+  
+       /->1 -\
+    4-|-->2 - +-> Out
+       \->3 -/
+  
     Control Change Numbers: 
-       - Vowel = 2 (.controlOne)
-       - Spectral Tilt = 4 (.controlTwo)
-       - LFO Speed = 11
-       - LFO Depth = 1
-       - ADSR 2 & 4 Target = 128
+    - Vowel = 2 (.controlOne)
+    - Spectral Tilt = 4 (.controlTwo)
+    - LFO Speed = 11
+    - LFO Depth = 1
+    - ADSR 2 & 4 Target = 128
 
-    The basic Chowning/Stanford FM patent expired
-    in 1995, but there exist follow-on patents,
-    mostly assigned to Yamaha.  If you are of the
-    type who should worry about this (making
-    money) worry away.
-
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends FM
-(control parameters)
-.vowel - ( float , WRITE only ) - select vowel [0.0 - 1.0]
-.spectralTilt - ( float , WRITE only ) - spectral tilt [0.0 - 1.0]
-.adsrTarget - ( float , WRITE only ) - adsr targets [0.0 - 1.0]
-[ugen]: HevyMetl (STK Import)
-STK heavy metal FM synthesis instrument.
-    This class implements 3 cascade operators with
-    feedback modulation, also referred to as
-    algorithm 3 of the TX81Z.
-
-    Algorithm 3 is :     4--\
-                    3-->2-- + -->1-->Out
-
+> The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+  
+    .vowel - ( float , WRITE only ) - select vowel [0.0 - 1.0]
+    .spectralTilt - ( float , WRITE only ) - spectral tilt [0.0 - 1.0]
+    .adsrTarget - ( float , WRITE only ) - adsr targets [0.0 - 1.0]
+  
+  
+### [ugen]: HevyMetl (STK Import)  
+  
+STK heavy metal FM synthesis instrument (extends FM)  
+This class implements 3 cascade operators with feedback modulation, also referred to as algorithm 3 of the TX81Z.  
+  
+Algorithm 3 is :  
+  
+          4 --\
+    3 --> 2 -- + --> 1 --> Out
+  
     Control Change Numbers: 
-       - Total Modulator Index = 2 (.controlOne)
-       - Modulator Crossfade = 4 (.controlTwo)
-       - LFO Speed = 11
-       - LFO Depth = 1
-       - ADSR 2 & 4 Target = 128
+    - Total Modulator Index = 2 (.controlOne)
+    - Modulator Crossfade = 4 (.controlTwo)
+    - LFO Speed = 11
+    - LFO Depth = 1
+    - ADSR 2 & 4 Target = 128
+  
+> The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters, see super classes)  
+  
 
-    The basic Chowning/Stanford FM patent expired
-    in 1995, but there exist follow-on patents,
-    mostly assigned to Yamaha.  If you are of the
-    type who should worry about this (making
-    money) worry away.
-
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends FM
-(control parameters)
-( see super classes )
-[ugen]: PercFlut (STK Import)
-STK percussive flute FM synthesis instrument.
-    This class implements algorithm 4 of the TX81Z.
-
-    \code
-    Algorithm 4 is :   4->3--\
-                          2-- + -->1-->Out
-    \endcode
-
+### [ugen]: PercFlut (STK Import)  
+  
+STK percussive flute FM synthesis instrument (extends FM)  
+This class implements algorithm 4 of the TX81Z.  
+  
+Algorithm 4 is :  
+  
+    4 --> 3 --\
+          2 -- + --> 1 --> Out
+  
     Control Change Numbers: 
        - Total Modulator Index = 2 (.controlOne)
        - Modulator Crossfade = 4 (.controlTwo)
@@ -1522,477 +1519,433 @@ STK percussive flute FM synthesis instrument.
        - LFO Depth = 1
        - ADSR 2 & 4 Target = 128
 
-    The basic Chowning/Stanford FM patent expired
-    in 1995, but there exist follow-on patents,
-    mostly assigned to Yamaha.  If you are of the
-    type who should worry about this (making
-    money) worry away.
+> The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters, see super classes)  
+  
+  
+### [ugen]: Rhodey (STK Import)  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends FM
-(control parameters)
-( see super classes )
-[ugen]: Rhodey (STK Import)
-STK Fender Rhodes-like electric piano FM
-see examples: rhodey.ck
-           synthesis instrument.
+STK Fender Rhodes-like electric piano FM synthesis instrument (extends FM)  
+see examples: rhodey.ck  
+  
+This class implements two simple FM Pairs summed together, also referred to as algorithm 5 of the TX81Z.  
+  
+Algorithm 5 is :  
 
-    This class implements two simple FM Pairs
-    summed together, also referred to as algorithm
-    5 of the TX81Z.
-
-    \code
-    Algorithm 5 is :  4->3--\
-                             + --> Out
-                      2->1--/
-    \endcode
-
+    4->3--\
+           + --> Out
+    2->1--/
+  
     Control Change Numbers: 
-       - Modulator Index One = 2 (.controlOne)
-       - Crossfade of Outputs = 4 (.controlTwo)
-       - LFO Speed = 11
-       - LFO Depth = 1
-       - ADSR 2 & 4 Target = 128
+    - Modulator Index One = 2 (.controlOne)
+    - Crossfade of Outputs = 4 (.controlTwo)
+    - LFO Speed = 11
+    - LFO Depth = 1
+    - ADSR 2 & 4 Target = 128
 
-    The basic Chowning/Stanford FM patent expired
-    in 1995, but there exist follow-on patents,
-    mostly assigned to Yamaha.  If you are of the
-    type who should worry about this (making
-    money) worry away.
+> The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away. by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters, see super classes)  
+  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends FM
-(control parameters)
-( see super classes )
-[ugen]: TubeBell (STK Import)
-STK tubular bell (orchestral chime) FM
-           synthesis instrument.
-
-    This class implements two simple FM Pairs
-    summed together, also referred to as algorithm
-    5 of the TX81Z.
-
-    \code
-    Algorithm 5 is :  4->3--\
-                             + --> Out
-                      2->1--/
-    \endcode
-
+### [ugen]: TubeBell (STK Import)  
+  
+STK tubular bell (orchestral chime) FM synthesis instrument (extends FM)
+  
+This class implements two simple FM Pairs summed together, also referred to as algorithm 5 of the TX81Z.  
+  
+Algorithm 5 is :  
+  
+    4->3--\
+          + --> Out
+    2->1--/
+  
     Control Change Numbers: 
-       - Modulator Index One = 2 (.controlOne)
-       - Crossfade of Outputs = 4 (.controlTwo)
-       - LFO Speed = 11
-       - LFO Depth = 1
-       - ADSR 2 & 4 Target = 128
+    - Modulator Index One = 2 (.controlOne)
+    - Crossfade of Outputs = 4 (.controlTwo)
+    - LFO Speed = 11
+    - LFO Depth = 1
+    - ADSR 2 & 4 Target = 128
 
-    The basic Chowning/Stanford FM patent expired
-    in 1995, but there exist follow-on patents,
-    mostly assigned to Yamaha.  If you are of the
-    type who should worry about this (making
-    money) worry away.
+> The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters, see super classes)  
+  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends FM
-(control parameters)
-( see super classes )
-[ugen]: Wurley (STK Import)
-STK Wurlitzer electric piano FM
+### [ugen]: Wurley (STK Import)  
+
+STK Wurlitzer electric piano FM synthesis instrument (extends FM)
 see examples: wurley.ck
-           synthesis instrument.
-
-    This class implements two simple FM Pairs
-    summed together, also referred to as algorithm
-    5 of the TX81Z.
-
-    \code
-    Algorithm 5 is :  4->3--\
-                             + --> Out
-                      2->1--/
-    \endcode
-
+           
+This class implements two simple FM Pairs summed together, also referred to as algorithm 5 of the TX81Z.
+  
+Algorithm 5 is :  
+  
+    4->3--\
+           + --> Out
+    2->1--/
+  
     Control Change Numbers: 
-       - Modulator Index One = 2 (.controlOne)
-       - Crossfade of Outputs = 4 (.controlTwo)
-       - LFO Speed = 11
-       - LFO Depth = 1
-       - ADSR 2 & 4 Target = 128
+    - Modulator Index One = 2 (.controlOne)
+    - Crossfade of Outputs = 4 (.controlTwo)
+    - LFO Speed = 11
+    - LFO Depth = 1
+    - ADSR 2 & 4 Target = 128
 
-    The basic Chowning/Stanford FM patent expired
-    in 1995, but there exist follow-on patents,
-    mostly assigned to Yamaha.  If you are of the
-    type who should worry about this (making
-    money) worry away.
-
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends FM
-(control parameters)
-( see super classes )
-stk - delay
-[ugen]: Delay (STK Import)
-STK non-interpolating delay line class.
-see examples: comb.ck 
-    This protected Filter subclass implements
-    a non-interpolating digital delay-line.
-    A fixed maximum length of 4095 and a delay
-    of zero is set using the default constructor.
-    Alternatively, the delay and maximum length
-    can be set during instantiation with an
-    overloaded constructor.
-    
-    A non-interpolating delay line is typically
-    used in fixed delay-length applications, such
-    as for reverberation.
-
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.delay - ( dur , READ/WRITE ) - length of delay
-.max - ( dur , READ/WRITE ) - max delay (buffer size)
-[ugen]: DelayA (STK Import)
+> The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters, see super classes)  
+  
+  
+  
+## STK - delay  
+  
+  
+### [ugen]: Delay (STK Import)  
+  
+STK non-interpolating delay line class.  
+see examples: comb.ck  
+  
+This protected Filter subclass implements a non-interpolating digital delay-line. A fixed maximum length of 4095 and a delay of zero is set using the default constructor. Alternatively, the delay and maximum length can be set during instantiation with an overloaded constructor.  
+  
+A non-interpolating delay line is typically used in fixed delay-length applications, such as for reverberation.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+  
+    .delay - ( dur , READ/WRITE ) - length of delay  
+    .max - ( dur , READ/WRITE ) - max delay (buffer size)
+  
+  
+### [ugen]: DelayA (STK Import)  
+  
 STK allpass interpolating delay line class.
-    This Delay subclass implements a fractional-
-    length digital delay-line using a first-order
-    allpass filter.  A fixed maximum length
-    of 4095 and a delay of 0.5 is set using the
-    default constructor.  Alternatively, the
-    delay and maximum length can be set during
-    instantiation with an overloaded constructor.
 
-    An allpass filter has unity magnitude gain but
-    variable phase delay properties, making it useful
-    in achieving fractional delays without affecting
-    a signal's frequency magnitude response.  In
-    order to achieve a maximally flat phase delay
-    response, the minimum delay possible in this
-    implementation is limited to a value of 0.5.
+This Delay subclass implements a fractional-length digital delay-line using a first-order allpass filter. A fixed maximum length of 4095 and a delay of 0.5 is set using the default constructor. Alternatively, the delay and maximum length can be set during instantiation with an overloaded constructor.  
+  
+An allpass filter has unity magnitude gain but variable phase delay properties, making it useful in achieving fractional delays without affecting
+a signal's frequency magnitude response. In order to achieve a maximally flat phase delay response, the minimum delay possible in this implementation is limited to a value of 0.5.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.delay - ( dur , READ/WRITE ) - length of delay
-.max - ( dur , READ/WRITE ) - max delay ( buffer size )
-[ugen]: DelayL (STK Import)
-STK linear interpolating delay line class.
-see examples: i-robot.ck
-    This Delay subclass implements a fractional-
-    length digital delay-line using first-order
-    linear interpolation.  A fixed maximum length
-    of 4095 and a delay of zero is set using the
-    default constructor.  Alternatively, the
-    delay and maximum length can be set during
-    instantiation with an overloaded constructor.
+(control parameters)  
+  
+    .delay - ( dur , READ/WRITE ) - length of delay
+    .max - ( dur , READ/WRITE ) - max delay ( buffer size )
+  
+  
+### [ugen]: DelayL (STK Import)  
 
-    Linear interpolation is an efficient technique
-    for achieving fractional delay lengths, though
-    it does introduce high-frequency signal
-    attenuation to varying degrees depending on the
-    fractional delay setting.  The use of higher
-    order Lagrange interpolators can typically
-    improve (minimize) this attenuation characteristic.
+STK linear interpolating delay line class.  
+see examples: i-robot.ck  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.delay - ( dur , READ/WRITE ) - length of delay
-.max - ( dur , READ/WRITE ) - max delay ( buffer size )
-[ugen]: Echo (STK Import)
-STK echo effect class.
-    This class implements a echo effect.
+This Delay subclass implements a fractional-length digital delay-line using first-order linear interpolation. A fixed maximum length of 4095 and a delay of zero is set using the default constructor. Alternatively, the delay and maximum length can be set during instantiation with an overloaded constructor.  
+  
+Linear interpolation is an efficient technique for achieving fractional delay lengths, though it does introduce high-frequency signal attenuation to varying degrees depending on the fractional delay setting. The use of higher order Lagrange interpolators can typically improve (minimize) this attenuation characteristic.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.delay - ( dur , READ/WRITE ) - length of echo
-.max - ( dur , READ/WRITE ) - max delay
-.mix - ( float , READ/WRITE ) - mix level ( wet/dry )
-stk - envelopes
-[ugen]: Envelope (STK Import)
-STK envelope base class.
-see examples: envelope.ck
-    This class implements a simple envelope
-    generator which is capable of ramping to
-    a target value by a specified \e rate.
-    It also responds to simple \e keyOn and
-    \e keyOff messages, ramping to 1.0 on
-    keyOn and to 0.0 on keyOff.
+(control parameters)  
+  
+    .delay - ( dur , READ/WRITE ) - length of delay
+    .max - ( dur , READ/WRITE ) - max delay ( buffer size )
+  
+  
+### [ugen]: Echo (STK Import)  
+  
+STK echo effect class.  
+This class implements a echo effect.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+  
+    .delay - ( dur , READ/WRITE ) - length of echo
+    .max - ( dur , READ/WRITE ) - max delay
+    .mix - ( float , READ/WRITE ) - mix level ( wet/dry )
+  
+  
+  
+## STK - envelopes  
+  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.keyOn - ( int , WRITE only ) - ramp to 1.0
-.keyOff - ( int , WRITE only ) - ramp to 0.0
-.target - ( float , READ/WRITE ) - ramp to arbitrary value.
-.time - ( float , READ/WRITE ) - time to reach target (in seconds)
-.duration - ( dur , READ/WRITE ) - duration to reach target
-.rate - ( float , READ/WRITE ) - rate of change
-.value - ( float , READ/WRITE ) - set immediate value
-[ugen]: ADSR (STK Import)
-STK ADSR envelope class.
-see examples: adsr.ck
-    This Envelope subclass implements a
-    traditional ADSR (Attack, Decay,
-    Sustain, Release) envelope.  It
-    responds to simple keyOn and keyOff
-    messages, keeping track of its state.
-    The \e state = ADSR::DONE after the
-    envelope value reaches 0.0 in the
-    ADSR::RELEASE state.
+### [ugen]: Envelope (STK Import)  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends Envelope
-(control parameters)
-.keyOn - ( int , WRITE only ) - start the attack for non-zero values
-.keyOff - ( int , WRITE only ) - start release for non-zero values
-.attackTime - ( dur , READ/WRITE ) - attack time
-.attackRate - ( float , READ/WRITE ) - attack rate
-.decayTime - ( dur , READ/WRITE ) - decay time
-.decayRate - ( float , READ/WRITE ) - decay rate
-.sustainLevel - ( float , READ/WRITE ) - sustain level
-.releaseTime - ( dur , READ/WRITE ) - release time
-.releaseRate - ( float , READ/WRITE ) - release rate
-.state - ( int , READ only ) - attack=0, decay=1 , sustain=2, release=3, done=4
-.set - ( dur, dur, float, dur ) - set A, D, S, and R all at once
-stk-reverbs
-[ugen]: JCRev (STK Import)
-John Chowning's reverberator class.
-    This class is derived from the CLM JCRev
-    function, which is based on the use of
-    networks of simple allpass and comb delay
-    filters.  This class implements three series
-    allpass units, followed by four parallel comb
-    filters, and two decorrelation delay lines in
-    parallel at the output.
+STK envelope base class.  
+see examples: envelope.ck  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.mix - ( float , READ/WRITE ) - mix level
-[ugen]: NRev (STK Import)
-CCRMA's NRev reverberator class.
-    This class is derived from the CLM NRev
-    function, which is based on the use of
-    networks of simple allpass and comb delay
-    filters.  This particular arrangement consists
-    of 6 comb filters in parallel, followed by 3
-    allpass filters, a lowpass filter, and another
-    allpass in series, followed by two allpass
-    filters in parallel with corresponding right
-    and left outputs.
+This class implements a simple envelope generator which is capable of ramping to a target value by a specified `\e` rate. It also responds to simple `\e` keyOn and `\e` keyOff messages, ramping to 1.0 on keyOn and to 0.0 on keyOff.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.mix - ( float , READ/WRITE ) -
-[ugen]: PRCRev (STK Import)
-Perry's simple reverberator class.
-    This class is based on some of the famous
-    Stanford/CCRMA reverbs (NRev, KipRev), which
-    were based on the Chowning/Moorer/Schroeder
-    reverberators using networks of simple allpass
-    and comb delay filters.  This class implements
-    two series allpass units and two parallel comb
-    filters.
+(control parameters)  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.mix - ( float , READ/WRITE ) - mix level
-stk - components
-[ugen]: Chorus (STK Import)
-STK chorus effect class.
-    This class implements a chorus effect.
+    .keyOn - ( int , WRITE only ) - ramp to 1.0
+    .keyOff - ( int , WRITE only ) - ramp to 0.0
+    .target - ( float , READ/WRITE ) - ramp to arbitrary value.
+    .time - ( float , READ/WRITE ) - time to reach target (in seconds)
+    .duration - ( dur , READ/WRITE ) - duration to reach target
+    .rate - ( float , READ/WRITE ) - rate of change
+    .value - ( float , READ/WRITE ) - set immediate value  
+  
+  
+### [ugen]: ADSR (STK Import)  
+  
+STK ADSR envelope class (extends Envelope)  
+see examples: adsr.ck  
+  
+This Envelope subclass implements a traditional ADSR (Attack, Decay, Sustain, Release) envelope. It responds to simple keyOn and keyOff messages, keeping track of its state. The `\e` state = ADSR::DONE after the envelope value reaches 0.0 in the ADSR::RELEASE state.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+  
+    .keyOn - ( int , WRITE only ) - start the attack for non-zero values
+    .keyOff - ( int , WRITE only ) - start release for non-zero values
+    .attackTime - ( dur , READ/WRITE ) - attack time
+    .attackRate - ( float , READ/WRITE ) - attack rate
+    .decayTime - ( dur , READ/WRITE ) - decay time
+    .decayRate - ( float , READ/WRITE ) - decay rate
+    .sustainLevel - ( float , READ/WRITE ) - sustain level
+    .releaseTime - ( dur , READ/WRITE ) - release time
+    .releaseRate - ( float , READ/WRITE ) - release rate
+    .state - ( int , READ only ) - A=0, D=1, S=2, R=3, done=4
+    .set - ( dur, dur, float, dur ) - set A, D, S, and R all at once
+  
+  
+  
+## STK - reverbs  
+  
+  
+### [ugen]: JCRev (STK Import)  
+  
+John Chowning's reverberator class.  
+  
+This class is derived from the CLM JCRev function, which is based on the use of
+networks of simple allpass and comb delay filters.  This class implements three series allpass units, followed by four parallel comb filters, and two decorrelation delay lines in parallel at the output.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.modFreq - ( float , READ/WRITE ) - modulation frequency
-.modDepth - ( float , READ/WRITE ) - modulation depth
-.mix - ( float , READ/WRITE ) - effect mix
-[ugen]: Modulate (STK Import)
-STK periodic/random modulator.
-    This class combines random and periodic
-    modulations to give a nice, natural human
-    modulation function.
+(control parameters)  
+  
+    .mix - ( float , READ/WRITE ) - mix level
+  
+  
+### [ugen]: NRev (STK Import)  
+  
+CCRMA's NRev reverberator class.  
+  
+This class is derived from the CLM NRev function, which is based on the use of
+networks of simple allpass and comb delay filters. This particular arrangement consists of 6 comb filters in parallel, followed by 3 allpass filters, a lowpass filter, and another allpass in series, followed by two allpass filters in parallel with corresponding right and left outputs.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.vibratoRate - ( float , READ/WRITE ) - set rate of vibrato
-.vibratoGain - ( float , READ/WRITE ) - gain for vibrato
-.randomGain - ( float , READ/WRITE ) - gain for random contribution
-[ugen]: PitShift (STK Import)
-STK simple pitch shifter effect class.
-    This class implements a simple pitch shifter
-    using delay lines.
+(control parameters)  
+  
+    .mix - ( float , READ/WRITE ) - mix level  
+  
+  
+### [ugen]: PRCRev (STK Import)  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.mix - ( float , READ/WRITE ) - effect dry/web mix level
-.shift - ( float , READ/WRITE ) - degree of pitch shifting
-[ugen]: SubNoise (STK Import)
-STK sub-sampled noise generator.
-    Generates a new random number every "rate" ticks
-    using the C rand() function.  The quality of the
-    rand() function varies from one OS to another.
+Perry's simple reverberator class.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.rate - ( int , READ/WRITE ) - subsampling rate
-[ugen]: Blit (STK Import)
-STK band-limited impulse train.
-    This class generates a band-limited impulse train using a
-    closed-form algorithm reported by Stilson and Smith in 
-    "Alias-Free Digital Synthesis of Classic Analog Waveforms", 
-    1996. The user can specify both the fundamental frequency 
-    of the impulse train and the number of harmonics contained
-    in the resulting signal.
+This class is based on some of the famous Stanford/CCRMA reverbs (NRev, KipRev), which were based on the Chowning/Moorer/Schroeder reverberators using networks of simple allpass and comb delay filters. This class implements two series allpass units and two parallel comb filters.  
 
-    The signal is normalized so that the peak value is +/-1.0.
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    If nHarmonics is 0, then the signal will contain all 
-    harmonics up to half the sample rate. Note, however, 
-    that this setting may produce aliasing in the signal 
-    when the frequency is changing (no automatic modification 
-    of the number of harmonics is performed by the 
-    setFrequency() function).
+(control parameters)  
 
-    Original code by Robin Davies, 2005.
-    Revisions by Gary Scavone for STK, 2005.
-(control parameters)
-.freq - ( float , READ/WRITE ) - base frequency (hz)
-.harmonics - ( int , READ/WRITE ) - number of harmonics in pass band
-.phase - ( float , READ/WRITE ) - phase of the the signal
-[ugen]: BlitSaw (STK Import)
-STK band-limited sawtooth wave.
-    This class generates a band-limited sawtooth waveform
-    using a closed-form algorithm reported by Stilson and
-    Smith in "Alias-Free Digital Synthesis of Classic Analog
-    Waveforms", 1996. The user can specify both the 
-    fundamental frequency of the sawtooth and the number 
-    of harmonics contained in the resulting signal.
+    .mix - ( float , READ/WRITE ) - mix level  
+  
+  
+  
+## STK - components  
+  
+  
+### [ugen]: Chorus (STK Import)  
 
-    If nHarmonics is 0, then the signal will contain all 
-    harmonics up to half the sample rate. Note, however,
-    that this setting may produce aliasing in the signal
-    when the frequency is changing (no automatic modification
-    of the number of harmonics is performed by the setFrequency()
-    function).
+STK chorus effect class.  
+This class implements a chorus effect.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    Based on initial code of Robin Davies, 2005.
-    Modified algorithm code by Gary Scavone, 2005.
-(control parameters)
-.freq - ( float , READ/WRITE ) - base frequency (hz)
-.harmonics - ( int , READ/WRITE ) - number of harmonics in pass band
-.phase - ( float , READ/WRITE ) - phase of the the signal
-[ugen]: BlitSquare (STK Import)
-STK band-limited square wave.
-    This class generates a band-limited square wave signal.
-    It is derived in part from the approach reported by 
-    Stilson and Smith in "Alias-Free Digital Synthesis of
-    Classic Analog Waveforms", 1996. The algorithm implemented
-    in this class uses a SincM function with an even M value to
-    achieve a bipolar bandlimited impulse train. This 
-    signal is then integrated to achieve a square waveform.
-    The integration process has an associated DC offset but that
-    is subtracted off the output signal.
+(control parameters)  
+  
+    .modFreq - ( float , READ/WRITE ) - modulation frequency
+    .modDepth - ( float , READ/WRITE ) - modulation depth
+    .mix - ( float , READ/WRITE ) - effect mix
+  
+  
+### [ugen]: Modulate (STK Import)  
+  
+STK periodic/random modulator.  
 
-    The user can specify both the fundamental frequency of the
-    waveform and the number of harmonics contained in the 
-    resulting signal.
+This class combines random and periodic modulations to give a nice, natural human modulation function.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    If nHarmonics is 0, then the signal will contain all 
-    harmonics up to half the sample rate. Note, however, that
-    this setting may produce aliasing in the signal when the
-    frequency is changing (no automatic modification of the
-    number of harmonics is performed by the setFrequency() function).
+(control parameters)  
+  
+    .vibratoRate - ( float , READ/WRITE ) - set rate of vibrato
+    .vibratoGain - ( float , READ/WRITE ) - gain for vibrato
+    .randomGain - ( float , READ/WRITE ) - gain for random contribution  
+  
+  
+### [ugen]: PitShift (STK Import)  
 
-    Based on initial code of Robin Davies, 2005.
-    Modified algorithm code by Gary Scavone, 2005.
-(control parameters)
-.freq - ( float , READ/WRITE ) - base frequency (hz)
-.harmonics - ( int , READ/WRITE ) - number of harmonics in pass band
-.phase - ( float , READ/WRITE ) - phase of the the signal
-stk - file i/o
-[ugen]: WvIn (STK Import)
-STK audio data input base class.
-    This class provides input support for various
-    audio file formats.  It also serves as a base
-    class for "realtime" streaming subclasses.
+STK simple pitch shifter effect class.  
+  
+This class implements a simple pitch shifter using delay lines.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
 
-    WvIn loads the contents of an audio file for
-    subsequent output.  Linear interpolation is
-    used for fractional "read rates".
+(control parameters)  
 
-    WvIn supports multi-channel data in interleaved
-    format.  It is important to distinguish the
-    tick() methods, which return samples produced
-    by averaging across sample frames, from the 
-    tickFrame() methods, which return pointers to
-    multi-channel sample frames.  For single-channel
-    data, these methods return equivalent values.
+    .mix - ( float , READ/WRITE ) - effect dry/web mix level
+    .shift - ( float , READ/WRITE ) - degree of pitch shifting  
+  
 
-    Small files are completely read into local memory
-    during instantiation.  Large files are read
-    incrementally from disk.  The file size threshold
-    and the increment size values are defined in
-    WvIn.h.
+### [ugen]: SubNoise (STK Import)  
+  
+STK sub-sampled noise generator.  
 
-    WvIn currently supports WAV, AIFF, SND (AU),
-    MAT-file (Matlab), and STK RAW file formats.
-    Signed integer (8-, 16-, and 32-bit) and floating-
-    point (32- and 64-bit) data types are supported.
-    Uncompressed data types are not supported.  If
-    using MAT-files, data should be saved in an array
-    with each data channel filling a matrix row.
+Generates a new random number every "rate" ticks using the C `rand()` function. The quality of the `rand()`` function varies from one OS to another.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+  
+    .rate - ( int , READ/WRITE ) - subsampling rate  
+  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.rate - ( float , READ/WRITE ) - playback rate
-.path - ( string , READ/WRITE ) - specifies file to be played
-[ugen]: WaveLoop (STK Import)
-STK waveform oscillator class.
-    This class inherits from WvIn and provides
-    audio file looping functionality.
+### [ugen]: Blit (STK Import)  
 
-    WaveLoop supports multi-channel data in
-    interleaved format.  It is important to
-    distinguish the tick() methods, which return
-    samples produced by averaging across sample
-    frames, from the tickFrame() methods, which
-    return pointers to multi-channel sample frames.
-    For single-channel data, these methods return
-    equivalent values.
+STK band-limited impulse train.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends WvIn
-(control parameters)
-.freq - ( float , READ/WRITE ) - set frequency of playback ( loops / second )
-.addPhase - ( float , READ/WRITE ) - offset by phase
-.addPhaseOffset - ( float , READ/WRITE ) - set phase offset
-[ugen]: WvOut (STK Import)
-STK audio data output base class.
-    This class provides output support for various
-    audio file formats.  It also serves as a base
-    class for "realtime" streaming subclasses.
+This class generates a band-limited impulse train using a closed-form algorithm reported by Stilson and Smith in "Alias-Free Digital Synthesis of Classic Analog Waveforms", 1996. The user can specify both the fundamental frequency of the impulse train and the number of harmonics contained in the resulting signal.  
+  
+The signal is normalized so that the peak value is +/-1.0.  
+  
+If nHarmonics is 0, then the signal will contain all harmonics up to half the sample rate. Note, however, that this setting may produce aliasing in the signal when the frequency is changing (no automatic modification of the number of harmonics is performed by the `setFrequency()` function).
+  
+> Original code by Robin Davies, 2005. Revisions by Gary Scavone for STK, 2005.  
 
-    WvOut writes samples to an audio file.  It
-    supports multi-channel data in interleaved
-    format.  It is important to distinguish the
-    tick() methods, which output single samples
-    to all channels in a sample frame, from the
-    tickFrame() method, which takes a pointer
-    to multi-channel sample frame data.
+(control parameters)  
+  
+    .freq - ( float , READ/WRITE ) - base frequency (hz)
+    .harmonics - ( int , READ/WRITE ) - number of harmonics in pass band
+    .phase - ( float , READ/WRITE ) - phase of the the signal  
+  
 
-    WvOut currently supports WAV, AIFF, AIFC, SND
-    (AU), MAT-file (Matlab), and STK RAW file
-    formats.  Signed integer (8-, 16-, and 32-bit)
-    and floating- point (32- and 64-bit) data types
-    are supported.  STK RAW files use 16-bit
-    integers by definition.  MAT-files will always
-    be written as 64-bit floats.  If a data type
-    specification does not match the specified file
-    type, the data type will automatically be
-    modified.  Uncompressed data types are not
-    supported.
+### [ugen]: BlitSaw (STK Import)  
 
-    Currently, WvOut is non-interpolating and the
-    output rate is always Stk::sampleRate().
+STK band-limited sawtooth wave.  
 
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-(control parameters)
-.matFilename - ( string , WRITE only ) - open matlab file for writing
-.sndFilename - ( string , WRITE only ) - open snd file for writing
-.wavFilename - ( string , WRITE only ) - open WAVE file for writing
-.rawFilename - ( string , WRITE only ) - open raw file for writing
-.aifFilename - ( string , WRITE only ) - open AIFF file for writing
-.closeFile - ( string , WRITE only ) - close file properly
+This class generates a band-limited sawtooth waveform using a closed-form algorithm reported by Stilson and Smith in "Alias-Free Digital Synthesis of Classic Analog Waveforms", 1996. The user can specify both the fundamental frequency of the sawtooth and the number of harmonics contained in the resulting signal.  
+  
+If nHarmonics is 0, then the signal will contain all harmonics up to half the sample rate. Note, however, that this setting may produce aliasing in the signal when the frequency is changing (no automatic modification of the number of harmonics is performed by the `setFrequency()` function).  
+  
+> Based on initial code of Robin Davies, 2005. Modified algorithm code by Gary Scavone, 2005.  
+
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - base frequency (hz)
+    .harmonics - ( int , READ/WRITE ) - number of harmonics in pass band
+    .phase - ( float , READ/WRITE ) - phase of the the signal
+  
+
+### [ugen]: BlitSquare (STK Import)  
+
+STK band-limited square wave.  
+  
+This class generates a band-limited square wave signal. It is derived in part from the approach reported by Stilson and Smith in "Alias-Free Digital Synthesis of Classic Analog Waveforms", 1996. The algorithm implemented in this class uses a SincM function with an even M value to achieve a bipolar bandlimited impulse train. This signal is then integrated to achieve a square waveform. The integration process has an associated DC offset but that is subtracted off the output signal.  
+  
+The user can specify both the fundamental frequency of the waveform and the number of harmonics contained in the resulting signal.  
+  
+If nHarmonics is 0, then the signal will contain all harmonics up to half the sample rate. Note, however, that this setting may produce aliasing in the signal when the frequency is changing (no automatic modification of the number of harmonics is performed by the setFrequency() function).  
+  
+> Based on initial code of Robin Davies, 2005. Modified algorithm code by Gary Scavone, 2005.  
+
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - base frequency (hz)
+    .harmonics - ( int , READ/WRITE ) - number of harmonics in pass band
+    .phase - ( float , READ/WRITE ) - phase of the the signal  
+  
+  
+
+## STK - file i/o  
+  
+  
+### [ugen]: WvIn (STK Import)  
+
+STK audio data input base class.  
+  
+This class provides input support for various audio file formats.  It also serves as a base class for "realtime" streaming subclasses.  
+  
+WvIn loads the contents of an audio file for subsequent output. Linear interpolation is used for fractional "read rates".  
+  
+WvIn supports multi-channel data in interleaved format. It is important to distinguish the `tick()` methods, which return samples produced by averaging across sample frames, from the `tickFrame()` methods, which return pointers to
+multi-channel sample frames. For single-channel data, these methods return equivalent values.  
+  
+Small files are completely read into local memory during instantiation. Large files are read incrementally from disk. The file size threshold and the increment size values are defined in WvIn.h.  
+  
+> WvIn currently supports WAV, AIFF, SND (AU), MAT-file (Matlab), and STK RAW file formats. Signed integer (8-, 16-, and 32-bit) and floating-point (32- and 64-bit) data types are supported. Uncompressed data types are not supported.  If using MAT-files, data should be saved in an array with each data channel filling a matrix row.  
+by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+
+(control parameters)  
+  
+    .rate - ( float , READ/WRITE ) - playback rate  
+    .path - ( string , READ/WRITE ) - specifies file to be played  
+  
+
+### [ugen]: WaveLoop (STK Import)  
+  
+STK waveform oscillator class (extends WvIn)  
+  
+This class inherits from WvIn and provides audio file looping functionality.  
+  
+WaveLoop supports multi-channel data in interleaved format. It is important to
+distinguish the `tick()` methods, which return samples produced by averaging across sample frames, from the `tickFrame()` methods, which return pointers to multi-channel sample frames. For single-channel data, these methods return 
+equivalent values.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+
+    .freq - ( float , READ/WRITE ) - set frequency of playback ( loops /    second )
+    .addPhase - ( float , READ/WRITE ) - offset by phase
+    .addPhaseOffset - ( float , READ/WRITE ) - set phase offset  
+  
+  
+### [ugen]: WvOut (STK Import)  
+  
+STK audio data output base class.  
+
+This class provides output support for various audio file formats. It also serves as a base class for "realtime" streaming subclasses.  
+  
+WvOut writes samples to an audio file. It supports multi-channel data in interleaved format. It is important to distinguish the `tick()` methods, which output single samples to all channels in a sample frame, from the `tickFrame()` method, which takes a pointer to multi-channel sample frame data.  
+  
+WvOut currently supports WAV, AIFF, AIFC, SND (AU), MAT-file (Matlab), and STK RAW file formats. Signed integer (8-, 16-, and 32-bit) and floating- point (32- and 64-bit) data types are supported. STK RAW files use 16-bit integers by definition. MAT-files will always be written as 64-bit floats.  If a data type specification does not match the specified file type, the data type will automatically be modified. Uncompressed data types are not supported.  
+  
+Currently,   
+  
+- WvOut is non-interpolating  
+- output rate is always `Stk::sampleRate()`  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters)  
+  
+    .matFilename - ( string , WRITE only ) - open matlab file for writing
+    .sndFilename - ( string , WRITE only ) - open snd file for writing
+    .wavFilename - ( string , WRITE only ) - open WAVE file for writing
+    .rawFilename - ( string , WRITE only ) - open raw file for writing
+    .aifFilename - ( string , WRITE only ) - open AIFF file for writing
+    .closeFile - ( string , WRITE only ) - close file properly  
+  
