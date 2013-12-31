@@ -885,11 +885,11 @@ Banded waveguide modeling class (extends StkInstrument).
         - Tuned Bar = 1
         - Glass Harmonica = 2
         - Tibetan Bowl = 3  
-        
-    by Georg Essl, 1999 - 2002. Modified for Stk 4.0 by Gary Scavone.
+  
+> by Georg Essl, 1999 - 2002. Modified for Stk 4.0 by Gary Scavone.  
   
 (control parameters)  
-
+  
     .bowPressure - ( float , READ/WRITE ) - bow pressure [0.0 - 1.0]
     .bowMotion - ( float , READ/WRITE ) - bow motion [0.0 - 1.0]
     .bowRate - ( float , READ/WRITE ) - bow attack rate (sec)
@@ -915,11 +915,11 @@ STK blown bottle instrument class (extends StkInstrument)
     - Vibrato Frequency = 11
     - Vibrato Gain = 1
     - Volume = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
-
+  
     .noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
     .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
     .vibratoGain - ( float , READ/WRITE ) - vibrato gain [0.0 - 1.0]
@@ -949,8 +949,8 @@ the length of the air column. In addition, the highest playing freqeuency is lim
     - Tonehole State = 11  
     - Register State = 1  
     - Breath Pressure = 128  
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -981,8 +981,8 @@ This class implements a bowed string model, a la Smith (1986), after McIntyre, S
     - Vibrato Frequency = 11
     - Vibrato Gain = 1
     - Volume = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1012,9 +1012,9 @@ This class implements a simple brass instrument waveguide model, a la Cook (TBon
     - Slide Length = 4
     - Vibrato Frequency = 11
     - Vibrato Gain = 1
-    - Volume = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+    - Volume = 128  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
 
@@ -1046,11 +1046,11 @@ This class implements a simple clarinet physical model, as discussed by Smith (1
     - Vibrato Frequency = 11
     - Vibrato Gain = 1
     - Breath Pressure = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
-
+  
     .reed - ( float , READ/WRITE ) - reed stiffness [0.0 - 1.0]
     .noiseGain - ( float , READ/WRITE ) - noise component gain [0.0 - 1.0]
     .vibratoFreq - ( float , READ/WRITE ) - vibrato frequency (Hz)
@@ -1079,8 +1079,8 @@ This class implements a simple flute physical model, as discussed by Karjalainen
     - Vibrato Frequency = 11
     - Vibrato Gain = 1
     - Breath Pressure = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1116,8 +1116,8 @@ information, contact the Office of Technology Licensing, Stanford University.
     - String Sustain = 11
     - String Detuning = 1
     - Microphone Position = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1156,8 +1156,8 @@ This class implements a number of different struck bar instruments. It inherits 
         - Beats = 6
         - Two Fixed = 7
         - Clump = 8
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1194,8 +1194,8 @@ This instrument uses one attack wave, one looped wave, and an ADSR envelope (inh
     - Vibrato Frequency = 11
     - Vibrato Gain = 1
     - Gain = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1227,8 +1227,8 @@ The string can be "blown" at any point between the terminations, though just as 
     - Vibrato Frequency = 29
     - Vibrato Gain = 1
     - Breath Pressure = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1288,8 +1288,8 @@ Cabasa, Bamboo Wind Chimes, Water Drops, Tambourine, Sleighbells, and a Guiro.
         - Big Rocks = 20
         - Little Rocks = 21
         - Tuned Bamboo Chimes = 22
-    
-    by Perry R. Cook, 1996 - 1999.
+  
+> by Perry R. Cook, 1996 - 1999.  
   
 (control parameters)  
   
@@ -1333,8 +1333,8 @@ This class implements a simple plucked string algorithm (Karplus Strong) with en
     - Pickup Position = 4
     - String Sustain = 11
     - String Stretch = 1
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
   
@@ -1364,8 +1364,8 @@ Measured formant data is included, and enough data is there to support either pa
     - Vibrato Frequency = 11
     - Vibrato Gain = 1
     - Loudness (Spectral Tilt) = 128
-    
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
+  
+> by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 Phoneme Names:  
   
@@ -1770,6 +1770,7 @@ This class is based on some of the famous Stanford/CCRMA reverbs (NRev, KipRev),
 ### [ugen]: Chorus (STK Import)  
 
 STK chorus effect class.  
+
 This class implements a chorus effect.  
   
 > by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
@@ -1784,7 +1785,7 @@ This class implements a chorus effect.
 ### [ugen]: Modulate (STK Import)  
   
 STK periodic/random modulator.  
-
+  
 This class combines random and periodic modulations to give a nice, natural human modulation function.  
   
 > by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
