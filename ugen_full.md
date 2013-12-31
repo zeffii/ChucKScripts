@@ -1327,9 +1327,9 @@ This class implements a simple plucked string algorithm (Karplus Strong) with en
 > This is a digital waveguide model, making its use possibly subject to patents held by Stanford University, Yamaha, and others.  
   
     Control Change Numbers:
-       - Pickup Position = 4
-       - String Sustain = 11
-       - String Stretch = 1
+    - Pickup Position = 4
+    - String Sustain = 11
+    - String Stretch = 1
     
     by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
   
@@ -1413,7 +1413,7 @@ This class controls an arbitrary number of waves and envelopes, determined via a
 > The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away. by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
   
 (control parameters)  
-
+  
     .lfoSpeed - ( float , READ/WRITE ) - modulation Speed (Hz)
     .lfoDepth - ( float , READ/WRITE ) - modulation Depth [0.0 - 1.0]
     .afterTouch - ( float , READ/WRITE ) - aftertouch [0.0 - 1.0]
@@ -1422,40 +1422,33 @@ This class controls an arbitrary number of waves and envelopes, determined via a
     
     // inherits from StkInstrument
     .noteOn, .noteOff, .freq, .controlChange
+  
+### [ugen]: BeeThree (STK Import)  
 
-[ugen]: BeeThree (STK Import)
-STK Hammond-oid organ FM synthesis instrument.
-    This class implements a simple 4 operator
-    topology, also referred to as algorithm 8 of
-    the TX81Z.
-
-    \code
+STK Hammond-oid organ FM synthesis instrument (extends FM)  
+  
+This class implements a simple 4 operator topology, also referred to as algorithm 8 of the TX81Z.  
+  
     Algorithm 8 is :
                      1 --.
                      2 -\|
                          +-> Out
                      3 -/|
                      4 --
-    \endcode
-
+  
     Control Change Numbers: 
-       - Operator 4 (feedback) Gain = 2 (.controlOne)
-       - Operator 3 Gain = 4 (.controlTwo)
-       - LFO Speed = 11
-       - LFO Depth = 1
-       - ADSR 2 & 4 Target = 128
+    - Operator 4 (feedback) Gain = 2 (.controlOne)
+    - Operator 3 Gain = 4 (.controlTwo)
+    - LFO Speed = 11
+    - LFO Depth = 1
+    - ADSR 2 & 4 Target = 128
+  
+> The basic Chowning/Stanford FM patent expired in 1995, but there exist follow-on patents, mostly assigned to Yamaha. If you are of the type who should worry about this (making money) worry away. by Perry R. Cook and Gary P. Scavone, 1995 - 2002.  
+  
+(control parameters, see super classes )  
+  
+### [ugen]: FMVoices (STK Import)  
 
-    The basic Chowning/Stanford FM patent expired
-    in 1995, but there exist follow-on patents,
-    mostly assigned to Yamaha.  If you are of the
-    type who should worry about this (making
-    money) worry away.
-
-    by Perry R. Cook and Gary P. Scavone, 1995 - 2002.
-extends FM
-(control parameters)
-( see super classes )
-[ugen]: FMVoices (STK Import)
 STK singing FM synthesis instrument.
     This class implements 3 carriers and a common
     modulator, also referred to as algorithm 6 of
