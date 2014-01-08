@@ -80,27 +80,37 @@ public class WindChime {
     }
 
     // this sets a default, incase i forget to
-    set_adsr( 2::ms, 291::ms, 31::ms, .620, 335::ms );  //a, d, s, r
+    set_adsr( 3::ms, 291::ms, 31::ms, .620, 335::ms );  //a, d, s, r
 
 }
 
+
 WindChime wc;
+wc.set_chime_vol(0.37);
+
+// this enforces the overal loudness of the patch, else it would
+// tend to go into a feedback gain. I didn't investigate why
 ADSR sound_sculpt[2];
-36 => int num_chimes;
 wc.mout.left => sound_sculpt[0] => dac.left;
 wc.mout.right => sound_sculpt[1] => dac.right;
+
 sound_sculpt[0].set( 0::ms, 0::ms, 1.0, 3235::ms );  //a, d, s, r
 sound_sculpt[1].set( 0::ms, 0::ms, 1.0, 3235::ms );  //a, d, s, r
-wc.set_chime_vol(0.37);
 sound_sculpt[0].keyOn();
 sound_sculpt[1].keyOn();
+
+36 => int num_chimes;
 120.0 => float start_note;
-1 / 1.4 => float rate;
+1 / 1.4 => float rate;  // speed at which this traverses the chime
+
+// simulate fingers traveling along chimes.
 for(0 => int i; i<num_chimes; i++){
     wc.play_note(start_note-(i*0.6));
     (Math.random2f(0.139, 0.142) * rate) ::second =>now;
 }
+
 sound_sculpt[0].keyOff();
 sound_sculpt[1].keyOff();
+
 // prevent clicks
 7::second => now;
